@@ -1,0 +1,88 @@
+<section class="shop-by-activity">
+  <div class="shop-title-container">
+    <h2 class="">Shop By Shoe Model</h2>
+    <p class="">Shop By Shoe Style</p>
+  </div>
+  <div class="carosel-flex-container">
+    {% for shoe in section.blocks %}
+      <a href="">
+        <div class="shop-img-carosel">
+          <a href="{{ shoe.settings.item_link }}">
+            <img
+              src="{{ shoe.settings.image | img_url: '600x' }}"
+              alt="{{ shoe.settings.title }}"
+              class="img-shop-shoe"
+            >
+          </a>
+          <div class="shop-title-container  img-shop-shoe-title">
+            <a href="{{ shoe.settings.item_link }}">
+              <b class="gd-blue-color">{{ shoe.settings.title }}</b>
+            </a>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+<style>
+  .img-shop-shoe{
+    max-width:250px;
+        margin: 0 auto;
+    display: block;
+  }
+
+    .img-shop-shoe-title{
+      text-align:center;
+    }
+</style>
+{% schema %}
+{
+  "name": "shop-by-shoe",
+  "settings": [],
+
+    "presets": [
+      {
+        "name": "shop-by-shoe",
+        "category": "Custom",
+        "blocks": [
+
+            {
+        "type": "shoe",
+        "settings": {
+          "image": "",
+          "title": "mighty walk",
+          "item_link": "https://www.gravitydefyer.com/"
+        }
+      }
+    ]
+      }
+
+
+    ],
+  "blocks": [
+
+  {
+      "type": "shoe",
+      "name": "Shoe",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Shoe Title"
+        },
+        {
+          "type": "url",
+          "id": "item_link",
+          "label": "Item Link"
+        }
+      ]
+    }
+
+  ]
+}
+{% endschema %}

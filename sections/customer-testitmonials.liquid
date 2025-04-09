@@ -1,0 +1,129 @@
+<div
+  class="
+    custom-product-section grey-bg
+    container shop-container
+  "
+>
+  <div class="shop-title-container">
+    <h2>Real People, Real Testimonials</h2>
+  </div>
+  <div class="test-carosel-flex-container">
+    <div class="shop-btn-carosel">
+      <div class="testimonial-container">
+        <div class="test-starts">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/050324_5star_D.webp?v=1740601580"
+            alt="stars"
+          >
+        </div>
+        <div class="test-title">They give the shock absorbing as promised</div>
+        <div class="test-text">I have bought and tried several different shoes over the last...</div>
+      </div>
+    </div>
+    <div class="shop-btn-carosel">
+      <div class="testimonial-container">
+        <div class="test-starts">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/050324_5star_D.webp?v=1740601580"
+            alt="stars"
+          >
+        </div>
+        <div class="test-title">The most comfortable shoe I’ve ever worn</div>
+        <div class="test-text">I bought these because I do a great deal of walking and was very...</div>
+      </div>
+    </div>
+    <div class="shop-btn-carosel">
+      <div class="testimonial-container">
+        <div class="test-starts">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/050324_5star_D.webp?v=1740601580"
+            alt="stars"
+          >
+        </div>
+        <div class="test-title">It was like a miracle wearing these shoes.</div>
+        <div class="test-text">My feet have hurt me for years. I work as a nurse and I'm on my...</div>
+      </div>
+    </div>
+    <div class="shop-btn-carosel">
+      <div class="testimonial-container">
+        <div class="test-starts">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/050324_5star_D.webp?v=1740601580"
+            alt="starts"
+          >
+        </div>
+        <div class="test-title">Best Shoes Ever</div>
+        <div class="test-text">This is my second pair, I love these shoes, I have fibromyalgia and...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .test-carosel-flex-container {
+      display: flex
+  ;
+      overflow: auto;
+      margin-top: 20px;
+      padding-bottom: 20px;
+  }
+
+  .shop-btn-carosel {
+      flex: 0 0 auto;
+      margin-left: 20px;
+  }
+
+  .testimonial-container {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 5%;
+      margin-bottom: 20px;
+      min-height: 200px;
+  }
+
+  .test-title {
+      font-size: 24px;
+      line-height: 1.25em;
+      color: #000;
+      padding: 10px 4px;
+  }
+
+  .test-starts img {
+      width: auto;
+  }
+  .test-text {
+      font-size: 14px;
+      color: #000;
+  }
+
+  .grey-bg {
+      background: #f6f6f6;
+  }
+
+  @media(max-width:780px){
+
+
+  .testimonial-container {
+   max-width:200px
+  }
+
+  .test-starts img {
+      width: auto;
+  max-width:100px;
+  }
+
+  .test-title {font-size:18px}}
+</style>
+
+{% schema %}
+{
+  "name": "customer-testimonial",
+
+  "presets": [
+    {
+      "name": "customer-testimonial",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,316 @@
+<section class="custom-product-section">
+  <div class="shop-title-container">
+    <h2 class="">Browse by Best Sellers</h2>
+  </div>
+
+  <div class="gd1-browse-tab">
+    <button class="gd1-tablinks active" onclick="openCity(event, 'Women')">Women</button>
+    <button class="gd1-tablinks" onclick="openCity(event, 'Men')">Men</button>
+  </div>
+
+  <div id="Women" class="gd1-browse-default gd1-browse-tabcontent ">
+    <div class="carosel-flex-container ">
+      {% if section.settings.product_1 %}
+        {% assign product = all_products[section.settings.product_1] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_2 %}
+        {% assign product = all_products[section.settings.product_2] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_3 %}
+        {% assign product = all_products[section.settings.product_3] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_4 %}
+        {% assign product = all_products[section.settings.product_4] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div id="Men" class="gd1-browse-tabcontent">
+    <div class="carosel-flex-container ">
+      {% if section.settings.product_5 %}
+        {% assign product = all_products[section.settings.product_5] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_6 %}
+        {% assign product = all_products[section.settings.product_6] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_7 %}
+        {% assign product = all_products[section.settings.product_7] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+
+      {% if section.settings.product_8 %}
+        {% assign product = all_products[section.settings.product_8] %}
+        <a href="{{ product.url }}">
+          <div class="shop-img-carosel">
+            <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}">
+
+            <p class="product-title">{{ product.title }}</p>
+            <p class="product-category">Running/Walking</p>
+
+            <span class="regular-price">{{ product.price | money_with_currency }}</span>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="strike-price"> {{ product.compare_at_price | money_with_currency }}</span>
+            {% endif %}
+          </div>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <a href="https://www.gravitydefyer.com/collections/all-women">
+    <div class="shop-btn-carosel gd-btn-pill " style="max-width:100px;    margin: 0 auto;">
+      <i class="fas fa-arrow-right"></i> View More →
+    </div>
+  </a>
+</section>
+
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("gd1-browse-tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("gd1-tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
+
+<style>
+    /* Style the tab */
+    .gd1-browse-tab {
+  margin-top: 18px;margin-left: 18px;
+      display: flex;
+        align-items: stretch;
+    }
+
+    /* Style the buttons inside the tab */
+    .gd1-browse-tab button {
+     display: block;
+        cursor: pointer;
+        transition: all .3s;
+        padding: 7px 25px;
+        border-radius: 25px;
+        color: #00212f;
+        min-width: 150px;
+        cursor: pointer;
+        border: solid 1px #00212f;
+        background-color: rgba(0, 0, 0, 0);
+        text-align: center;
+        font-size: 16px;
+        pointer-events: auto;
+        margin-right: 20px;
+    }
+
+    /* Change background color of buttons on hover */
+    .gd1-browse-tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .gd1-browse-tab button.active {
+      background-color: #00212f;
+      color:#fff;
+    }
+
+    /* Style the tab content */
+    .gd1-browse-tabcontent {
+      display: none;
+      padding: 6px 12px;
+
+      border-top: none;
+    }
+
+    .gd1-browse-default{ display:block;}
+
+
+      .custom-product-section{
+        max-width: 1600px;
+          margin: 0 auto;
+          padding: 25px 20px;
+      }
+        .regular-price{
+          font-size: 16px;
+          color: #3c3232;
+          line-height: 2em;
+        }
+
+        .strike-price{
+          text-decoration:line-through;color: #adabab;
+        }
+
+        .product-title{
+              color: #3c3232;
+          font-size: 16px;
+          line-height: 1.5em;
+        }
+
+        .product-category{
+              color: #085592;
+          line-height: 2em;
+          line-height: 1.5em;
+          font-size: 14px;
+        }
+</style>
+{% schema %}
+{
+  "name": "product-picker",
+
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Select First Product"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Select Second Product"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Select Third Product"
+    },
+
+    {
+      "type": "product",
+      "id": "product_4",
+      "label": "Select 4 Product"
+    },
+    {
+      "type": "product",
+      "id": "product_5",
+      "label": "Select 5 Product"
+    },
+    {
+      "type": "product",
+      "id": "product_6",
+      "label": "Select 6 Product"
+    },
+    {
+      "type": "product",
+      "id": "product_7",
+      "label": "Select 7 Product"
+    },
+    {
+      "type": "product",
+      "id": "product_8",
+      "label": "Select 8 Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "product-picker",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

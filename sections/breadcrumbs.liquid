@@ -1,0 +1,51 @@
+{% comment %}
+  Breadcrumb Navigation for Shopify
+{% endcomment %}
+<nav class="breadcrumb" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <a href="{{ routes.root_url }}">Home</a>
+    </li>
+    {% if template == 'collection' %}
+      <li>
+        <a href="{{ routes.collections_url }}">Collections</a>
+      </li>
+      <li>
+        {{ collection.title }}
+      </li>
+    {% elsif template == 'product' %}
+      <li>
+        <a href="{{ routes.collections_url }}">Collections</a>
+      </li>
+      {% if collection %}
+        <li>
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
+        </li>
+      {% endif %}
+      <li>
+        {{ product.title }}
+      </li>
+    {% elsif template == 'blog' %}
+      <li>
+        <a href="{{ routes.blogs_url }}">Blog</a>
+      </li>
+      <li>
+        {{ blog.title }}
+      </li>
+    {% elsif template == 'article' %}
+      <li>
+        <a href="{{ routes.blogs_url }}">Blog</a>
+      </li>
+      <li>
+        <a href="{{ blog.url }}">{{ blog.title }}</a>
+      </li>
+      <li>
+        {{ article.title }}
+      </li>
+    {% elsif template == 'page' %}
+      <li>
+        {{ page.title }}
+      </li>
+    {% endif %}
+  </ul>
+</nav>
