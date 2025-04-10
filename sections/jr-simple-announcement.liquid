@@ -1,0 +1,70 @@
+{% style %}
+    
+{% endstyle %}
+
+<style>
+
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.section_background_color }};
+        color: {{ section.settings.section_text_color }};
+    }
+
+</style>
+
+<div class="jr-triple-announcement jr-section" data-section-id="{{ section.id }}">
+    <div class="inner-container">
+        {% for block in section.blocks  %}
+            {% if block.settings.url != blank %}
+                <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+                {% else %}
+                <p>{{ block.settings.title }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "JR Simple Announcement",
+    "settings": [
+        {
+            "type": "color",
+            "id": "section_background_color",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "section_text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "announcement",
+            "name": "Announcement Text",
+            "limit": 3,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Announcement Text"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link URL (optional)"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "JR Simple Announcement",
+            "category": "JR"
+        }
+    ]
+}
+{% endschema %}
