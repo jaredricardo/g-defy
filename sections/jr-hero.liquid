@@ -41,7 +41,7 @@
 {% endstyle %}
 
 <div data-section-id="{{ section.id }}">
-    <div class="jr-hp-hero">
+    <div class="jr-hp-hero jr-section">
         {% unless overlay_string == '0' %}
             <div class="image-overlay" style="background-color: rgba(0, 0, 0, {{ overlay_string }});" data-test="{{ section.settings.overlay_string }}" ></div>
         {% endunless %}
@@ -59,27 +59,28 @@
                             class="section-subheader"
                             >{{ block.settings.subheader }}
                         </div>
-                    {% when 'button' %}
-                        <a 
-                            style="color:{{ block.settings.button_text_color }}; background-color:{{ block.settings.button_bg_color }}; margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;"
-                            href="{{ block.settings.button_link }}" 
-                            class="hero-btn btn"
-                            >{{ block.settings.button_text }}
-                        </a>
                 {% endcase %}
             {% endfor %}
-
-            {% comment %} unused for now {% endcomment %}
-            {% comment %} 
             {% if section.settings.stars_text != blank %}
-               <div class="star-review-container">
-                    {% if section.settings.stars_img != blank %}
-                        <img src="{{ section.settings.stars_img |  img_url: 'master' }}" alt="Stars" class="stars">
+                <div class="star-review-container">
+                     {% if section.settings.stars_img != blank %}
+                         <img src="{{ section.settings.stars_img |  img_url: 'master' }}" alt="Stars" class="stars">
+                     {% endif %}
+                     <div class="stars-text" style="color: {{ section.settings.stars_text_color }};">{{ section.settings.stars_text }}</div>
+                </div>
+             {% endif %} 
+            <div class="button-container">
+                {% for block in section.blocks %}
+                    {% if block.type == "button" %}
+                            <a 
+                                style="color:{{ block.settings.button_text_color }}; background-color:{{ block.settings.button_bg_color }}; margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;"
+                                href="{{ block.settings.button_link }}" 
+                                class="hero-btn btn theme-button"
+                                >{{ block.settings.button_text }}
+                            </a>
                     {% endif %}
-                    <div class="stars-text">{{ section.settings.stars_text }}</div>
-               </div>
-            {% endif %} 
-            {% endcomment %}
+                {% endfor %}
+            </div>
         </div>
         <img src="{{ section.settings.mobile_img |  img_url: 'master' }}" alt="Hero image" class="mobile hero-image">
         <img src="{{ section.settings.desktop_img |  img_url: 'master' }}" alt="Hero image" class="desktop hero-image">
@@ -88,7 +89,7 @@
 
 {% schema %}
 {
-    "name": "JR Homepage Hero",
+    "name": "JR LP Hero",
     "settings": [
         {
             "type": "color",
@@ -129,6 +130,23 @@
             "id": "top_alignment_m",
             "label": "Spacing from the top of the page (m)",
             "default": 15
+        },
+        {
+            "type": "text",
+            "id": "stars_text",
+            "label": "Stars Text",
+            "default": "Based on 50,000+ reviews"
+        },
+        {
+            "type": "color",
+            "id": "stars_text_color",
+            "label": "Stars Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "image_picker",
+            "id": "stars_img",
+            "label": "Stars Image"
         }
     ],
     "blocks": [
@@ -195,7 +213,6 @@
         {
             "type": "button",
             "name": "Button",
-            "limit": 1,
             "settings": [
                 {
                     "type": "text",
@@ -237,7 +254,7 @@
     ],
     "presets": [
         {
-            "name": "JR Homepage Hero"
+            "name": "JR Hero"
         }
     ]
 }
