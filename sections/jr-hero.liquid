@@ -24,10 +24,34 @@
 [data-section-id="{{ section.id }}" ] .jr-hp-hero {
     max-width: 2000px;
     margin: 0 auto;
+    aspect-ratio: {{ section.settings.desktop_img.width }} / {{ section.settings.desktop_img.height }} ;
 }
 
 [data-section-id="{{ section.id }}" ] .content-container {
     top: {{ section.settings.top_alignment_d }}%;
+}
+
+[data-section-id="{{ section.id }}" ] .abs-pos-text {
+    position: absolute;
+    z-index: 2;
+    color: {{ section.settings.abs_pos_text_color }};
+
+    {% if section.settings.abs_pos_y_desktop == 'top' %}
+        top: 0;
+    {% endif %}
+
+    {% if section.settings.abs_pos_y_desktop == 'bottom' %}
+        bottom: 0;
+    {% endif %}
+
+    {% if section.settings.abs_pos_x_desktop == 'left' %}
+        left: 0;
+    {% endif %}
+
+    {% if section.settings.abs_pos_x_desktop == 'right' %}
+        right: 0;
+    {% endif %}
+
 }
 
 @media screen and (max-width: 768px) {
@@ -36,12 +60,38 @@
         justify-content: start;
         top: {{ section.settings.top_alignment_m }}%;
     }
+    [data-section-id="{{ section.id }}" ] .jr-hp-hero {
+        aspect-ratio: 16/9;   
+    }
+    [data-section-id="{{ section.id }}" ] .abs-pos-text {
+
+        {% if section.settings.abs_pos_y_mobile == 'top' %}
+            top: 0;
+        {% endif %}
+
+        {% if section.settings.abs_pos_y_mobile == 'bottom' %}
+            bottom: 0;
+        {% endif %}
+
+        {% if section.settings.abs_pos_x_mobile == 'left' %}
+            left: 0;
+        {% endif %}
+
+        {% if section.settings.abs_pos_x_mobile == 'right' %}
+            right: 0;
+        {% endif %}
+    }
 }
 
 {% endstyle %}
 
 <div data-section-id="{{ section.id }}">
     <div class="jr-hp-hero jr-section">
+
+        {% if section.settings.abs_pos_text != blank %}
+            <p class="abs-pos-text">{{ section.settings.abs_pos_text }}</p>
+        {% endif %}
+
         {% unless overlay_string == '0' %}
             <div class="image-overlay" style="background-color: rgba(0, 0, 0, {{ overlay_string }});" data-test="{{ section.settings.overlay_string }}" ></div>
         {% endunless %}
@@ -49,7 +99,22 @@
             {% for block in section.blocks %}
                 {% case block.type %}
                     {% when 'header' %}
-                        <div style="color:{{ block.settings.text_color }}; margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;" 
+
+                        {% style %}
+
+                            [data-block-id="{{ block.id }}" ] h1,
+                            [data-block-id="{{ block.id }}" ] h2,
+                            [data-block-id="{{ block.id }}" ] h3,
+                            [data-block-id="{{ block.id }}" ] h4,
+                            [data-block-id="{{ block.id }}" ] h5,
+                            [data-block-id="{{ block.id }}" ] h6,
+                            [data-block-id="{{ block.id }}" ] p,
+                            [data-block-id="{{ block.id }}" ] a {
+                                color: {{ block.settings.text_color }};
+                            }
+                        {% endstyle %}
+                        
+                        <div data-block-id="{{ block.id }}" style="margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;" 
                             class="section-header"
                             >{{ block.settings.header }}
                         </div>
@@ -147,6 +212,88 @@
             "type": "image_picker",
             "id": "stars_img",
             "label": "Stars Image"
+        },
+        {
+            "type": "header",
+            "content": "Absolute Positionin Words Settings"
+        },
+        {
+            "type": "text",
+            "id": "abs_pos_text",
+            "placeholder": "Absolute Position Text",
+            "label": "Absolute Position Text"
+        },
+        {
+            "type": "color",
+            "id": "abs_pos_text_color",
+            "label": "Absolute Position Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_x_desktop",
+            "label": "Absolute Position X Desktop",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+
+            ],
+            "default": "right"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_y_desktop",
+            "label": "Absolute Position Y Desktop",
+            "options": [
+                {
+                    "value": "top",
+                    "label": "Top"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Bottom"
+                }
+            ],
+            "default": "top"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_x_mobile",
+            "label": "Absolute Position X Mobile",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+
+            ],
+            "default": "right"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_y_mobile",
+            "label": "Absolute Position Y Mobile",
+            "options": [
+                {
+                    "value": "top",
+                    "label": "Top"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Bottom"
+                }
+            ],
+            "default": "top"
         }
     ],
     "blocks": [

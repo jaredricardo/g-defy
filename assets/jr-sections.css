@@ -39,6 +39,13 @@
     min-width: 190px;
     font-size: 16px;
     margin-top: 15px;
+    font-weight: 600;
+}
+
+.jr-section .abs-pos-text {
+    font-size:  32px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
@@ -67,8 +74,13 @@
 /* lp hero */
 
 .jr-hp-hero {
-    height: 500px;
     position: relative;
+    max-height: 90vh;
+    width: 100%;
+}
+
+.jr-hp-hero h1 {
+    font-weight: 600;
 }
 
 .jr-hp-hero h1,
@@ -112,8 +124,6 @@
 }
 
 .jr-hp-hero h1 {
-    font-size: 48px;
-    margin: 0;
     line-height: 42px;
     text-align: left !important;
 }
@@ -137,15 +147,16 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    font-size: 15px;
-    margin-top: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .jr-hp-hero .image-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 1;
     display: block;
 }
 .jr-hp-hero .button-container {
@@ -157,21 +168,31 @@
     text-align: center;
 }
 
-.jr-hp-hero .stars-text {
-    color: white;
+.jr-hp-hero ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
+.jr-hp-hero ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.jr-hp-hero ul li:before {
+    content: '✓';
+    margin-right: 10px;
+}
 
 @media screen and (max-width: 768px) {
     .jr-hp-hero .desktop {
         display: none;
     }
     .jr-hp-hero {
-        height: auto;
+        height: 75vh;
     }
     .jr-hp-hero h1 {
         text-align: center !important;
-        font-size: 40px;
         line-height: 38px;
     }
     .jr-hp-hero .mobile {
@@ -185,18 +206,27 @@
     }
     .jr-hp-hero .hero-image {
         position: relative;
-        height: 60vh;
     }
     .jr-hp-hero .section-subheader {
         font-size: 20px;
         margin: 8px 0;
     }
     .jr-hp-hero .hero-btn {
-        height: 50px;
+        min-height: 35px;
         margin-top: 15px;
-        font-size: 16px;
+        font-size: 14px;
     }
     .jr-hp-hero .stars-text {
-        font-size: 12px;
+        font-size: 14px;
+    }
+    .jr-hp-hero ul li {
+        margin-bottom: 5px;
+    }
+    .jr-hp-hero .button-container .theme-button {
+        min-width: auto;
+        flex: 1;
+    }
+    .jr-hp-hero .button-container {
+        width: 100%;
     }
 }

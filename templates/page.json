@@ -49,10 +49,10 @@
         "header_hfMUm3": {
           "type": "header",
           "settings": {
-            "header": "<p>Improve performance and <\/p><p>relieve pain from:<\/p>",
+            "header": "<h1>Improve performance  and <\/h1><h1>relieve pain from:<\/h1>",
             "text_color": "#ffffff",
             "margin_top": 0,
-            "margin_bottom": 0
+            "margin_bottom": 15
           }
         },
         "subheader_RnYrgj": {
@@ -60,8 +60,8 @@
           "settings": {
             "subheader": "<ul><li>Walking & Running<\/li><li>Prolonged Standing<\/li><li>Hiking<\/li><li>Weight Bearing Activities<\/li><\/ul>",
             "text_color": "#ffffff",
-            "margin_top": 0,
-            "margin_bottom": 0
+            "margin_top": 5,
+            "margin_bottom": 10
           }
         },
         "button_Uf9JqA": {
@@ -93,15 +93,25 @@
         "button_Uf9JqA",
         "button_dyULbP"
       ],
+      "custom_css": [
+        ".abs-pos-text {right: 10vw; top: 5vh;}"
+      ],
       "settings": {
         "bg_color": "",
         "desktop_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "mobile_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
-        "image_overlay_opacity": 20,
-        "top_alignment_d": 15,
-        "top_alignment_m": 15,
+        "image_overlay_opacity": 40,
+        "top_alignment_d": 25,
+        "top_alignment_m": 10,
         "stars_text": "50,000+ reviews",
-        "stars_img": "shopify:\/\/shop_images\/Stars_2.png"
+        "stars_text_color": "#ffffff",
+        "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
+        "abs_pos_text": "30% off on orders over $120",
+        "abs_pos_text_color": "#fda83e",
+        "abs_pos_x_desktop": "right",
+        "abs_pos_y_desktop": "top",
+        "abs_pos_x_mobile": "top",
+        "abs_pos_y_mobile": "right"
       }
     }
   },
