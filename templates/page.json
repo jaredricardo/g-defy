@@ -100,7 +100,7 @@
         "mobile_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "image_overlay_opacity": 40,
         "top_alignment_d": 25,
-        "top_alignment_m": 10,
+        "top_alignment_m": 15,
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
         "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
@@ -111,11 +111,119 @@
         "abs_pos_y_desktop": "top",
         "abs_pos_y_mobile": "bottom"
       }
+    },
+    "jr_scrolling_announcement_yrpXtW": {
+      "type": "jr-scrolling-announcement",
+      "blocks": {
+        "text_8CCYBR": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/Healthline_logo.svg",
+            "text": "",
+            "link": ""
+          }
+        },
+        "text_6NMCfb": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/Healthline_logo.svg",
+            "text": "",
+            "link": ""
+          }
+        },
+        "text_L6eeYA": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/Healthline_logo.svg",
+            "text": "",
+            "link": ""
+          }
+        },
+        "text_n3xm3t": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/Healthline_logo.svg",
+            "text": "",
+            "link": ""
+          }
+        },
+        "text_wffyjK": {
+          "type": "text",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/Healthline_logo.svg",
+            "text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_8CCYBR",
+        "text_6NMCfb",
+        "text_L6eeYA",
+        "text_n3xm3t",
+        "text_wffyjK"
+      ],
+      "settings": {
+        "append_as_sticky_header": false,
+        "text_margin": 30,
+        "enabled": true,
+        "icon_max_width": 100,
+        "padding_y": 15,
+        "home-page-only": false,
+        "bg_color": "#ffffff",
+        "color": "#121212",
+        "alternative-color": true,
+        "speed": 60,
+        "align_icons_row": false
+      }
+    },
+    "jr_50_50_c4FAzJ": {
+      "type": "jr-50-50",
+      "blocks": {
+        "h2_9z3DzR": {
+          "type": "h2",
+          "settings": {
+            "h2": "<p>VersoShock®<br\/>Technology<\/p>",
+            "font_size_d": 24,
+            "font_size_m": 14
+          }
+        },
+        "h3_UJVFEh": {
+          "type": "h3",
+          "settings": {
+            "h3": "<p>g-defy's patented spring system absorbs shock rom the ground up, converting it into renewed positive energy. Harnessing chemical and thermal reactions on a cellular level, the multi-density sole of nucleated polymers recycle energy with spring-like efficiency, fueling confidence and performance.<\/p>",
+            "font_size_d": 28,
+            "font_size_m": 14
+          }
+        },
+        "button_mCNjh4": {
+          "type": "button",
+          "settings": {
+            "button_text": "Shop Now",
+            "button_url": "#shop-now",
+            "button_bg_color": "#00212f",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "h2_9z3DzR",
+        "h3_UJVFEh",
+        "button_mCNjh4"
+      ],
+      "settings": {
+        "background_color": "#c2dae1",
+        "col_order": "reverse",
+        "text_alignment": "center-aligned",
+        "image": "shopify:\/\/shop_images\/2173cd47b0129591d7299016b56eca41.png"
+      }
     }
   },
   "order": [
     "main",
     "jr_simple_announcement_QVXaYj",
-    "jr_hero_P77K3H"
+    "jr_hero_P77K3H",
+    "jr_scrolling_announcement_yrpXtW",
+    "jr_50_50_c4FAzJ"
   ]
 }

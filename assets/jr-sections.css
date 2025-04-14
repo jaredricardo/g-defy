@@ -47,6 +47,7 @@
     font-size:  26px;
     font-weight: 600;
     text-transform: uppercase;
+    height: max-content;
 }
 
 @media screen and (max-width: 768px) {
@@ -138,6 +139,10 @@
     margin: 15px 0;
 }
 
+.jr-hp-herp .section-header {
+    max-width: 500px;
+}
+
 .jr-hp-hero .desktop {
     display: flex;
 }
@@ -151,7 +156,7 @@
     gap: 10px;
     align-items: center;
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 15px;
 }
 
@@ -186,6 +191,60 @@
     content: '✓';
     margin-right: 10px;
 }
+
+
+.jr-5050 {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.jr-padding {
+    padding: 4rem 2rem;
+}
+
+.jr-5050.page-width-2:after, 
+.jr-5050.page-width-2:before {
+  display: none;
+}
+
+.jr-5050 .col {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.jr-5050 .col.left-aligned {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.jr-5050 .col.right-aligned {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.jr-5050 .col.center-aligned {
+    align-items: center;
+    text-align: center;
+}
+
+.jr-5050.reverse {
+    flex-direction: row-reverse;
+}
+
+.jr-5050 img {
+    max-height: 70vh;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+
+
 
 @media screen and (max-width: 768px) {
     .jr-hp-hero .desktop {
