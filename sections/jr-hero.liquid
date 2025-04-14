@@ -37,19 +37,17 @@
     color: {{ section.settings.abs_pos_text_color }};
 
     {% if section.settings.abs_pos_y_desktop == 'top' %}
-        top: 0;
+        top: 6%;
     {% endif %}
 
     {% if section.settings.abs_pos_y_desktop == 'bottom' %}
-        bottom: 0;
+        bottom: 6%;
     {% endif %}
 
-    {% if section.settings.abs_pos_x_desktop == 'left' %}
-        left: 0;
-    {% endif %}
-
-    {% if section.settings.abs_pos_x_desktop == 'right' %}
-        right: 0;
+    {% if section.settings.abs_pos_x_switch == "left" %}
+            left: {{ section.settings.abs_pos_x_value }}%;
+        {% else %}
+            right: {{ section.settings.abs_pos_x_value }}%;
     {% endif %}
 
 }
@@ -65,20 +63,15 @@
     }
     [data-section-id="{{ section.id }}" ] .abs-pos-text {
 
+        left: 50%;
+        transform: translateX(-50%);
+
         {% if section.settings.abs_pos_y_mobile == 'top' %}
-            top: 0;
+            top: 6%;
         {% endif %}
 
         {% if section.settings.abs_pos_y_mobile == 'bottom' %}
-            bottom: 0;
-        {% endif %}
-
-        {% if section.settings.abs_pos_x_mobile == 'left' %}
-            left: 0;
-        {% endif %}
-
-        {% if section.settings.abs_pos_x_mobile == 'right' %}
-            right: 0;
+            bottom: 6%;
         {% endif %}
     }
 }
@@ -231,8 +224,8 @@
         },
         {
             "type": "select",
-            "id": "abs_pos_x_desktop",
-            "label": "Absolute Position X Desktop",
+            "id": "abs_pos_x_switch",
+            "label": "Absolute Position X Switch",
             "options": [
                 {
                     "value": "left",
@@ -242,9 +235,14 @@
                     "value": "right",
                     "label": "Right"
                 }
-
             ],
-            "default": "right"
+            "default": "left"
+        },
+        {
+            "type": "number",
+            "id": "abs_pos_x_value",
+            "label": "Absolute Position position value (desktop)",
+            "default": 50
         },
         {
             "type": "select",
@@ -261,23 +259,6 @@
                 }
             ],
             "default": "top"
-        },
-        {
-            "type": "select",
-            "id": "abs_pos_x_mobile",
-            "label": "Absolute Position X Mobile",
-            "options": [
-                {
-                    "value": "left",
-                    "label": "Left"
-                },
-                {
-                    "value": "right",
-                    "label": "Right"
-                }
-
-            ],
-            "default": "right"
         },
         {
             "type": "select",

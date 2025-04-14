@@ -37,13 +37,14 @@
     border-radius: 25px;
     cursor: pointer;
     min-width: 190px;
+    max-width: 190px;
     font-size: 16px;
     margin-top: 15px;
     font-weight: 600;
 }
 
 .jr-section .abs-pos-text {
-    font-size:  32px;
+    font-size:  26px;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -68,7 +69,12 @@
         position: relative;
         padding: 2rem 0;
     }
-
+    .jr-section .abs-pos-text {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        width: 100%;
+    }
 }
 
 /* lp hero */
@@ -77,10 +83,6 @@
     position: relative;
     max-height: 90vh;
     width: 100%;
-}
-
-.jr-hp-hero h1 {
-    font-weight: 600;
 }
 
 .jr-hp-hero h1,
@@ -103,7 +105,7 @@
     height: 100%;
     width: 50%;
     margin-left: 6.5%;
-    z-index: 3;
+    z-index: 2;
 }
 
 .jr-hp-hero .hero-image {
@@ -126,6 +128,7 @@
 .jr-hp-hero h1 {
     line-height: 42px;
     text-align: left !important;
+    font-weight: 600;
 }
 
 .jr-hp-hero .section-subheader {

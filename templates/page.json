@@ -49,7 +49,7 @@
         "header_hfMUm3": {
           "type": "header",
           "settings": {
-            "header": "<h1>Improve performance  and <\/h1><h1>relieve pain from:<\/h1>",
+            "header": "<h1>Improve performance  and relieve pain from:<\/h1>",
             "text_color": "#ffffff",
             "margin_top": 0,
             "margin_bottom": 15
@@ -69,7 +69,7 @@
           "settings": {
             "button_text": "Shop Men",
             "button_text_color": "#121212",
-            "button_link": "",
+            "button_link": "#shop-now",
             "button_bg_color": "#fda83e",
             "margin_top": 0,
             "margin_bottom": 0
@@ -80,7 +80,7 @@
           "settings": {
             "button_text": "Shop Women",
             "button_text_color": "#000000",
-            "button_link": "",
+            "button_link": "#shop-now",
             "button_bg_color": "#fda83e",
             "margin_top": 0,
             "margin_bottom": 0
@@ -93,9 +93,7 @@
         "button_Uf9JqA",
         "button_dyULbP"
       ],
-      "custom_css": [
-        ".abs-pos-text {right: 10vw; top: 5vh;}"
-      ],
+      "custom_css": [],
       "settings": {
         "bg_color": "",
         "desktop_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
@@ -108,10 +106,10 @@
         "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
         "abs_pos_text": "30% off on orders over $120",
         "abs_pos_text_color": "#fda83e",
-        "abs_pos_x_desktop": "right",
+        "abs_pos_x_switch": "right",
+        "abs_pos_x_value": 6,
         "abs_pos_y_desktop": "top",
-        "abs_pos_x_mobile": "top",
-        "abs_pos_y_mobile": "right"
+        "abs_pos_y_mobile": "bottom"
       }
     }
   },
