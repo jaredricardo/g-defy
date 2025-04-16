@@ -184,16 +184,16 @@
           "type": "h2",
           "settings": {
             "h2": "<p>VersoShock®<br\/>Technology<\/p>",
-            "font_size_d": 24,
-            "font_size_m": 14
+            "font_size_d": 62,
+            "font_size_m": 36
           }
         },
         "h3_UJVFEh": {
           "type": "h3",
           "settings": {
             "h3": "<p>g-defy's patented spring system absorbs shock rom the ground up, converting it into renewed positive energy. Harnessing chemical and thermal reactions on a cellular level, the multi-density sole of nucleated polymers recycle energy with spring-like efficiency, fueling confidence and performance.<\/p>",
-            "font_size_d": 28,
-            "font_size_m": 14
+            "font_size_d": 22,
+            "font_size_m": 16
           }
         },
         "button_mCNjh4": {
@@ -214,7 +214,7 @@
       "settings": {
         "background_color": "#c2dae1",
         "col_order": "reverse",
-        "text_alignment": "center-aligned",
+        "text_alignment": "left-aligned",
         "image": "shopify:\/\/shop_images\/2173cd47b0129591d7299016b56eca41.png"
       }
     }
