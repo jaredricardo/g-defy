@@ -391,7 +391,8 @@
         padding: 5px 35px;
     }
     .jr-simple-columns {
-        padding: 15px 0;
+        padding: 15px;
+        gap: 1rem;
     }
     .jr-simple-columns .columns {
         flex-direction: column;
