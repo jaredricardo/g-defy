@@ -1,0 +1,129 @@
+{% style %}
+
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .columns .column {
+        background-color: {{ section.settings.columns_background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .columns .column h3 {
+        color: {{ section.settings.column_title_color }};
+    }
+    [data-section-id="{{ section.id }}"] .columns .column p {
+        color: {{ section.settings.column_info_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] a {
+        color: {{ section.settings.button_text_color }};
+        background-color: {{ section.settings.button_bg_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] a:hover {
+        background-color: {{ section.settings.button_hover_color }};
+    }
+
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+<div class="jr-section jr-simple-columns page-width">
+        <div class="columns">
+            {% for block in section.blocks %}
+                <div class="column">
+                    <h3 class="txt-3 fw-500">{{ block.settings.title }}</h3>
+                    <p class="txt-4">{{ block.settings.info }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if section.settings.button_text != blank %}
+            <a href="{{ section.settings.button_url }}" class="theme-button">{{ section.settings.button_text }}</a>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "JR Simple Columns",
+  "settings": [
+    {
+        "type": "color",
+        "id": "background_color",
+        "label": "Section Background Color",
+        "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "columns_background_color",
+        "label": "Columns Background Color",
+        "default": "#ffffff"
+    },
+    {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Text (blank for no button)"
+    },
+    {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color",
+        "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button Background Color",
+        "default": "#FBB040"
+    },
+    {
+        "type": "color",
+        "id": "button_hover_color",
+        "label": "Button Hover Color",
+        "default": "#d67a1f"
+    },
+    {
+        "type": "url",
+        "id": "button_url",
+        "label": "Button URL"
+    },
+    {
+        "type": "color",
+        "id": "column_title_color",
+        "label": "Column title Text Color",
+        "default": "#003D59"
+    },
+    {
+        "type": "color",
+        "id": "column_info_color",
+        "label": "Column Info Color",
+        "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "column-content",
+        "name": "Column Content",
+        "limit": 3,
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Column title",
+                "default": "Column Title"
+            },
+            {
+                "type": "richtext",
+                "id": "info",
+                "label": "Column info",
+                "default": "<p>Column info</p>"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "JR Simple Columns"
+    }
+  ]
+}
+{% endschema %}

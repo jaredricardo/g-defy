@@ -168,7 +168,7 @@
         "text_margin": 30,
         "enabled": true,
         "icon_max_width": 100,
-        "padding_y": 15,
+        "padding_y": 20,
         "home-page-only": false,
         "bg_color": "#ffffff",
         "color": "#121212",
@@ -184,15 +184,15 @@
           "type": "h2",
           "settings": {
             "h2": "<p>VersoShock®<br\/>Technology<\/p>",
-            "font_size_d": 62,
-            "font_size_m": 36
+            "font_size_d": 52,
+            "font_size_m": 32
           }
         },
         "h3_UJVFEh": {
           "type": "h3",
           "settings": {
             "h3": "<p>g-defy's patented spring system absorbs shock rom the ground up, converting it into renewed positive energy. Harnessing chemical and thermal reactions on a cellular level, the multi-density sole of nucleated polymers recycle energy with spring-like efficiency, fueling confidence and performance.<\/p>",
-            "font_size_d": 22,
+            "font_size_d": 20,
             "font_size_m": 16
           }
         },
@@ -211,11 +211,60 @@
         "h3_UJVFEh",
         "button_mCNjh4"
       ],
+      "custom_css": [
+        "h2 {line-height: 1.1; white-space: nowrap;}"
+      ],
       "settings": {
         "background_color": "#c2dae1",
         "col_order": "reverse",
         "text_alignment": "left-aligned",
-        "image": "shopify:\/\/shop_images\/2173cd47b0129591d7299016b56eca41.png"
+        "image": "shopify:\/\/shop_images\/unnamed.png",
+        "padding_left": 5,
+        "padding_right": 3,
+        "padding_top": 3,
+        "padding_bottom": 3
+      }
+    },
+    "jr_simple_columns_QQbXxc": {
+      "type": "jr-simple-columns",
+      "blocks": {
+        "column_content_d7XNNz": {
+          "type": "column-content",
+          "settings": {
+            "title": "Nucleated Polymer Cells",
+            "info": "<p>Supported in a structure matrix to absorb excess kinetic energy.<\/p>"
+          }
+        },
+        "column_content_XHxxBJ": {
+          "type": "column-content",
+          "settings": {
+            "title": "Multi-Density Support",
+            "info": "<p>Protects arches and restores foot alignment with 3D motion control.<\/p>"
+          }
+        },
+        "column_content_eTJTHi": {
+          "type": "column-content",
+          "settings": {
+            "title": "Rolling Forefoot Design",
+            "info": "<p>Designed to relieve pressure on toes and joints during forward propulsion.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "column_content_d7XNNz",
+        "column_content_XHxxBJ",
+        "column_content_eTJTHi"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "columns_background_color": "#f6f6f6",
+        "button_text": "Shop Now",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#fda83e",
+        "button_hover_color": "#d67a1f",
+        "button_url": "#shop-now",
+        "column_title_color": "#003D59",
+        "column_info_color": "#000000"
       }
     }
   },
@@ -224,6 +273,7 @@
     "jr_simple_announcement_QVXaYj",
     "jr_hero_P77K3H",
     "jr_scrolling_announcement_yrpXtW",
-    "jr_50_50_c4FAzJ"
+    "jr_50_50_c4FAzJ",
+    "jr_simple_columns_QQbXxc"
   ]
 }

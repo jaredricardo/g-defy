@@ -5,7 +5,8 @@
     }
 
     [data-section-id="{{ section.id }}"] .content-area {
-        padding: {{ section.settings.padding }}%;
+        padding:{{ section.settings.padding_top }}% {{ section.settings.padding_right }}% {{ section.settings.padding_bottom }}% {{ section.settings.padding_left }}%;
+        
     }
 
     {% for block in section.blocks %}
@@ -35,7 +36,7 @@
 {% endstyle %}
 
 <div data-section-id="{{ section.id }}">
-    <div class="jr-5050  jr-section {{ section.settings.col_order }}">
+    <div class="jr-5050  jr-section {{ section.settings.col_order }} page-width">
         <div class="col {{ section.settings.text_alignment }} content-area">
             {% for block in section.blocks %}
                 {% case block.type %}
@@ -114,9 +115,39 @@
         "label": "Section Image"
     },
     {
-        "type": "number",
-        "id": "padding",
-        "label": "Inner Content Padding",
+        "type": "range",
+        "id": "padding_left",
+        "label": "Inner Content Padding % (left)",
+        "max": 100,
+        "min": 0,
+        "step": 1,
+        "default": 5
+    },
+    {
+        "type": "range",
+        "id": "padding_right",
+        "label": "Inner Content Padding % (right)",
+        "max": 100,
+        "min": 0,
+        "step": 1,
+        "default": 5
+    },
+    {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Inner Content Padding % (top)",
+        "max": 100,
+        "min": 0,
+        "step": 1,
+        "default": 5
+    },
+    {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Inner Content Padding % (bottom)",
+        "max": 100,
+        "min": 0,
+        "step": 1,
         "default": 5
     }
   ],
