@@ -332,6 +332,64 @@
     margin: 0 auto;
 }
 
+.jr-product-info-carousel .toggleContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    border: 3px solid #343434;
+    border-radius: 20px;
+    background: #343434;
+    font-weight: bold;
+    color: #343434;
+    cursor: pointer;
+}
+
+.jr-product-info-carousel .toggleContainer:before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0%;
+    border-radius:20px;
+    background: white;
+    transition: all 0.3s;
+}
+
+.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer::before {
+    left: 50%;
+}
+
+.jr-product-info-carousel .toggleContainer div {
+    padding: 6px;
+    text-align: center;
+    z-index: 1;
+}
+
+.jr-product-info-carousel .toggleCheckbox  {
+    display: none
+}
+
+.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:first-child {
+    color: white;
+    transition: color 0.3s;
+}
+
+.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:last-child {
+    color: #343434;
+    transition: color 0.3s;
+}
+
+.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:first-child{
+    color: #343434;
+    transition: color 0.3s;
+  }
+
+.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:last-child{
+    color: white;
+    transition: color 0.3s;
+  }
+
 @media screen and (max-width: 768px) {
     .jr-hp-hero .desktop {
         display: none;

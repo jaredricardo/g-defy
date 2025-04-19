@@ -266,6 +266,132 @@
         "column_title_color": "#003D59",
         "column_info_color": "#000000"
       }
+    },
+    "jr_product_info_carousel_NE7pWF": {
+      "type": "jr-product-info-carousel",
+      "blocks": {
+        "men_ibj83R": {
+          "type": "men",
+          "settings": {
+            "collection": "best-seller-shoes-for-men"
+          }
+        },
+        "men_pLn4bz": {
+          "type": "men",
+          "settings": {
+            "collection": "orthopedic-shoes-for-men"
+          }
+        },
+        "men_R8cfDC": {
+          "type": "men",
+          "settings": {
+            "collection": "slip-on-shoes-for-men"
+          }
+        },
+        "men_hyUDra": {
+          "type": "men",
+          "settings": {
+            "collection": "medicare-a5500-diabetic-shoes-for-men"
+          }
+        },
+        "men_UrXXbc": {
+          "type": "men",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-men"
+          }
+        },
+        "men_CLV9pW": {
+          "type": "men",
+          "settings": {
+            "collection": "atheltic-shoes-for-men"
+          }
+        },
+        "men_GP7QLQ": {
+          "type": "men",
+          "settings": {
+            "collection": "casual-shoes-for-men"
+          }
+        },
+        "men_6pec8X": {
+          "type": "men",
+          "settings": {
+            "collection": "boots-for-men"
+          }
+        },
+        "women_baaWLG": {
+          "type": "women",
+          "settings": {
+            "collection": "best-seller-shoes-for-women"
+          }
+        },
+        "women_meAwQP": {
+          "type": "women",
+          "settings": {
+            "collection": "orthopedic-shoes-for-women"
+          }
+        },
+        "women_fPMPkg": {
+          "type": "women",
+          "settings": {
+            "collection": "slip-on-shoes-for-women"
+          }
+        },
+        "women_UDXdtG": {
+          "type": "women",
+          "settings": {
+            "collection": "medicare-a5500-diabetic-shoes-for-women"
+          }
+        },
+        "women_TrnkVi": {
+          "type": "women",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-women"
+          }
+        },
+        "women_Bq7fjY": {
+          "type": "women",
+          "settings": {
+            "collection": "atheltic-shoes-for-women"
+          }
+        },
+        "women_8h889U": {
+          "type": "women",
+          "settings": {
+            "collection": "casual-shoes-for-women"
+          }
+        },
+        "women_JEYd7z": {
+          "type": "women",
+          "settings": {
+            "collection": "work-boots-for-women"
+          }
+        }
+      },
+      "block_order": [
+        "men_ibj83R",
+        "men_pLn4bz",
+        "men_R8cfDC",
+        "men_hyUDra",
+        "men_UrXXbc",
+        "men_CLV9pW",
+        "men_GP7QLQ",
+        "men_6pec8X",
+        "women_baaWLG",
+        "women_meAwQP",
+        "women_fPMPkg",
+        "women_UDXdtG",
+        "women_TrnkVi",
+        "women_Bq7fjY",
+        "women_8h889U",
+        "women_JEYd7z"
+      ],
+      "settings": {
+        "outer_background_color": "#ffffff",
+        "inner_section_background_color": "#003d59",
+        "text_color": "#ffffff",
+        "button_text_color": "#003d59",
+        "button_bg_color": "#FFFFFF"
+      }
     }
   },
   "order": [
@@ -274,6 +400,7 @@
     "jr_hero_P77K3H",
     "jr_scrolling_announcement_yrpXtW",
     "jr_50_50_c4FAzJ",
-    "jr_simple_columns_QQbXxc"
+    "jr_simple_columns_QQbXxc",
+    "jr_product_info_carousel_NE7pWF"
   ]
 }

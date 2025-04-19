@@ -1,0 +1,200 @@
+{% style %}
+
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.outer_background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .jr-product-info-carousel {
+        background-color: {{ section.settings.inner_section_background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .collection-nav {
+        border-bottom: 1px solid {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h3 ,
+    [data-section-id="{{ section.id }}"] p,
+    [data-section-id="{{ section.id }}"] li,
+    [data-section-id="{{ section.id }}"] .price,
+    [data-section-id="{{ section.id }}"] .compare-price {
+        color: {{ section.settings.text_color }} !important;
+    }
+
+    [data-section-id="{{ section.id }}"] .carousel-item a.theme-button {
+        color: {{ section.settings.button_text_color }};
+        background-color: {{ section.settings.button_bg_color }};
+    }
+
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-section jr-product-info-carousel page-width">
+
+    <input type="checkbox" id="toggle" class="toggleCheckbox" />
+    <label for="toggle" class='toggleContainer'>
+        <div>Shop Men</div>   
+        <div>Shop Women</div>
+    </label>
+
+
+        <div class="toggle-container">
+            <button id="toggle-to-men" class="active">Shop Men</button>
+            <button id="toggle-to-women">Shop Women</button>
+        </div>
+
+
+        <div class="collection-container--outer">
+
+            {% comment %} mens nav {% endcomment %}
+            <ul class="collection-nav" data-type="men">
+                {% for block in section.blocks %}
+                    {% if block.type == "men" %}
+                        <li data-collection="{{ block.settings.collection }}">
+                            {% if block.settings.alt_name != blank %}
+                                {{ block.settings.alt_name }}
+                            {% else %}
+                                {{ block.settings.collection }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% comment %} womens nav {% endcomment %}
+            <ul class="collection-nav" data-type="women">
+                {% for block in section.blocks %}
+                    {% if block.type == "women" %}
+                        <li data-collection="{{ block.settings.collection }}">
+                            {% if block.settings.alt_name != blank %}
+                                {{ block.settings.alt_name }}
+                            {% else %}
+                                {{ block.settings.collection }}
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% comment %} carousel(S) container {% endcomment %}
+            <div class="master-carousels-container">
+                <div class="mens-carousels">         
+                    {% for block in section.blocks %}
+                        {% if block.type == "men" %}
+                            <div class="collection-carousel" data-handle="{{ block.settings.collection }}">
+                                {% assign available_products = block.settings.collection.products | where: "available" %}
+                                {% for product in available_products limit: 1 %}
+                                    <script>
+                                        console.log('////// product in loop')
+                                        console.log({{ product | json }})
+                                    </script>
+                                    <div class="carousel-item">
+                                        <div class="gallery">
+                                            <img src="{{ product.featured_image | image_url: width: 500  }}" alt="{{ product.title }}">
+                                            <div class="thumb-gallery"></div>
+                                        </div>
+                                        <div class="info-area">
+                                            <h3>{{ product.title }}</h3>
+                                            <div class="star-ratings">* * * * *</div>
+                                            <div class="price-container">
+                                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                    <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="description-area">{{ product.description }}</div>
+                                            <div class="activity-tags">
+                                                <span>Activity:</span>
+                                                {% for tag in product.tags %}
+                                                    <span class="activity-tag">{{ tag }}</span>
+                                                {% endfor %}
+                                            </div>
+                                            <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "JR Product Info Carousel",
+  "settings": [
+    {
+        "type": "color",
+        "id": "outer_background_color",
+        "label": "Section Background Color",
+        "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "inner_section_background_color",
+        "label": "Inner Section Background Color",
+        "default": "#003d59"
+    },
+    {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#ffffff"
+    },
+    {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color",
+        "default": "#003d59"
+    },
+    {
+        "type": "color",
+        "id": "button_bg_color",
+        "label": "Button Background Color",
+        "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+        "type": "men",
+        "name": "Men's collection",
+        "settings": [
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
+            },
+            {
+                "type": "text",
+                "id": "alt_name",
+                "label": "Alternate Name for link (optional)"
+            }
+        ]
+    },
+    {
+        "type": "women",
+        "name": "Women's collection",
+        "settings": [
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "Collection"
+            },
+            {
+                "type": "text",
+                "id": "alt_name",
+                "label": "Alternate Name for link (optional)"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+        "name": "JR Product Info Carousel"
+    }
+  ]
+}
+{% endschema %}
