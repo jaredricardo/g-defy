@@ -294,7 +294,7 @@
     justify-content: space-between;
     align-items: stretch;
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 5rem;
 }
 
 .jr-simple-columns .columns {
@@ -332,17 +332,22 @@
     margin: 0 auto;
 }
 
+.jr-product-info-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
 .jr-product-info-carousel .toggleContainer {
     position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: fit-content;
-    border: 3px solid #343434;
-    border-radius: 20px;
-    background: #343434;
+    border-radius: 40px;
     font-weight: bold;
-    color: #343434;
     cursor: pointer;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .jr-product-info-carousel .toggleContainer:before {
@@ -351,7 +356,7 @@
     width: 50%;
     height: 100%;
     left: 0%;
-    border-radius:20px;
+    border-radius: 40px;
     background: white;
     transition: all 0.3s;
 }
@@ -361,34 +366,87 @@
 }
 
 .jr-product-info-carousel .toggleContainer div {
-    padding: 6px;
+    padding: 12px;
     text-align: center;
     z-index: 1;
+    text-transform: uppercase;
+    font-size: 26px;
 }
 
 .jr-product-info-carousel .toggleCheckbox  {
     display: none
 }
 
-.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:first-child {
-    color: white;
+.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:first-child,
+.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:last-child,
+.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:first-child,
+.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:last-child {
     transition: color 0.3s;
 }
 
-.jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:last-child {
-    color: #343434;
-    transition: color 0.3s;
+.jr-product-info-carousel.page-width {
+    padding: 5rem;
 }
 
-.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:first-child{
-    color: #343434;
-    transition: color 0.3s;
-  }
+.jr-product-info-carousel .collection-nav {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    list-style-type: none;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 2rem;
+}
 
-.jr-product-info-carousel .toggleCheckbox + .toggleContainer div:last-child{
-    color: white;
-    transition: color 0.3s;
-  }
+.jr-product-info-carousel .collection-nav.active {
+    display: flex;
+}
+
+.jr-product-info-carousel .collection-nav li {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0.75rem 0.75rem 0.25rem 0.75rem;
+    transition: 300ms ease-in-out;
+    position: relative;
+}
+
+.collection-nav li::after {
+    content: ""; 
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%; 
+    height: 2px; 
+    transform: scaleX(0); 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.collection-nav li.active::after {
+    transform: scaleX(1); /* Show the line for active items */
+}
+
+
+.jr-product-info-carousel .master-carousels-container .carousel {
+    display: none;
+}
+
+.jr-product-info-carousel .master-carousels-container .carousel.active {
+    display: block
+}
+
+.jr-product-info-carousel .collection-carousel {
+    display: none;
+}
+
+.jr-product-info-carousel .collection-carousel.active {
+    display: block;
+}
+
+html:has(.jr-product-info-carousel) {
+   scroll-behavior: smooth !important;
+}
+
 
 @media screen and (max-width: 768px) {
     .jr-hp-hero .desktop {

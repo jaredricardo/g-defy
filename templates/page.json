@@ -263,7 +263,7 @@
         "button_bg_color": "#fda83e",
         "button_hover_color": "#d67a1f",
         "button_url": "#shop-now",
-        "column_title_color": "#003D59",
+        "column_title_color": "#003d59",
         "column_info_color": "#000000"
       }
     },
@@ -273,97 +273,113 @@
         "men_ibj83R": {
           "type": "men",
           "settings": {
-            "collection": "best-seller-shoes-for-men"
+            "collection": "best-seller-shoes-for-men",
+            "alt_name": "Best Sellers"
           }
         },
         "men_pLn4bz": {
           "type": "men",
           "settings": {
-            "collection": "orthopedic-shoes-for-men"
+            "collection": "orthopedic-shoes-for-men",
+            "alt_name": "OrthoPedic"
           }
         },
         "men_R8cfDC": {
           "type": "men",
           "settings": {
-            "collection": "slip-on-shoes-for-men"
+            "collection": "slip-on-shoes-for-men",
+            "alt_name": "Slip-on"
           }
         },
         "men_hyUDra": {
           "type": "men",
           "settings": {
-            "collection": "medicare-a5500-diabetic-shoes-for-men"
+            "collection": "medicare-a5500-diabetic-shoes-for-men",
+            "alt_name": "Diabetic"
           }
         },
         "men_UrXXbc": {
           "type": "men",
           "settings": {
-            "collection": "newest-arrival-shoes-for-men"
+            "collection": "newest-arrival-shoes-for-men",
+            "alt_name": "New"
           }
         },
         "men_CLV9pW": {
           "type": "men",
           "settings": {
-            "collection": "atheltic-shoes-for-men"
+            "collection": "atheltic-shoes-for-men",
+            "alt_name": "Athletic"
           }
         },
         "men_GP7QLQ": {
           "type": "men",
           "settings": {
-            "collection": "casual-shoes-for-men"
+            "collection": "casual-shoes-for-men",
+            "alt_name": "Casual"
           }
         },
         "men_6pec8X": {
           "type": "men",
           "settings": {
-            "collection": "boots-for-men"
+            "collection": "boots-for-men",
+            "alt_name": "Boots"
           }
         },
         "women_baaWLG": {
           "type": "women",
           "settings": {
-            "collection": "best-seller-shoes-for-women"
+            "collection": "best-seller-shoes-for-women",
+            "alt_name": "Best Sellers"
           }
         },
         "women_meAwQP": {
           "type": "women",
           "settings": {
-            "collection": "orthopedic-shoes-for-women"
+            "collection": "orthopedic-shoes-for-women",
+            "alt_name": "OrthoPedic"
           }
         },
         "women_fPMPkg": {
           "type": "women",
           "settings": {
-            "collection": "slip-on-shoes-for-women"
+            "collection": "slip-on-shoes-for-women",
+            "alt_name": "Slip-on"
           }
         },
         "women_UDXdtG": {
           "type": "women",
           "settings": {
-            "collection": "medicare-a5500-diabetic-shoes-for-women"
+            "collection": "medicare-a5500-diabetic-shoes-for-women",
+            "alt_name": "Diabetic"
           }
         },
         "women_TrnkVi": {
           "type": "women",
           "settings": {
-            "collection": "newest-arrival-shoes-for-women"
+            "collection": "newest-arrival-shoes-for-women",
+            "alt_name": "New"
           }
         },
         "women_Bq7fjY": {
           "type": "women",
           "settings": {
-            "collection": "atheltic-shoes-for-women"
+            "collection": "atheltic-shoes-for-women",
+            "alt_name": "Athletic"
           }
         },
         "women_8h889U": {
           "type": "women",
           "settings": {
-            "collection": "casual-shoes-for-women"
+            "collection": "casual-shoes-for-women",
+            "alt_name": "Casual"
           }
         },
         "women_JEYd7z": {
           "type": "women",
           "settings": {
-            "collection": "work-boots-for-women"
+            "collection": "work-boots-for-women",
+            "alt_name": "Boots"
           }
         }
       },
@@ -386,11 +402,11 @@
         "women_JEYd7z"
       ],
       "settings": {
-        "outer_background_color": "#ffffff",
+        "outer_background_color": "#003d59",
         "inner_section_background_color": "#003d59",
         "text_color": "#ffffff",
         "button_text_color": "#003d59",
-        "button_bg_color": "#FFFFFF"
+        "button_bg_color": "#ffffff"
       }
     }
   },

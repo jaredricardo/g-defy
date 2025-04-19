@@ -19,37 +19,60 @@
     [data-section-id="{{ section.id }}"] .compare-price {
         color: {{ section.settings.text_color }} !important;
     }
+    [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleContainer {
+        border: 3px solid {{ section.settings.text_color }};
+        background-color: {{ section.settings.inner_section_background_color }};
+        color: {{ section.settings.text_color }};
+    }
 
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button {
         color: {{ section.settings.button_text_color }};
         background-color: {{ section.settings.button_bg_color }};
     }
 
+    [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:first-child  {
+        color: {{ section.settings.text_color }};
+    }
+    [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleCheckbox+.toggleContainer div:first-child,
+    [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleCheckbox:checked+.toggleContainer div:last-child {
+        color: {{ section.settings.inner_section_background_color }}
+    }
+
+    [data-section-id="{{ section.id }}"] .collection-nav li {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .collection-nav li:after {
+        background-color: {{ section.settings.text_color }};
+    }
+
 {% endstyle %}
 
 <div data-section-id="{{ section.id }}">
-    <div class="jr-section jr-product-info-carousel page-width">
+    <div class="jr-section jr-product-info-carousel page-width" id="shop-now">
 
     <input type="checkbox" id="toggle" class="toggleCheckbox" />
     <label for="toggle" class='toggleContainer'>
-        <div>Shop Men</div>   
-        <div>Shop Women</div>
+        <div class="gender-toggle active" data-type="men">Shop Men</div>   
+        <div class="gender-toggle inactive" data-type="women">Shop Women</div>
     </label>
-
-
-        <div class="toggle-container">
-            <button id="toggle-to-men" class="active">Shop Men</button>
-            <button id="toggle-to-women">Shop Women</button>
-        </div>
-
 
         <div class="collection-container--outer">
 
             {% comment %} mens nav {% endcomment %}
-            <ul class="collection-nav" data-type="men">
+            <ul class="collection-nav active" data-type="men">
+                
+                {% assign found_first_man = false %}
                 {% for block in section.blocks %}
                     {% if block.type == "men" %}
-                        <li data-collection="{{ block.settings.collection }}">
+
+                        {% assign first_man = false %}
+                        {% if found_first_man == false %}
+                            {% assign found_first_man = true %}
+                            {% assign first_man = true %}
+                        {% endif %}
+
+                        <li {% if first_man == true %} class="active" {% endif %} data-collection="{{ block.settings.collection }}">
                             {% if block.settings.alt_name != blank %}
                                 {{ block.settings.alt_name }}
                             {% else %}
@@ -61,9 +84,17 @@
             </ul>
             {% comment %} womens nav {% endcomment %}
             <ul class="collection-nav" data-type="women">
+                {% assign found_first_woman = false %}
                 {% for block in section.blocks %}
                     {% if block.type == "women" %}
-                        <li data-collection="{{ block.settings.collection }}">
+
+                        {% assign first_woman = false %}
+                        {% if found_first_woman == false %}
+                            {% assign found_first_woman = true %}
+                            {% assign first_woman = true %}
+                        {% endif %}
+
+                        <li {% if first_woman == true %} class="active" {% endif %} data-collection="{{ block.settings.collection }}">
                             {% if block.settings.alt_name != blank %}
                                 {{ block.settings.alt_name }}
                             {% else %}
@@ -75,16 +106,63 @@
             </ul>
             {% comment %} carousel(S) container {% endcomment %}
             <div class="master-carousels-container">
-                <div class="mens-carousels">         
+                <div class="carousel men active">     
+                    {% assign found_first_man_c = false %}    
                     {% for block in section.blocks %}
                         {% if block.type == "men" %}
-                            <div class="collection-carousel" data-handle="{{ block.settings.collection }}">
+
+                            {% assign first_man_c = false %}
+                            {% if found_first_man_c == false %}
+                                {% assign found_first_man_c = true %}
+                                {% assign first_man_c = true %}
+                            {% endif %}
+
+                            <div class="collection-carousel {% if first_man_c == true %} active {% endif %}" data-handle="{{ block.settings.collection }}">
                                 {% assign available_products = block.settings.collection.products | where: "available" %}
                                 {% for product in available_products limit: 1 %}
-                                    <script>
-                                        console.log('////// product in loop')
-                                        console.log({{ product | json }})
-                                    </script>
+                                    <div class="carousel-item">
+                                        <div class="gallery">
+                                            <img src="{{ product.featured_image | image_url: width: 500  }}" alt="{{ product.title }}">
+                                            <div class="thumb-gallery"></div>
+                                        </div>
+                                        <div class="info-area">
+                                            <h3>{{ product.title }}</h3>
+                                            <div class="star-ratings">* * * * *</div>
+                                            <div class="price-container">
+                                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                    <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="description-area">{{ product.description }}</div>
+                                            <div class="activity-tags">
+                                                <span>Activity:</span>
+                                                {% for tag in product.tags %}
+                                                    <span class="activity-tag">{{ tag }}</span>
+                                                {% endfor %}
+                                            </div>
+                                            <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="carousel women">         
+                    {% assign found_first_woman_c = false %}
+                    {% for block in section.blocks %}
+                        {% if block.type == "women" %}
+
+                            {% assign first_woman_c = false %}
+                            {% if found_first_woman_c == false %}
+                                {% assign found_first_woman_c = true %}
+                                {% assign first_woman_c = true %}
+                            {% endif %}
+
+                            <div class="collection-carousel {% if found_first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
+                                {% assign available_products = block.settings.collection.products | where: "available" %}
+                                {% for product in available_products limit: 1 %}
                                     <div class="carousel-item">
                                         <div class="gallery">
                                             <img src="{{ product.featured_image | image_url: width: 500  }}" alt="{{ product.title }}">
@@ -117,10 +195,53 @@
             </div>
         </div>
 
-
-
     </div>
 </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+        const section = document.querySelector('[data-section-id="{{ section.id }}"]')
+        const collectionItems = section.querySelectorAll('.collection-nav li')
+
+        section.querySelector('.toggleCheckbox').addEventListener('change', (e) => {
+
+            const active = e.target.closest('.jr-product-info-carousel').querySelector('.gender-toggle.active')
+            const inactive = e.target.closest('.jr-product-info-carousel').querySelector('.gender-toggle.inactive')
+
+            active.classList.remove('active')
+            active.classList.add('inactive')
+            inactive.classList.remove('inactive')
+            inactive.classList.add('active')
+            
+            const activeType = section.querySelector('.gender-toggle.active').getAttribute('data-type')
+
+            section.querySelector('.collection-nav.active').classList.remove('active') 
+            section.querySelector('.carousel.active').classList.remove('active')
+        
+            section.querySelector(`.collection-nav[data-type="${activeType}"]`).classList.add('active')
+            section.querySelector(`.carousel.${activeType}`).classList.add('active')
+
+        })
+
+        collectionItems.forEach((item) => {
+            item.addEventListener('click', (e) => {
+         
+                const collection = e.target.getAttribute('data-collection')
+                const type = e.target.closest('.collection-nav').getAttribute('data-type')
+
+                section.querySelector(`.carousel.${type}.active .collection-carousel.active`).classList.remove('active')
+                section.querySelector(`.carousel.${type}.active .collection-carousel[data-handle="${collection}"]`).classList.add('active')
+        
+                section.querySelector(`.collection-nav[data-type="${type}"] .active`).classList.remove('active')
+                e.target.classList.add('active')
+
+            })
+
+        })
+
+    })
+</script>
 
 {% schema %}
 {
