@@ -1,0 +1,124 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h2,
+    [data-section-id="{{ section.id }}"] .quotation,
+    [data-section-id="{{ section.id }}"] .review-copy {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .reviews-container {
+        background-color: {{ section.settings.card_bg_color }};
+    }
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-section jr-customer-reviews">
+        {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+        <div class="reviews-container">
+            {% for block in section.blocks %}
+                <div class="review-card">
+
+                    {% if section.settings.review_text != blank %}
+                    <p class="review-copy">
+                       <span class="quotation">"</span>
+                        {{ block.settings.review_text }}
+                    </p>
+                    {% endif %}
+
+                    {% if block.settings.title != blank %}
+                        <div class="customer-name-">
+                            <h4></h4>
+                            <p>G-Defy Customer</p>
+                        </div>
+                    {% endif %}
+
+                    {% if block.settings.enable_verified_buyer or block.settings.enable_star_rating %}
+                        <div class="verified-stars-area">
+                            {% if block.settings.enable_verified_buyer %}
+                                  CHECK  verified buyer
+                            {% endif %}
+                            {% if block.settings.enable_star_rating %} 
+                                * * * * *
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+    {
+        "name": "JR Customer Reviews",
+        "presets": [
+            {
+                "name": "JR Customer Reviews",
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text Color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "card_bg_color",
+                "label": "Card Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Header",
+                "default": "See what our customers are saying"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_verified_buyer",
+                "label": "Enable Verified Buyer",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_star_rating",
+                "label": "Enable Star Rating",
+                "default": true
+            }
+        ],
+        "blocks": [
+            {
+                "type": "customer-review",
+                "name": "Customer Reviw",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Customer Name",
+                        "default": "John Doe"
+                    },
+                    {
+                        "type":"textarea",
+                        "id": "review_text",
+                        "label": "Customer Review",
+                        "default": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
