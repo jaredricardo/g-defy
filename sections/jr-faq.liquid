@@ -1,0 +1,88 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h2,
+    [data-section-id="{{ section.id }}"] .faq-accordion label,
+    [data-section-id="{{ section.id }}"] .faq-accordion-content {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .faq-accordion {
+        border-bottom: 1px solid {{ section.settings.text_color }};
+    }
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="faq-wrapper panel jr-section jr-faq">
+        <div class="container">
+            <div class="section_header">
+                <h2>{{ section.settings.title }}</h2>
+            </div>
+            <div class="faq-accordion-wrap">
+                {% for block in section.blocks %}
+                    <div class="faq-accordion">
+                        <input type="checkbox" id="faq_accordion_{{forloop.index0}}">
+                        <label for="faq_accordion_{{forloop.index0}}">{{ block.settings.title }}</label>
+                        <div class="faq-accordion-content">
+                            {{ block.settings.answer }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+    {
+        "name": "JR FAQ",
+        "presets": [
+            {
+                "name": "JR FAQ"
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text Color",
+                "default": "#000000"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title",
+                "default": "FAQ"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "question",
+                "name": "Question",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Question",
+                        "default": "This is where a question goes"
+                    },
+                    {
+                        "type": "richtext",
+                        "id": "answer",
+                        "label": "Answer",
+                        "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus tellus, hendrerit eu fermentum eu, placerat consequat tortor. Nunc consequat magna at fermentum hendrerit. Cras tempus arcu nec convallis aliquam. Phasellus in mauris quis nunc convallis eleifend. Suspendisse neque purus, vulputate vitae lorem ac, facilisis congue est. Vivamus commodo blandit bibendum. Suspendisse interdum turpis sed eleifend auctor. Sed vel tempus nibh. Nulla dignissim nisi eget libero consequat, id interdum urna bibendum.</p>"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

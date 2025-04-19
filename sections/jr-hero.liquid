@@ -78,7 +78,7 @@
 {% endstyle %}
 
 <div data-section-id="{{ section.id }}">
-    <div class="jr-hp-hero jr-section page-width">
+    <div class="jr-hp-hero jr-section page-width no-padding">
 
         {% if section.settings.abs_pos_text != blank %}
             <p class="abs-pos-text">{{ section.settings.abs_pos_text }}</p>
@@ -119,12 +119,12 @@
                 {% endcase %}
             {% endfor %}
             {% if section.settings.stars_text != blank %}
-                <div class="star-review-container">
+                <a class="star-review-container" href="#ReviewsWidget">
                      {% if section.settings.stars_img != blank %}
                          <img src="{{ section.settings.stars_img |  img_url: 'master' }}" alt="Stars" class="stars">
                      {% endif %}
                      <div class="stars-text" style="color: {{ section.settings.stars_text_color }};">{{ section.settings.stars_text }}</div>
-                </div>
+                </a>
              {% endif %} 
             <div class="button-container">
                 {% for block in section.blocks %}

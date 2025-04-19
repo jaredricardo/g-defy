@@ -1,13 +1,18 @@
+.jr-section {
+    padding: 5rem;
+}
+
+.jr-section.no-padding {
+    padding: 0;
+}
 /* simple announcement */
-
-
 
 .jr-simple-announcement .inner-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;    
-    padding: 1.5rem 0;
+    padding: 1.5rem !important;
 }
 
 .jr-simple-announcement .inner-container .announcement-item {
@@ -45,7 +50,7 @@
     text-align: center;
     width: 70%;
     max-width: 300px;
-    transition: all 0.15s ease-in-out;
+    transition: 0.15s ease-in-out;
 }
 
 .jr-section .abs-pos-text {
@@ -56,6 +61,9 @@
 }
 
 @media screen and (max-width: 768px) {
+    .jr-simple-announcement .inner-container {
+        padding: 1rem 0 !important;
+    }
     .jr-simple-announcement .inner-container .divider {
         display: none;
     }
@@ -92,7 +100,7 @@
 
     }
     .jr-5050 .content-area {
-        padding: 4rem 2rem !important;
+        padding: 4rem 1.5rem !important;
     }
 }
 
@@ -151,6 +159,7 @@
     line-height: 42px;
     text-align: left !important;
     font-weight: 600;
+    font-size: 48px;
 }
 
 .jr-hp-hero .section-subheader {
@@ -196,6 +205,9 @@
 }
 .jr-hp-hero .button-container .theme-button {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .jr-hp-hero ul {
@@ -294,7 +306,6 @@
     justify-content: space-between;
     align-items: stretch;
     gap: 1.5rem;
-    padding: 5rem;
 }
 
 .jr-simple-columns .columns {
@@ -447,8 +458,68 @@ html:has(.jr-product-info-carousel) {
    scroll-behavior: smooth !important;
 }
 
+.jr-faq .faq-accordion-wrap {
+    max-width: 820px;
+    margin: 1.5rem auto;
+}
+.jr-faq .faq-accordion input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.jr-faq .faq-accordion {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 2.5px solid;
+}
+.jr-faq .faq-accordion label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    cursor: pointer;
+    gap: 1.25rem;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    align-items: center;
+}
+.jr-faq .faq-accordion label:after {
+    content: '\276f';
+    font-size: 1.5rem;  
+    text-align: center;
+    transition: 300ms ease-in-out;
+    transform: rotate(90deg);
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.jr-faq .faq-accordion-content {
+    max-height: 0;
+    padding: 0 1rem;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+}
+.jr-faq .faq-accordion-content, .faq-accordion-content p {
+    font-size: 16px;
+    font-weight: 300;
+}
+.jr-faq .faq-accordion input:checked + label:after {
+    transform: rotate(270deg);
+}
+.jr-faq .faq-accordion input:checked ~ .faq-accordion-content {
+    max-height: 100vh;
+    padding: 0rem 1rem 2rem;
+}
+
+.jr-faq h2 {
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+}
 
 @media screen and (max-width: 768px) {
+    .jr-section {
+        padding: 2rem 1rem;
+    }
     .jr-hp-hero .desktop {
         display: none;
     }
@@ -456,8 +527,9 @@ html:has(.jr-product-info-carousel) {
         height: 75vh;
     }
     .jr-hp-hero h1 {
+        font-size: 32px !important;
         text-align: center !important;
-        line-height: 38px;
+        line-height: 38px !important;
     }
     .jr-hp-hero .mobile {
         display: flex;   
@@ -466,7 +538,7 @@ html:has(.jr-product-info-carousel) {
         width: 100%;
         margin: 0;
         align-items: center;
-        padding: calc(4% + 10px) 15px;
+        padding: calc(4% + 10px) 1rem;
     }
     .jr-hp-hero .hero-image {
         position: relative;
@@ -492,6 +564,7 @@ html:has(.jr-product-info-carousel) {
     }
     .jr-hp-hero .button-container {
         width: 100%;
+        justify-content: center;
     }
     .jr-5050 img {
         max-height: 275px;
@@ -505,9 +578,16 @@ html:has(.jr-product-info-carousel) {
     }
     .jr-section .theme-button {
         padding: 5px 35px;
+        max-width: 165px;
+        min-width: auto;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .jr-section.jr-5050 .theme-button {
+        align-self: center;
     }
     .jr-simple-columns {
-        padding: 15px;
         gap: 1rem;
     }
     .jr-simple-columns .columns {
@@ -522,5 +602,19 @@ html:has(.jr-product-info-carousel) {
     }
     .jr-simple-columns .columns .column p  {
         font-size: 14px;
+    }
+    .jr-faq .faq-accordion label {
+        font-size: 16px;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    .jr-faq .faq-accordion-content, .faq-accordion-content p {
+        font-size: 14px;
+    }
+    .jr-faq h2 {
+        font-size: 32px;
+    }
+    .jr-faq .faq-accordion input:checked ~ .faq-accordion-content  {
+        padding: 0rem 1rem 1rem;
     }
 }
