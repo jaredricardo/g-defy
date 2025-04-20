@@ -401,12 +401,73 @@
         "women_8h889U",
         "women_JEYd7z"
       ],
+      "disabled": true,
       "settings": {
         "outer_background_color": "#003d59",
         "inner_section_background_color": "#003d59",
         "text_color": "#ffffff",
         "button_text_color": "#003d59",
         "button_bg_color": "#ffffff"
+      }
+    },
+    "jr_customer_reviews_7TfVGh": {
+      "type": "jr-customer-reviews",
+      "blocks": {
+        "customer_review_jY8W6z": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Review Title",
+            "customer_name": "John Doe",
+            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        },
+        "customer_review_atzRCn": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Review Title",
+            "customer_name": "John Doe",
+            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        },
+        "customer_review_KpPJTN": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Review Title",
+            "customer_name": "John Doe",
+            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        },
+        "customer_review_Ptfb3C": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Review Title",
+            "customer_name": "John Doe",
+            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        },
+        "customer_review_FQy7wM": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Review Title",
+            "customer_name": "John Doe",
+            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+          }
+        }
+      },
+      "block_order": [
+        "customer_review_jY8W6z",
+        "customer_review_atzRCn",
+        "customer_review_KpPJTN",
+        "customer_review_Ptfb3C",
+        "customer_review_FQy7wM"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#003d59",
+        "card_bg_color": "#f6f6f6",
+        "title": "See what our customers are saying",
+        "enable_verified_buyer": true,
+        "enable_star_rating": true
       }
     },
     "jr_faq_rbEgpC": {
@@ -566,17 +627,6 @@
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 52
-      }
-    },
-    "jr_customer_reviews_7TfVGh": {
-      "type": "jr-customer-reviews",
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "card_bg_color": "#ffffff",
-        "title": "FAQ",
-        "enable_verified_buyer": true,
-        "enable_star_rating": true
       }
     }
   },
