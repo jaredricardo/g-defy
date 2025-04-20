@@ -104,10 +104,10 @@
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
         "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
-        "abs_pos_text": "30% off on orders over $120",
+        "abs_pos_text": "<p>Get 30% OFF <\/p><p>use code: GD25G<\/p>",
         "abs_pos_text_color": "#fda83e",
         "abs_pos_x_switch": "right",
-        "abs_pos_x_value": 6,
+        "abs_pos_x_value": 12,
         "abs_pos_y_desktop": "top",
         "abs_pos_y_mobile": "bottom"
       }
@@ -191,9 +191,15 @@
         "h3_UJVFEh": {
           "type": "h3",
           "settings": {
-            "h3": "<p>g-defy's patented spring system absorbs shock rom the ground up, converting it into renewed positive energy. Harnessing chemical and thermal reactions on a cellular level, the multi-density sole of nucleated polymers recycle energy with spring-like efficiency, fueling confidence and performance.<\/p>",
-            "font_size_d": 20,
-            "font_size_m": 16
+            "h3": "<p>Absorbs  Shock & Maximizes Energy Return<\/p>",
+            "font_size_d": 24,
+            "font_size_m": 18
+          }
+        },
+        "p_h8kYnm": {
+          "type": "p",
+          "settings": {
+            "p": "<p>G-defy's patented spring system absorbs shock from the ground up, converting it into renewed positive energy. Harnessing chemical and thermal reactions on a cellular level, the multi-density sole of nucleated polymers recycle energy with spring-like efficiency, fueling confidence and performance.<\/p>"
           }
         },
         "button_mCNjh4": {
@@ -209,10 +215,13 @@
       "block_order": [
         "h2_9z3DzR",
         "h3_UJVFEh",
+        "p_h8kYnm",
         "button_mCNjh4"
       ],
       "custom_css": [
-        "h2 {line-height: 1.1; white-space: nowrap;}"
+        "h2 {line-height: 1.1; white-space: nowrap; font-weight: 600; color: #00212f;}",
+        "h3 {font-weight: 600; line-height: 1.1; color: #00212f;}",
+        "p {color: #00212f;}"
       ],
       "settings": {
         "background_color": "#c2dae1",
@@ -221,8 +230,112 @@
         "image": "shopify:\/\/shop_images\/unnamed.png",
         "padding_left": 5,
         "padding_right": 3,
-        "padding_top": 3,
+        "padding_top": 2,
         "padding_bottom": 3
+      }
+    },
+    "jr_icon_columns_LFDA9E": {
+      "type": "jr-icon-columns",
+      "blocks": {
+        "icon_YNQtdD": {
+          "type": "icon",
+          "settings": {
+            "title": "Lorum ipsum",
+            "icon": "shopify:\/\/shop_images\/04_Pain.png"
+          }
+        },
+        "icon_fREdPx": {
+          "type": "icon",
+          "settings": {
+            "title": "Lorum ipsum",
+            "icon": "shopify:\/\/shop_images\/05_Pain.png"
+          }
+        },
+        "icon_9n487x": {
+          "type": "icon",
+          "settings": {
+            "title": "Lorum ipsum",
+            "icon": "shopify:\/\/shop_images\/07_Pain.png"
+          }
+        },
+        "icon_qDLjgw": {
+          "type": "icon",
+          "settings": {
+            "title": "Lorum ipsum",
+            "icon": "shopify:\/\/shop_images\/06_Pain.png"
+          }
+        }
+      },
+      "block_order": [
+        "icon_YNQtdD",
+        "icon_fREdPx",
+        "icon_9n487x",
+        "icon_qDLjgw"
+      ],
+      "settings": {
+        "background_color": "#003d59",
+        "text_color": "#ffffff",
+        "title": "VersoShock® Technology Reduces Pain"
+      }
+    },
+    "jr_customer_reviews_7TfVGh": {
+      "type": "jr-customer-reviews",
+      "blocks": {
+        "customer_review_jY8W6z": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Perfect Walking Shoe",
+            "customer_name": "Heather H.",
+            "review_text": "Comfortable shoe that allows me to walk without pain in my knees. My posture has also improved. After the first pair, my husband and I bought four more pairs."
+          }
+        },
+        "customer_review_atzRCn": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Pain Relief",
+            "customer_name": "Robert A.",
+            "review_text": "I bought these as a short term measure while awaiting knee replacement. I've been stunned at the difference these have made, much less pain."
+          }
+        },
+        "customer_review_KpPJTN": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Best Shoes Ever",
+            "customer_name": "Connie K.",
+            "review_text": "The shoes are so comfortable it is literally like walking on air. No more. Sore back or knees. Thank you . I love them."
+          }
+        },
+        "customer_review_Ptfb3C": {
+          "type": "customer-review",
+          "settings": {
+            "title": "These Are the Shoes",
+            "customer_name": "Jennifer L.",
+            "review_text": "These shoes were worth every penny. I'm on my feet for long periods each day. These shoes felt like I'm walking on clouds. If you are on your feet all day, these are the shoes."
+          }
+        },
+        "customer_review_FQy7wM": {
+          "type": "customer-review",
+          "settings": {
+            "title": "Relief For my Knee and Foot Pain",
+            "customer_name": "Renee T.",
+            "review_text": "I believe the pain relief I experience with these shoes is because it puts my knees and hips onto better alignment. For me It's like walking on air. I am grateful I found them with ally foot and knee trouble"
+          }
+        }
+      },
+      "block_order": [
+        "customer_review_jY8W6z",
+        "customer_review_atzRCn",
+        "customer_review_KpPJTN",
+        "customer_review_Ptfb3C",
+        "customer_review_FQy7wM"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#003d59",
+        "card_bg_color": "#f6f6f6",
+        "title": "See what our customers are saying",
+        "enable_verified_buyer": true,
+        "enable_star_rating": true
       }
     },
     "jr_simple_columns_QQbXxc": {
@@ -410,66 +523,6 @@
         "button_bg_color": "#ffffff"
       }
     },
-    "jr_customer_reviews_7TfVGh": {
-      "type": "jr-customer-reviews",
-      "blocks": {
-        "customer_review_jY8W6z": {
-          "type": "customer-review",
-          "settings": {
-            "title": "Review Title",
-            "customer_name": "John Doe",
-            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          }
-        },
-        "customer_review_atzRCn": {
-          "type": "customer-review",
-          "settings": {
-            "title": "Review Title",
-            "customer_name": "John Doe",
-            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          }
-        },
-        "customer_review_KpPJTN": {
-          "type": "customer-review",
-          "settings": {
-            "title": "Review Title",
-            "customer_name": "John Doe",
-            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          }
-        },
-        "customer_review_Ptfb3C": {
-          "type": "customer-review",
-          "settings": {
-            "title": "Review Title",
-            "customer_name": "John Doe",
-            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          }
-        },
-        "customer_review_FQy7wM": {
-          "type": "customer-review",
-          "settings": {
-            "title": "Review Title",
-            "customer_name": "John Doe",
-            "review_text": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          }
-        }
-      },
-      "block_order": [
-        "customer_review_jY8W6z",
-        "customer_review_atzRCn",
-        "customer_review_KpPJTN",
-        "customer_review_Ptfb3C",
-        "customer_review_FQy7wM"
-      ],
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#003d59",
-        "card_bg_color": "#f6f6f6",
-        "title": "See what our customers are saying",
-        "enable_verified_buyer": true,
-        "enable_star_rating": true
-      }
-    },
     "jr_faq_rbEgpC": {
       "type": "jr-faq",
       "blocks": {
@@ -636,9 +689,10 @@
     "jr_hero_P77K3H",
     "jr_scrolling_announcement_yrpXtW",
     "jr_50_50_c4FAzJ",
+    "jr_icon_columns_LFDA9E",
+    "jr_customer_reviews_7TfVGh",
     "jr_simple_columns_QQbXxc",
     "jr_product_info_carousel_NE7pWF",
-    "jr_customer_reviews_7TfVGh",
     "jr_faq_rbEgpC",
     "custom_liquid_cTkapa"
   ]

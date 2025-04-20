@@ -81,7 +81,7 @@
     <div class="jr-hp-hero jr-section page-width no-padding">
 
         {% if section.settings.abs_pos_text != blank %}
-            <p class="abs-pos-text">{{ section.settings.abs_pos_text }}</p>
+            <div class="abs-pos-text">{{ section.settings.abs_pos_text }}</div>
         {% endif %}
 
         {% unless overlay_string == '0' %}
@@ -210,10 +210,10 @@
             "content": "Absolute Positionin Words Settings"
         },
         {
-            "type": "text",
+            "type": "richtext",
             "id": "abs_pos_text",
-            "placeholder": "Absolute Position Text",
-            "label": "Absolute Position Text"
+            "label": "Absolute Position Text",
+            "default": "<p>CTA text</p>"
         },
         {
             "type": "color",

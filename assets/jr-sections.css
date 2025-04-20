@@ -64,7 +64,6 @@
 .jr-section .abs-pos-text {
     font-size:  26px;
     font-weight: 600;
-    text-transform: uppercase;
     height: max-content;
 }
 .jr-customer-reviews .review-card {
@@ -153,7 +152,7 @@
 
 @media screen and (max-width: 768px) {
     .jr-simple-announcement .inner-container {
-        padding: 1rem 0 !important;
+        padding: 1.75rem 0 !important;
         position: relative;
     }
     .jr-simple-announcement .inner-container .divider {
@@ -173,7 +172,7 @@
     }
     .jr-section .abs-pos-text {
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
         width: 100%;
     }
@@ -380,7 +379,11 @@
 .jr-5050 h2,
 .jr-5050 h3 {
     max-width: 90%;
-    margin: 0 0 5% 0;
+    margin: 0 0 4% 0;
+}
+
+.jr-5050 .theme-button {
+    margin-top: 25px;
 }
 
 .jr-5050 .content-area {
@@ -605,7 +608,8 @@ html:has(.jr-product-info-carousel) {
 }
 
 .jr-faq h2,
-.jr-customer-reviews h2 {
+.jr-customer-reviews h2,
+.jr-icon-columns h2 {
     font-size: 48px;
     font-weight: 600;
     text-align: center;
@@ -714,7 +718,8 @@ html:has(.jr-product-info-carousel) {
         font-size: 14px;
     }
     .jr-faq h2,
-    .jr-customer-reviews h2  {
+    .jr-customer-reviews h2,
+    .jr-icon-columns h2 {
         font-size: 32px;
         margin-bottom: 2rem;
         line-height: 1;
@@ -771,4 +776,10 @@ html:has(.jr-product-info-carousel) {
         align-items: start;
         gap: 7px;
     }
+    .jr-5050 h2,
+    .jr-5050 h3 {
+        max-width: 90%;
+        margin: 0 0 5% 0;
+    }
+
 }

@@ -34,14 +34,18 @@
               color: {{ section.settings.color }};
               line-height: 1;
           }
-          .announcement__items
-        {
+          .announcement__items {
               display: inline-flex;
               overflow: hidden;
               white-space: nowrap;
               width: fit-content;
               min-width: fit-content;
               font-weight: bold;
+          }
+          .announcement--icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
   
           [data-section-id="{{ section.id }}"] .announcement__item {
