@@ -41,6 +41,8 @@
               width: fit-content;
               min-width: fit-content;
               font-weight: bold;
+              align-items: center;
+              justify-content: center;
           }
           .announcement--icon{
             display: flex;
@@ -126,7 +128,7 @@
                               <div class="announcement--wrapper">
                                   {% if block.settings.icon %}
                                       <div class="announcement--icon">
-                                          {{ block.settings.icon | img_url: '50x50' | img_tag: block.settings.icon.alt }}
+                                          {{ block.settings.icon | img_url: 'master' | img_tag: block.settings.icon.alt }}
                                       </div>
                                   {% endif %}
   

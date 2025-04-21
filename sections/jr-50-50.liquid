@@ -6,11 +6,18 @@
 
     [data-section-id="{{ section.id }}"] .content-area {
         padding:{{ section.settings.padding_top }}% {{ section.settings.padding_right }}% {{ section.settings.padding_bottom }}% {{ section.settings.padding_left }}%;
-        
     }
 
     {% for block in section.blocks %}
         {% case block.type %}
+            {% when 'button' %}
+                [data-block-id="{{ block.id }}"].theme-button {
+                    color: {{ block.settings.button_text_color }}; 
+                    background-color: {{ block.settings.button_bg_color }} 
+                }
+                [data-block-id="{{ block.id }}"].theme-button:hover {
+                    background-color: {{ block.settings.button_hover_bg_color }};
+                }
             {% when 'h2' %}
                 [data-section-id="{{ section.id }}"] h2 {
                     font-size: {{ block.settings.font_size_d }}px;
@@ -48,8 +55,8 @@
                         <p>{{ block.settings.p }}</p>
                     {% when 'button' %}
                         <a 
+                            data-block-id="{{ block.id }}"
                             class="theme-button" 
-                            style="color: {{ block.settings.button_text_color }}; background-color: {{ block.settings.button_bg_color }} " 
                             href="{{ block.settings.button_url }}"
                             >
                             {{ block.settings.button_text }}
@@ -247,8 +254,15 @@
                 "id": "button_text_color",
                 "label": "Button Text Color",
                 "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "button_hover_bg_color",
+                "label": "Button Hover Background Color",
+                "default": "#7F9BA9"
             }
         ]
+
     }
   ],
   "presets": [

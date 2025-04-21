@@ -142,12 +142,43 @@
 }
 
 .jr-customer-reviews .swiper-pagination .swiper-pagination-bullet {
-    height: 17px;
-    width: 17px;
+    height: 15px;
+    width: 15px;
 }
 
 .jr-customer-reviews .swiper {
     cursor: grab;
+}
+
+.jr-icon-columns .icon-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #aeaeae;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.jr-icon-columns .icon-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.jr-icon-columns .icon-area h4 {
+    font-size: 24px;
+    font-weight: 500;
+}
+.jr-icon-columns .icon-area svg,
+.jr-icon-columns .icon-area path {
+    height: 90px;
+    width: 90px;
 }
 
 @media screen and (max-width: 768px) {
@@ -188,6 +219,23 @@
     }
     .jr-5050 .content-area {
         padding: 4rem 2rem !important;
+    }
+    .jr-icon-columns .icon-area svg,
+    .jr-icon-columns .icon-area path {
+        height: 70px;
+        width: 70px;
+    }
+    .jr-icon-columns .icon-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr); 
+        gap: 1rem;
+    }
+    .jr-icon-columns .icon-area {
+        gap: 1rem;
+    }
+    .jr-icon-columns .icon-area h4 {
+        font-size: 16px;
     }
 }
 
@@ -295,6 +343,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.jr-hp-hero .button-container .theme-button:hover {
+    background-color: #d67a1f;
 }
 
 .jr-hp-hero ul {
@@ -609,7 +661,8 @@ html:has(.jr-product-info-carousel) {
 
 .jr-faq h2,
 .jr-customer-reviews h2,
-.jr-icon-columns h2 {
+.jr-icon-columns h2,
+.instagram-section h2 {
     font-size: 48px;
     font-weight: 600;
     text-align: center;
@@ -719,7 +772,8 @@ html:has(.jr-product-info-carousel) {
     }
     .jr-faq h2,
     .jr-customer-reviews h2,
-    .jr-icon-columns h2 {
+    .jr-icon-columns h2,
+    .instagram-section h2 {
         font-size: 32px;
         margin-bottom: 2rem;
         line-height: 1;
@@ -768,7 +822,7 @@ html:has(.jr-product-info-carousel) {
         width: 12px;
     }
     .jr-customer-reviews .reviews-container {
-        padding: 0 0 5rem;
+        padding: 0 0 4rem;
     }
     .jr-customer-reviews .verified-stars-area {
         flex-direction: column-reverse;
