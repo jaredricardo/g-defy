@@ -35,7 +35,7 @@
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button {
         color: {{ section.settings.button_text_color }};
         background-color: {{ section.settings.button_bg_color }};
-        border: 1.5px solid {{ section.settings.button_text_color }};
+        border: 1.5px solid {{ section.settings.button_bg_color }};
     }
 
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button:hover {
@@ -259,7 +259,6 @@
 
         allSwipers.forEach((swiperContainer) => {
             const swiper = new Swiper(swiperContainer, {
-                autoHeight: true,
                 loop: true,
                 speed: 400,
                 spaceBetween: 0,
