@@ -356,7 +356,7 @@
         "customer_review_KpPJTN"
       ],
       "custom_css": [
-        "@media screen and (max-width: 768px) {.jr-customer-reviews .swiper {padding-top: 2.5rem; }}"
+        "@media screen and (max-width: 768px) {.jr-customer-reviews .swiper {padding-top: 1rem; }}"
       ],
       "settings": {
         "background_color": "#ffffff",

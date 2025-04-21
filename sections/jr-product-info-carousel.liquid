@@ -12,6 +12,11 @@
         /* border-bottom: 1px solid {{ section.settings.text_color }}; */
     }
 
+    [data-section-id="{{ section.id }}"] .swiper-button-prev,
+    [data-section-id="{{ section.id }}"] .swiper-button-next {
+        color: {{ section.settings.text_color }} !important;
+    }
+
     [data-section-id="{{ section.id }}"] h3 ,
     [data-section-id="{{ section.id }}"] p,
     [data-section-id="{{ section.id }}"] li,
@@ -30,6 +35,20 @@
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button {
         color: {{ section.settings.button_text_color }};
         background-color: {{ section.settings.button_bg_color }};
+        border: 1.5px solid {{ section.settings.button_text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .carousel-item a.theme-button:hover {
+        background-color: {{ section.settings.button_text_color }} ;
+        color:{{ section.settings.button_bg_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .swiper-pagination .swiper-pagination-bullet-active {
+        background-color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .swiper-pagination .swiper-pagination-bullet {
+        background-color: {{ section.settings.text_color }};
     }
 
     [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleCheckbox:checked + .toggleContainer div:first-child  {
@@ -122,27 +141,34 @@
                             <div class="collection-carousel swiper {% if first_man_c == true %} active {% endif %}" data-handle="{{ block.settings.collection }}">
                                 <div class="swiper-wrapper">
                                     {% assign available_products = block.settings.collection.products | where: "available" %}
-                                    {% for product in available_products %}
+                                    {% for product in available_products limit: 10 %}
                                         <div class="carousel-item swiper-slide">
                                             <div class="gallery">
                                                 <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
                                                 <div class="thumb-gallery"></div>
                                             </div>
                                             <div class="info-area">
-                                                <h3>{{ product.title }}</h3>
-                                                <div class="star-ratings-and-price">
-                                                    <div class="price-container">
+                                                <h3>{{ product.title }}
+                                                    <div class="price-container mobile-only">
                                                         <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
                                                         {% if product.compare_at_price and product.compare_at_price > product.price %}
                                                             <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
                                                         {% endif %}
                                                     </div>
+                                                </h3>
+                                                <div class="star-ratings">
                                                     <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
+                                                </div>
+                                                <div class="price-container desktop-only">
+                                                    <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                    {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                        <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                    {% endif %}
                                                 </div>
                                                 {% assign stripped = product.description | strip_html %}
                                                 <div class="description-area">{{ stripped | truncatewords: 60 }}</div>
                                                 <div class="activity-tags">
-                                                    <span>Activity:</span>
+                                                    <span class="perfect-for">Perfect For:</span>
                                                     {% for tag in product.metafields.custom.gd_occasion.value %}
                                                         <span class="activity-tag">{{ tag }}</span>
                                                     {% endfor %}
@@ -152,6 +178,9 @@
                                         </div>  
                                     {% endfor %}
                                 </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -167,37 +196,49 @@
                                 {% assign first_woman_c = true %}
                             {% endif %}
 
-                            <div class="collection-carousel swiper {% if found_first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
-                                {% assign available_products = block.settings.collection.products | where: "available" %}
-                                {% for product in available_products limit: 3 %}
-                                    <div class="carousel-item swiper-slide">
-                                        <div class="gallery">
-                                            <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
-                                            <div class="thumb-gallery"></div>
-                                        </div>
-                                        <div class="info-area">
-                                            <h3>{{ product.title }}</h3>
-                                            <div class="star-ratings-and-price">
-                                                <div class="price-container">
+                            <div class="collection-carousel swiper {% if first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
+                                <div class="swiper-wrapper">
+                                    {% assign available_products = block.settings.collection.products | where: "available" %}
+                                    {% for product in available_products limit: 10 %}
+                                        <div class="carousel-item swiper-slide">
+                                            <div class="gallery">
+                                                <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
+                                                <div class="thumb-gallery"></div>
+                                            </div>
+                                            <div class="info-area">
+                                                <h3>{{ product.title }}
+                                                    <div class="price-container mobile-only">
+                                                        <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                        {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                            <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </h3>
+                                                <div class="star-ratings">
+                                                    <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
+                                                </div>
+                                                <div class="price-container desktop-only">
                                                     <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
                                                     {% if product.compare_at_price and product.compare_at_price > product.price %}
                                                         <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
                                                     {% endif %}
                                                 </div>
-                                                <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
+                                                {% assign stripped = product.description | strip_html %}
+                                                <div class="description-area">{{ stripped | truncatewords: 60 }}</div>
+                                                <div class="activity-tags">
+                                                    <span class="perfect-for">Perfect For:</span>
+                                                    {% for tag in product.metafields.custom.gd_occasion.value %}
+                                                        <span class="activity-tag">{{ tag }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                                <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
                                             </div>
-                                            {% assign stripped = product.description | strip_html %}
-                                            <div class="description-area">{{ stripped | truncatewords: 60 }}</div>
-                                            <div class="activity-tags">
-                                                <span>Activity:</span>
-                                                {% for tag in product.metafields.custom.gd_occasion.value %}
-                                                    <span class="activity-tag">{{ tag }}</span>
-                                                {% endfor %}
-                                            </div>
-                                            <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
-                                        </div>
-                                    </div>  
-                                {% endfor %}
+                                        </div>  
+                                    {% endfor %}
+                                </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -218,11 +259,20 @@
 
         allSwipers.forEach((swiperContainer) => {
             const swiper = new Swiper(swiperContainer, {
+                autoHeight: true,
                 loop: true,
                 speed: 400,
-                spaceBetween: 20,
+                spaceBetween: 0,
                 slidesPerView: 1,
-                centeredSlides: true
+                centeredSlides: true,
+                pagination: {
+                    el: swiperContainer.querySelector('.swiper-pagination'),
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: swiperContainer.querySelector('.swiper-button-next'),
+                    prevEl: swiperContainer.querySelector('.swiper-button-prev'),
+                }
             })
         })
 
