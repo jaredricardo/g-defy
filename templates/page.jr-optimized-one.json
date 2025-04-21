@@ -101,7 +101,7 @@
         "desktop_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "mobile_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "image_overlay_opacity": 40,
-        "top_alignment_d": 25,
+        "top_alignment_d": 20,
         "top_alignment_m": 15,
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
@@ -362,7 +362,7 @@
         "background_color": "#ffffff",
         "text_color": "#003d59",
         "card_bg_color": "#f6f6f6",
-        "title": "",
+        "title": "What Our Customers Are Saying",
         "enable_verified_buyer": true,
         "enable_star_rating": true
       }

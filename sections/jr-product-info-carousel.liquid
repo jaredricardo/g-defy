@@ -9,18 +9,20 @@
     }
 
     [data-section-id="{{ section.id }}"] .collection-nav {
-        border-bottom: 1px solid {{ section.settings.text_color }};
+        /* border-bottom: 1px solid {{ section.settings.text_color }}; */
     }
 
     [data-section-id="{{ section.id }}"] h3 ,
     [data-section-id="{{ section.id }}"] p,
     [data-section-id="{{ section.id }}"] li,
     [data-section-id="{{ section.id }}"] .price,
-    [data-section-id="{{ section.id }}"] .compare-price {
+    [data-section-id="{{ section.id }}"] .compare-price,
+    [data-section-id="{{ section.id }}"] .description-area,
+    [data-section-id="{{ section.id }}"] .activity-tags {
         color: {{ section.settings.text_color }} !important;
     }
     [data-section-id="{{ section.id }}"] .jr-product-info-carousel .toggleContainer {
-        border: 3px solid {{ section.settings.text_color }};
+        border: 2px solid {{ section.settings.text_color }};
         background-color: {{ section.settings.inner_section_background_color }};
         color: {{ section.settings.text_color }};
     }
@@ -117,34 +119,39 @@
                                 {% assign first_man_c = true %}
                             {% endif %}
 
-                            <div class="collection-carousel {% if first_man_c == true %} active {% endif %}" data-handle="{{ block.settings.collection }}">
-                                {% assign available_products = block.settings.collection.products | where: "available" %}
-                                {% for product in available_products limit: 1 %}
-                                    <div class="carousel-item">
-                                        <div class="gallery">
-                                            <img src="{{ product.featured_image | image_url: width: 500  }}" alt="{{ product.title }}">
-                                            <div class="thumb-gallery"></div>
-                                        </div>
-                                        <div class="info-area">
-                                            <h3>{{ product.title }}</h3>
-                                            <div class="star-ratings">* * * * *</div>
-                                            <div class="price-container">
-                                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
-                                                {% if product.compare_at_price and product.compare_at_price > product.price %}
-                                                    <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
-                                                {% endif %}
+                            <div class="collection-carousel swiper {% if first_man_c == true %} active {% endif %}" data-handle="{{ block.settings.collection }}">
+                                <div class="swiper-wrapper">
+                                    {% assign available_products = block.settings.collection.products | where: "available" %}
+                                    {% for product in available_products %}
+                                        <div class="carousel-item swiper-slide">
+                                            <div class="gallery">
+                                                <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
+                                                <div class="thumb-gallery"></div>
                                             </div>
-                                            <div class="description-area">{{ product.description }}</div>
-                                            <div class="activity-tags">
-                                                <span>Activity:</span>
-                                                {% for tag in product.tags %}
-                                                    <span class="activity-tag">{{ tag }}</span>
-                                                {% endfor %}
+                                            <div class="info-area">
+                                                <h3>{{ product.title }}</h3>
+                                                <div class="star-ratings-and-price">
+                                                    <div class="price-container">
+                                                        <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                        {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                            <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                    <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
+                                                </div>
+                                                {% assign stripped = product.description | strip_html %}
+                                                <div class="description-area">{{ stripped | truncatewords: 60 }}</div>
+                                                <div class="activity-tags">
+                                                    <span>Activity:</span>
+                                                    {% for tag in product.metafields.custom.gd_occasion.value %}
+                                                        <span class="activity-tag">{{ tag }}</span>
+                                                    {% endfor %}
+                                                </div>
+                                                <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
                                             </div>
-                                            <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
-                                        </div>
-                                    </div>
-                                {% endfor %}
+                                        </div>  
+                                    {% endfor %}
+                                </div>
                             </div>
                         {% endif %}
                     {% endfor %}
@@ -160,33 +167,36 @@
                                 {% assign first_woman_c = true %}
                             {% endif %}
 
-                            <div class="collection-carousel {% if found_first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
+                            <div class="collection-carousel swiper {% if found_first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
                                 {% assign available_products = block.settings.collection.products | where: "available" %}
-                                {% for product in available_products limit: 1 %}
-                                    <div class="carousel-item">
+                                {% for product in available_products limit: 3 %}
+                                    <div class="carousel-item swiper-slide">
                                         <div class="gallery">
-                                            <img src="{{ product.featured_image | image_url: width: 500  }}" alt="{{ product.title }}">
+                                            <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
                                             <div class="thumb-gallery"></div>
                                         </div>
                                         <div class="info-area">
                                             <h3>{{ product.title }}</h3>
-                                            <div class="star-ratings">* * * * *</div>
-                                            <div class="price-container">
-                                                <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
-                                                {% if product.compare_at_price and product.compare_at_price > product.price %}
-                                                    <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
-                                                {% endif %}
+                                            <div class="star-ratings-and-price">
+                                                <div class="price-container">
+                                                    <span class="price">{{ product.price | money_without_trailing_zeros }}</span>
+                                                    {% if product.compare_at_price and product.compare_at_price > product.price %}
+                                                        <span class="compare-price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                                    {% endif %}
+                                                </div>
+                                                <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
                                             </div>
-                                            <div class="description-area">{{ product.description }}</div>
+                                            {% assign stripped = product.description | strip_html %}
+                                            <div class="description-area">{{ stripped | truncatewords: 60 }}</div>
                                             <div class="activity-tags">
                                                 <span>Activity:</span>
-                                                {% for tag in product.tags %}
+                                                {% for tag in product.metafields.custom.gd_occasion.value %}
                                                     <span class="activity-tag">{{ tag }}</span>
                                                 {% endfor %}
                                             </div>
                                             <a href="{{ product.url }}" target="_blank" class="theme-button">Shop Now</a> 
                                         </div>
-                                    </div>
+                                    </div>  
                                 {% endfor %}
                             </div>
                         {% endif %}
@@ -194,15 +204,27 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <script>
     window.addEventListener('DOMContentLoaded', () => {
-
+    
         const section = document.querySelector('[data-section-id="{{ section.id }}"]')
+        const allSwipers = document.querySelectorAll('[data-section-id="{{ section.id }}"] .swiper')
         const collectionItems = section.querySelectorAll('.collection-nav li')
+
+        // init swiper carousels
+
+        allSwipers.forEach((swiperContainer) => {
+            const swiper = new Swiper(swiperContainer, {
+                loop: true,
+                speed: 400,
+                spaceBetween: 20,
+                slidesPerView: 1,
+                centeredSlides: true
+            })
+        })
 
         section.querySelector('.toggleCheckbox').addEventListener('change', (e) => {
 

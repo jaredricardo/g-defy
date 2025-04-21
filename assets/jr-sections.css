@@ -62,7 +62,7 @@
 }
 
 .jr-section .abs-pos-text {
-    font-size:  26px;
+    font-size:  32px;
     font-weight: 600;
     height: max-content;
 }
@@ -157,7 +157,7 @@
     gap: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid #aeaeae;
-    max-width: 1080px;
+    max-width: 750px;
     margin: 0 auto;
 }
 
@@ -271,6 +271,12 @@
     width: 50%;
     margin-left: 6.5%;
     z-index: 2;
+}
+
+@media screen and (max-width: 851px) {
+    .jr-hp-hero .content-container {
+        width: 65%;
+    }
 }
 
 .jr-hp-hero .hero-image {
@@ -490,17 +496,18 @@
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
+    overflow: hidden;
 }
 
 .jr-product-info-carousel .toggleContainer {
     position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    border-radius: 40px;
+    border-radius: 28px;
     font-weight: bold;
     cursor: pointer;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -510,7 +517,7 @@
     width: 50%;
     height: 100%;
     left: 0%;
-    border-radius: 40px;
+    border-radius: 25px;
     background: white;
     transition: all 0.3s;
 }
@@ -585,12 +592,10 @@
     display: none;
 }
 
-.jr-product-info-carousel .master-carousels-container .carousel.active {
-    display: block
-}
-
 .jr-product-info-carousel .collection-carousel {
     display: none;
+    width: 85%;
+    max-width: 1080px;
 }
 
 .jr-product-info-carousel .collection-carousel.active {
@@ -669,6 +674,105 @@ html:has(.jr-product-info-carousel) {
     margin-bottom: 4.5rem;
 }
 
+.jr-product-info-carousel .master-carousels-container .carousel.active {
+    display: block;
+}
+
+.jr-product-info-carousel .carousel-item {
+    border-radius: 12px;
+}
+
+.jr-product-info-carousel .carousel-item.swiper-slide {
+    transform: scale(0.85);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.jr-product-info-carousel .master-carousels-container {
+    padding: 2.5rem 0;
+}
+
+.jr-product-info-carousel .carousel-item .gallery {
+    flex: 40;
+}
+.jr-product-info-carousel .carousel-item .info-area {
+    flex: 60;
+}
+
+.jr-product-info-carousel .carousel-item .info-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.jr-product-info-carousel .carousel-item .compare-price {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: line-through;
+    color: #fda83e;
+}
+
+.jr-product-info-carousel .carousel-item .price-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.jr-product-info-carousel .carousel-item .price-container .price {
+    color: #fda83e !important;
+    font-size: 20px;
+}
+
+.jr-product-info-carousel .carousel-item h3 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.jr-product-info-carousel .carousel-item.swiper-slide-active  {
+    transform: scale(1);
+}
+
+.jr-product-info-carousel .carousel-item img {
+    width: 100%;
+}
+
+.jr-product-info-carousel .carousel-item .gallery img {
+    background-color: white;
+    border-radius: 12px;
+    vertical-align: bottom;
+}
+
+.jr-product-info-carousel .swiper {
+    overflow: visible !important;
+}
+
+.jr-product-info-carousel .carousel-item .star-ratings-and-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.jr-product-info-carousel .carousel-item .star-ratings-and-price img {
+    max-width: 75px;
+}
+.jr-product-info-carousel .carousel-item .description-area {
+    font-weight: 300;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-size: 14px;
+}
+
+.jr-product-info-carousel .carousel-item a.theme-button {
+    font-size: 20px;
+    font-weight: bold;
+}
 @media screen and (max-width: 768px) {
     .jr-section {
         padding: 2rem;
@@ -727,7 +831,8 @@ html:has(.jr-product-info-carousel) {
     }
     .jr-5050 h2,
     .jr-5050 h3 {
-        width: 100%;    
+        max-width: 90%;
+        margin: 0 0 5% 0; 
     }
     .jr-5050 h3 {
         font-weight: 400;
@@ -830,10 +935,4 @@ html:has(.jr-product-info-carousel) {
         align-items: start;
         gap: 7px;
     }
-    .jr-5050 h2,
-    .jr-5050 h3 {
-        max-width: 90%;
-        margin: 0 0 5% 0;
-    }
-
 }
