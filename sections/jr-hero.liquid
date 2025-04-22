@@ -86,21 +86,49 @@
         {% endif %}
     }
     {% if section.settings.mobile_video_no_object_cover %}
+        [data-section-id="{{ section.id }}"] .video-container {
+            height: max-content;
+        }
         [data-section-id="{{ section.id }}"] .video-container video {
             object-fit: contain;
-            height: max-content;
+            height: auto;
         }
         [data-section-id="{{ section.id }}" ] .content-container {
             bottom: 0 !important;
             top: auto !important;
             height: max-content !important;
-            justify-content: center !important;
+            justify-content: start !important;
         }
     {% endif %}
-
 }
 
 {% endstyle %}
+
+{% if section.settings.mobile_video_no_object_cover %}
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            if(window.innerWidth < 768) {
+                adjustMobileSectionHeight() 
+            }
+    
+            window.addEventListener('resize', () => {
+                if(window.innerWidth < 768) {
+                    adjustMobileSectionHeight() 
+                }
+            })
+            
+            function adjustMobileSectionHeight() {
+                const contentContainer = document.querySelector('[data-section-id="{{ section.id }}"] .content-container')
+                const videoSize = document.querySelector('[data-section-id="{{ section.id }}"] .video-container')
+                const section = document.querySelector('[data-section-id="{{ section.id }}"] .jr-hp-hero')
+                section.style.height = `calc(${videoSize.offsetHeight}px + ${contentContainer.offsetHeight}px)`
+                console.log(videoSize.offsetHeight)
+                console.log(section.offsetHeight)
+            }
+        })
+    </script>
+{% endif %}
 
 <div data-section-id="{{ section.id }}">
     <div class="jr-hp-hero jr-section page-width no-padding">

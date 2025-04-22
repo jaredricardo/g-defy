@@ -104,7 +104,7 @@
         "button_dyULbP"
       ],
       "custom_css": [
-        "@media screen and (max-width: 768px) {.jr-hp-hero {min-height: 85vh !important; } .jr-hp-hero .content-container {padding-bottom: 9% !important; } .section-subheader p {font-size: 15px !important; } .image-overlay {background-color: rgba(0, 0, 0, 0.1) !important; }}"
+        "@media screen and (max-width: 768px) {.jr-hp-hero {height: 85vh; } .jr-hp-hero .video-container {position: relative !important; } .section-subheader p {font-size: 15px !important; } .image-overlay {background-color: rgba(0, 0, 0, 0.1) !important; }}"
       ],
       "settings": {
         "bg_color": "#000000",
@@ -113,7 +113,7 @@
         "video": "shopify:\/\/files\/videos\/slide-in-compressed.mp4",
         "mobile_video_no_object_cover": true,
         "image_overlay_opacity": 30,
-        "top_alignment_d": 20,
+        "top_alignment_d": 15,
         "top_alignment_m": 35,
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
