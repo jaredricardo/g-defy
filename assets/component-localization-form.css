@@ -308,7 +308,7 @@
 
 .disclosure__link {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   gap: 0.5rem;
   padding: 0.9rem 1.5rem;
   text-decoration: none;
