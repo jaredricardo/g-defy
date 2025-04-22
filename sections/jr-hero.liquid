@@ -117,14 +117,12 @@
                     adjustMobileSectionHeight() 
                 }
             })
-            
+
             function adjustMobileSectionHeight() {
                 const contentContainer = document.querySelector('[data-section-id="{{ section.id }}"] .content-container')
                 const videoSize = document.querySelector('[data-section-id="{{ section.id }}"] .video-container')
                 const section = document.querySelector('[data-section-id="{{ section.id }}"] .jr-hp-hero')
                 section.style.height = `calc(${videoSize.offsetHeight}px + ${contentContainer.offsetHeight}px)`
-                console.log(videoSize.offsetHeight)
-                console.log(section.offsetHeight)
             }
         })
     </script>

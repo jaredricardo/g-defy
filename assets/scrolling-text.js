@@ -1,7 +1,4 @@
-console.log('Scrolling text loaded!!!!')
 if (typeof ScrollingText !== "function") {
-
-
     class ScrollingText extends HTMLElement {
         constructor() {
             super();
