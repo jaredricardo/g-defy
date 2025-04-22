@@ -23,7 +23,11 @@
 
 [data-section-id="{{ section.id }}" ] .jr-hp-hero {
     margin: 0 auto;
-    aspect-ratio: {{ section.settings.desktop_img.width }} / {{ section.settings.desktop_img.height }} ;
+    {% if section.settings.video %}
+            aspect-ratio: {{ section.settings.video.aspect_ratio }};
+        {% else %}
+            aspect-ratio: {{ section.settings.desktop_img.width }} / {{ section.settings.desktop_img.height }};
+    {% endif %}
 }
 
 [data-section-id="{{ section.id }}" ] .content-container {
@@ -81,6 +85,19 @@
             bottom: 10%;
         {% endif %}
     }
+    {% if section.settings.mobile_video_no_object_cover %}
+        [data-section-id="{{ section.id }}"] .video-container video {
+            object-fit: contain;
+            height: max-content;
+        }
+        [data-section-id="{{ section.id }}" ] .content-container {
+            bottom: 0 !important;
+            top: auto !important;
+            height: max-content !important;
+            justify-content: center !important;
+        }
+    {% endif %}
+
 }
 
 {% endstyle %}
@@ -147,8 +164,14 @@
                 {% endfor %}
             </div>
         </div>
-        <img src="{{ section.settings.mobile_img |  img_url: 'master' }}" alt="Hero image" class="mobile hero-image">
-        <img src="{{ section.settings.desktop_img |  img_url: 'master' }}" alt="Hero image" class="desktop hero-image">
+        {% if section.settings.video %}
+            <div class="video-container">
+                {{ section.settings.video | media_tag: autoplay: true, controls: false, loop: true, muted: true, playsinline: true }}
+            </div>
+        {% else %}
+            <img src="{{ section.settings.mobile_img |  img_url: 'master' }}" alt="Hero image" class="mobile hero-image">
+            <img src="{{ section.settings.desktop_img |  img_url: 'master' }}" alt="Hero image" class="desktop hero-image">
+        {% endif %}
     </div>
 </div>
 
@@ -156,8 +179,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            const stickyBar = document.querySelector('[data-section-id="{{ section.id }}"] .abs-pos-text.stickied');
-            const targetSection = document.querySelector('.shopify-section:has(.jr-simple-announcement)');
+            const stickyBar = document.querySelector('[data-section-id="{{ section.id }}"] .abs-pos-text.stickied')
+            // change the below variable to where you want the banner to be
+            const targetSection = document.querySelector('.shopify-section:has(.jr-simple-announcement)')
 
             if (stickyBar && targetSection) {
                 targetSection.insertAdjacentElement('afterend', stickyBar);
@@ -185,6 +209,18 @@
             "type": "image_picker",
             "id": "mobile_img",
             "label": "Mobile Image"   
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video URL (file, overwrites images)"
+        },
+        {
+            "type": "checkbox",
+            "id": "mobile_video_no_object_cover",
+            "label": "Mobile Video does not cover the whole screen",
+            "info": "Video will maintain its aspect ratio and will not cover the whole screen, and instead float to the top on mobile. To ensure text is not cut off or dosnt look weird, you may need to use some min-height CSS to taraget and add height to the containing element depending on the amount of text blocks you have.",
+            "default": false
         },
         {
             "type": "range",
@@ -320,7 +356,6 @@
         {
             "type": "header",
             "name": "Header",
-            "limit": 1,
             "settings": [
                 {
                     "type": "richtext",
@@ -350,7 +385,6 @@
         {
             "type": "subheader",
             "name": "Subheader",
-            "limit": 1,
             "settings": [
                 {
                     "type": "richtext",

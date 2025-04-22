@@ -46,13 +46,22 @@
     "jr_hero_P77K3H": {
       "type": "jr-hero",
       "blocks": {
+        "subheader_JnkM4h": {
+          "type": "subheader",
+          "settings": {
+            "subheader": "<p>Slip-On Simplicity Meets Serious Support<\/p>",
+            "text_color": "#ffffff",
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
         "header_hfMUm3": {
           "type": "header",
           "settings": {
             "header": "<h1>Improve performance and Relieve Pain From:<\/h1>",
             "text_color": "#ffffff",
             "margin_top": 0,
-            "margin_bottom": 15
+            "margin_bottom": 10
           }
         },
         "subheader_RnYrgj": {
@@ -88,21 +97,24 @@
         }
       },
       "block_order": [
+        "subheader_JnkM4h",
         "header_hfMUm3",
         "subheader_RnYrgj",
         "button_Uf9JqA",
         "button_dyULbP"
       ],
       "custom_css": [
-        ".jr-hp-hero {min-width: 100vw;}"
+        "@media screen and (max-width: 768px) {.jr-hp-hero {min-height: 85vh !important; } .jr-hp-hero .content-container {padding-bottom: 9% !important; } .section-subheader p {font-size: 15px !important; } .image-overlay {background-color: rgba(0, 0, 0, 0.1) !important; }}"
       ],
       "settings": {
-        "bg_color": "",
+        "bg_color": "#000000",
         "desktop_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "mobile_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
-        "image_overlay_opacity": 40,
+        "video": "shopify:\/\/files\/videos\/slide-in-compressed.mp4",
+        "mobile_video_no_object_cover": true,
+        "image_overlay_opacity": 30,
         "top_alignment_d": 20,
-        "top_alignment_m": 10,
+        "top_alignment_m": 35,
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
         "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
