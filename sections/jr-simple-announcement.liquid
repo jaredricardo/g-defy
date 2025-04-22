@@ -1,0 +1,121 @@
+{% style %}
+    .shopify-section:has(.utility-bar) {
+        display: none
+    }
+{% endstyle %}
+
+<style>
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.section_background_color }};
+        color: {{ section.settings.section_text_color }};
+    }
+
+</style>
+
+<div class="jr-simple-announcement jr-section no-padding" data-section-id="{{ section.id }}">
+    <div class="inner-container page-width">
+        {% for block in section.blocks  %}
+            <div class="announcement-item">
+                {% if block.settings.url != blank %}
+                    <a href="{{ block.settings.url }}">{{ block.settings.title }}</a>
+                {% else %}
+                    <p>{{ block.settings.title }}</p>
+                {% endif %}
+            </div>
+            {% unless forloop.last %}
+                <span class="divider"></span>
+            {% endunless %}
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+        const announcementItems = document.querySelectorAll('[data-section-id="{{ section.id }}"] .announcement-item')
+        const container = document.querySelector('[data-section-id="{{ section.id }}"] .inner-container')
+        let nextIndex = 0
+        let intervalId = null
+
+        function startMobileAnnouncement() {
+            if (announcementItems.length <= 1) return
+
+            if (intervalId) {
+                clearInterval(intervalId)
+            }
+
+            announcementItems.forEach((item) => item.classList.remove('active'));
+            announcementItems[nextIndex].classList.add('active');
+
+
+            intervalId = setInterval(() => {
+                announcementItems[nextIndex].classList.remove('active')
+                nextIndex = (nextIndex + 1) % announcementItems.length
+                announcementItems[nextIndex].classList.add('active')
+            }, 4000)
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                announcementItems.forEach((item) => item.classList.remove('active'))
+                nextIndex = 0
+                if (intervalId) {
+                    clearInterval(intervalId)
+                    intervalId = null;
+                }
+            } else {
+                startMobileAnnouncement()
+            }
+        })
+
+        if (window.innerWidth <= 768) {
+            startMobileAnnouncement()
+        }
+    });
+</script>
+
+
+{% schema %}
+{
+    "name": "JR Simple Announcement",
+    "settings": [
+        {
+            "type": "color",
+            "id": "section_background_color",
+            "label": "Background Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "section_text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "announcement",
+            "name": "Announcement Text",
+            "limit": 3,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Announcement Text"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Link URL (optional)"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "JR Simple Announcement",
+            "category": "JR"
+        }
+    ]
+}
+{% endschema %}

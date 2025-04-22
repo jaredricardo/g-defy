@@ -1,0 +1,169 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h2,
+    [data-section-id="{{ section.id }}"] h4,
+    [data-section-id="{{ section.id }}"] .quotation,
+    [data-section-id="{{ section.id }}"] .review-copy,
+    [data-section-id="{{ section.id }}"] p {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .review-card {
+        background-color: {{ section.settings.card_bg_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] .swiper-pagination .swiper-pagination-bullet-active {
+        background: {{ section.settings.text_color }};
+    }
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-section jr-customer-reviews page-width">
+        {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+        <div class="swiper">
+            <div class="reviews-container swiper-wrapper">
+                {% for block in section.blocks %}
+                    <div class="review-card swiper-slide">
+                        <div class="card-inner">
+                            {% if block.settings.review_text != blank %}
+                                <div class="review-copy-container">
+                                <span class="quotation"><i>"</i></span>
+                                {% if block.settings.title != blank %}
+                                        <h4>{{ block.settings.title }}</h4>
+                                {% endif %}
+                                <p>{{ block.settings.review_text }}</p>
+                                </div>
+                            {% endif %}
+                            {% if block.settings.customer_name != blank %}
+                                <div class="customer-name">
+                                    <h4>{{ block.settings.customer_name }}</h4>
+                                    <p>G-Defy Customer</p>
+                                </div>
+                            {% endif %}
+                            {% if section.settings.enable_verified_buyer or section.settings.enable_star_rating %}
+                                <div class="verified-stars-area">
+                                    {% if section.settings.enable_verified_buyer %}
+                                        <div class="verified-container">
+                                            {% render 'icon-checkmark' %}
+                                            <p style="color:#25A787;">Verified Buyer</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if section.settings.enable_star_rating %} 
+                                       <img class="stars" src="https://cdn.shopify.com/s/files/1/0671/1692/5096/files/Stars_2.png?v=1744498831" alt="Review Stars">
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+        const sectionSwiper = document.querySelector('[data-section-id="{{ section.id }}"] .swiper')
+        
+        const swiper = new Swiper(sectionSwiper, {
+            autoHeight: true,
+            loop: true,
+            speed: 400,
+            spaceBetween: 10,
+            slidesPerView: 1.75,
+            centeredSlides: false,
+            breakpoints: {
+                861: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                }
+            },
+            pagination: {
+                el: '[data-section-id="{{ section.id }}"] .swiper-pagination',
+                clickable: true
+            }
+        })
+    })
+</script>
+
+{% schema %}
+    {
+        "name": "JR Customer Reviews",
+        "presets": [
+            {
+                "name": "JR Customer Reviews"
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text Color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "card_bg_color",
+                "label": "Card Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Header",
+                "default": "See what our customers are saying"
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_verified_buyer",
+                "label": "Enable Verified Buyer",
+                "default": true
+            },
+            {
+                "type": "checkbox",
+                "id": "enable_star_rating",
+                "label": "Enable Star Rating",
+                "default": true
+            }
+        ],
+        "blocks": [
+            {
+                "type": "customer-review",
+                "name": "Customer Reviw",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title",
+                        "default": "Review Title"
+                    },
+                    {
+                        "type": "text",
+                        "id": "customer_name",
+                        "label": "Customer Name",
+                        "default": "John Doe"
+                    },
+                    {
+                        "type":"textarea",
+                        "id": "review_text",
+                        "label": "Customer Review",
+                        "default": "lorum ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

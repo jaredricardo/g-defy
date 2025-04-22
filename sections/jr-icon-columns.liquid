@@ -1,0 +1,104 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h2 {
+        color: {{ section.settings.text_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h4 {
+        color: {{ section.settings.text_color }};
+    }
+    [data-section-id="{{ section.id }}"] .jr-icon-columns .icon-area svg,
+    [data-section-id="{{ section.id }}"] .jr-icon-columns .icon-area path {
+        fill: {{ section.settings.text_color }};
+    }
+
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-section jr-icon-columns page-width">
+        {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+        {% endif %}
+        <div class="icon-container">
+            <div class="icon-area">
+                {% render 'icon-foot' %}
+                <h4>Pain<br>Relief</h4>
+            </div>
+            <div class="icon-area">
+                {% render 'icon-body' %}
+                <h4>Improved<br> Posture</h4>
+            </div>
+            <div class="icon-area">
+                {% render 'icon-shield' %}
+                <h4>Maximum<br>Protection</h4>
+            </div>
+            <div class="icon-area">
+                {% render 'icon-renewable-energy' %}
+                <h4>Renewed<br>Energy</h4>
+            </div>
+
+            {% comment %} {% for block in section.blocks %}
+                <div class="icon-area">
+                    {% if block.settings.icon != blank %}
+                        <img src="{{ block.settings.icon | image_url: width: 500 }}" alt="G-Defy Icon">
+                    {% endif %}
+                    {% if block.settings.title != blank %}
+                        <h4>{{ block.settings.title }}</h4>
+                    {% endif %}
+                </div>
+            {% endfor %} {% endcomment %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "JR Icon Columns",
+        "presets": [
+            {
+                "name": "JR Icon Columns"
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text & Icon Color (if SVG)",
+                "default": "#000000"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title (optional)",
+                "default": "Header Text"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "icon",
+                "name": "Icon Area",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title (optional)"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "icon",
+                        "label": "Icon / image (SVG or PNG)"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}

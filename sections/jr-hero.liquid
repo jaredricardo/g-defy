@@ -1,0 +1,488 @@
+{{ 'jr-hp-hero.css' | asset_url | stylesheet_tag }}
+
+{% liquid  
+
+    assign overlay_string = ''
+
+    if section.settings.image_overlay_opacity == 0
+            assign overlay_string = '0'
+        elsif section.settings.image_overlay_opacity == 100
+            assign overlay_string = '1'
+        else 
+            assign percent = section.settings.image_overlay_opacity | divided_by: 10
+            assign overlay_string = '0.' | append: percent
+    endif 
+
+-%}
+
+{% style %}
+
+[data-section-id="{{ section.id }}" ] {
+    background-color: {{ section.settings.bg_color }};
+}
+
+[data-section-id="{{ section.id }}" ] .jr-hp-hero {
+    margin: 0 auto;
+    {% if section.settings.video %}
+            aspect-ratio: {{ section.settings.video.aspect_ratio }};
+        {% else %}
+            aspect-ratio: {{ section.settings.desktop_img.width }} / {{ section.settings.desktop_img.height }};
+    {% endif %}
+}
+
+[data-section-id="{{ section.id }}" ] .content-container {
+    top: {{ section.settings.top_alignment_d }}%;
+}
+
+[data-section-id="{{ section.id }}"] .abs-pos-text {
+    position: absolute;
+    z-index: 2;
+
+
+    {% if section.settings.abs_pos_y_desktop == 'top' %}
+        top: 6%;
+    {% endif %}
+
+    {% if section.settings.abs_pos_y_desktop == 'bottom' %}
+        bottom: 6%;
+    {% endif %}
+
+    {% if section.settings.abs_pos_x_switch == "left" %}
+            left: {{ section.settings.abs_pos_x_value }}%;
+        {% else %}
+            right: {{ section.settings.abs_pos_x_value }}%;
+    {% endif %}
+}
+
+{% if section.settings.enable_sticky %}
+    .{{ section.id }}.abs-pos-text {
+        color: {{ section.settings.abs_pos_text_color }};
+    }
+    .{{ section.id }}.abs-pos-text.stickied {
+        background-color: {{ section.settings.sticky_bg_color }};
+    }
+{% endif %}
+
+@media screen and (max-width: 768px) {
+    [data-section-id="{{ section.id }}" ] .content-container {
+        position: absolute;
+        justify-content: start;
+        top: {{ section.settings.top_alignment_m }}%;
+    }
+    [data-section-id="{{ section.id }}" ] .jr-hp-hero {
+        aspect-ratio: 16/9;   
+    }
+    [data-section-id="{{ section.id }}" ] .abs-pos-text {
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        {% if section.settings.abs_pos_y_mobile == 'top' %}
+            top: 10%;
+        {% endif %}
+
+        {% if section.settings.abs_pos_y_mobile == 'bottom' %}
+            bottom: 10%;
+        {% endif %}
+    }
+    {% if section.settings.mobile_video_no_object_cover %}
+        [data-section-id="{{ section.id }}"] .video-container {
+            height: max-content;
+        }
+        [data-section-id="{{ section.id }}"] .video-container video {
+            object-fit: contain;
+            height: auto;
+        }
+        [data-section-id="{{ section.id }}" ] .content-container {
+            bottom: 0 !important;
+            top: auto !important;
+            height: max-content !important;
+            justify-content: start !important;
+        }
+    {% endif %}
+}
+
+{% endstyle %}
+
+{% if section.settings.mobile_video_no_object_cover %}
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            if(window.innerWidth < 768) {
+                adjustMobileSectionHeight() 
+            }
+    
+            window.addEventListener('resize', () => {
+                if(window.innerWidth < 768) {
+                    adjustMobileSectionHeight() 
+                }
+            })
+
+            function adjustMobileSectionHeight() {
+                const contentContainer = document.querySelector('[data-section-id="{{ section.id }}"] .content-container')
+                const videoSize = document.querySelector('[data-section-id="{{ section.id }}"] .video-container')
+                const section = document.querySelector('[data-section-id="{{ section.id }}"] .jr-hp-hero')
+                section.style.height = `calc(${videoSize.offsetHeight}px + ${contentContainer.offsetHeight}px)`
+            }
+        })
+    </script>
+{% endif %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-hp-hero jr-section page-width no-padding">
+
+        {% if section.settings.abs_pos_text != blank %}
+            <div class="abs-pos-text{% if section.settings.enable_sticky %} stickied {% endif %} {{ section.id }}">{{ section.settings.abs_pos_text }}</div>
+        {% endif %}
+
+        {% unless overlay_string == '0' %}
+            <div class="image-overlay" style="background-color: rgba(0, 0, 0, {{ overlay_string }});" data-test="{{ section.settings.overlay_string }}" ></div>
+        {% endunless %}
+        <div class="content-container">
+            {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'header' %}
+
+                        {% style %}
+
+                            [data-block-id="{{ block.id }}" ] h1,
+                            [data-block-id="{{ block.id }}" ] h2,
+                            [data-block-id="{{ block.id }}" ] h3,
+                            [data-block-id="{{ block.id }}" ] h4,
+                            [data-block-id="{{ block.id }}" ] h5,
+                            [data-block-id="{{ block.id }}" ] h6,
+                            [data-block-id="{{ block.id }}" ] p,
+                            [data-block-id="{{ block.id }}" ] a {
+                                color: {{ block.settings.text_color }};
+                            }
+                        {% endstyle %}
+                        
+                        <div data-block-id="{{ block.id }}" style="margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;" 
+                            class="section-header"
+                            >{{ block.settings.header }}
+                        </div>
+                    {% when 'subheader' %}
+                        <div 
+                            style="color:{{ block.settings.text_color }}; margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;"
+                            class="section-subheader"
+                            >{{ block.settings.subheader }}
+                        </div>
+                {% endcase %}
+            {% endfor %}
+            {% if section.settings.stars_text != blank %}
+                <a class="star-review-container" href="#ReviewsWidget">
+                     {% if section.settings.stars_img != blank %}
+                         <img src="{{ section.settings.stars_img |  img_url: 'master' }}" alt="Stars" class="stars">
+                     {% endif %}
+                     <div class="stars-text" style="color: {{ section.settings.stars_text_color }};">{{ section.settings.stars_text }}</div>
+                </a>
+             {% endif %} 
+            <div class="button-container">
+                {% for block in section.blocks %}
+                    {% if block.type == "button" %}
+                            <a 
+                                style="color:{{ block.settings.button_text_color }}; background-color:{{ block.settings.button_bg_color }}; margin-top:{{ block.settings.margin_top }}px; margin-bottom:{{ block.settings.margin_bottom }}px;"
+                                href="{{ block.settings.button_link }}" 
+                                class="hero-btn btn theme-button"
+                                >{{ block.settings.button_text }}
+                            </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% if section.settings.video %}
+            <div class="video-container">
+                {{ section.settings.video | media_tag: autoplay: true, controls: false, loop: true, muted: true, playsinline: true }}
+            </div>
+        {% else %}
+            <img src="{{ section.settings.mobile_img |  img_url: 'master' }}" alt="Hero image" class="mobile hero-image">
+            <img src="{{ section.settings.desktop_img |  img_url: 'master' }}" alt="Hero image" class="desktop hero-image">
+        {% endif %}
+    </div>
+</div>
+
+{% if section.settings.enable_sticky %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const stickyBar = document.querySelector('[data-section-id="{{ section.id }}"] .abs-pos-text.stickied')
+            // change the below variable to where you want the banner to be
+            const targetSection = document.querySelector('.shopify-section:has(.jr-simple-announcement)')
+
+            if (stickyBar && targetSection) {
+                targetSection.insertAdjacentElement('afterend', stickyBar);
+            }
+    
+        })
+    </script>
+{% endif %}
+
+{% schema %}
+{
+    "name": "JR LP Hero",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Section Background Color"
+        },
+        {
+            "type": "image_picker",
+            "id": "desktop_img",
+            "label": "Deskop Image"   
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_img",
+            "label": "Mobile Image"   
+        },
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video URL (file, overwrites images)"
+        },
+        {
+            "type": "checkbox",
+            "id": "mobile_video_no_object_cover",
+            "label": "Mobile Video does not cover the whole screen",
+            "info": "Video will maintain its aspect ratio and will not cover the whole screen, and instead float to the top on mobile. To ensure text is not cut off or dosnt look weird, you may need to use some min-height CSS to taraget and add height to the containing element depending on the amount of text blocks you have.",
+            "default": false
+        },
+        {
+            "type": "range",
+            "step": 10,
+            "id": "image_overlay_opacity",
+            "label": "Image Overlay Opacity (%)",
+            "min": 0,
+            "max": 100,
+            "default": 20
+        },
+        {
+            "type": "header",
+            "content": "Alignment settings"
+        },
+        {
+            "type": "number",
+            "id": "top_alignment_d",
+            "label": "Spacing from the top of the page (desktop)",
+            "default": 15
+        },
+        {
+            "type": "number",
+            "id": "top_alignment_m",
+            "label": "Spacing from the top of the page (m)",
+            "default": 15
+        },
+        {
+            "type": "text",
+            "id": "stars_text",
+            "label": "Stars Text",
+            "default": "Based on 50,000+ reviews"
+        },
+        {
+            "type": "color",
+            "id": "stars_text_color",
+            "label": "Stars Text Color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "image_picker",
+            "id": "stars_img",
+            "label": "Stars Image"
+        },
+        {
+            "type": "header",
+            "content": "Absolute Positionin Words Settings"
+        },
+        {
+            "type": "richtext",
+            "id": "abs_pos_text",
+            "label": "Absolute / Sticky Text ",
+            "default": "<p>CTA text</p>"
+        },
+        {
+            "type": "color",
+            "id": "abs_pos_text_color",
+            "label": "Absolute / Sticky Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "sticky_bg_color",
+            "label": "Sticky BG Color (only when sticky enabled)",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_sticky",
+            "label": "Enable Top Sticky Positioning",
+            "info": "Enalbing Sticky will overwite the absolute positioning",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "Absolute Positioning Settings"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_x_switch",
+            "label": "Absolute Position X Switch",
+            "options": [
+                {
+                    "value": "left",
+                    "label": "Left"
+                },
+                {
+                    "value": "right",
+                    "label": "Right"
+                }
+            ],
+            "default": "left"
+        },
+        {
+            "type": "number",
+            "id": "abs_pos_x_value",
+            "label": "Absolute Position position value (desktop)",
+            "default": 50
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_y_desktop",
+            "label": "Absolute Position Y Desktop",
+            "options": [
+                {
+                    "value": "top",
+                    "label": "Top"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Bottom"
+                }
+            ],
+            "default": "top"
+        },
+        {
+            "type": "select",
+            "id": "abs_pos_y_mobile",
+            "label": "Absolute Position Y Mobile",
+            "options": [
+                {
+                    "value": "top",
+                    "label": "Top"
+                },
+                {
+                    "value": "bottom",
+                    "label": "Bottom"
+                }
+            ],
+            "default": "top"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "header",
+            "name": "Header",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "header",
+                    "label": "Header Text"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "Header Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "number",
+                    "id": "margin_top",
+                    "label": "Margin Top",
+                    "default": 0
+                },
+                {
+                    "type": "number",
+                    "id": "margin_bottom",
+                    "label": "Margin bottom",
+                    "default": 0
+                }
+            ]
+        },
+        {
+            "type": "subheader",
+            "name": "Subheader",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "subheader",
+                    "label": "Subheader Text"
+                },
+                {
+                    "type": "color",
+                    "id": "text_color",
+                    "label": "Subheader Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "number",
+                    "id": "margin_top",
+                    "label": "Margin Top",
+                    "default": 0
+                },
+                {
+                    "type": "number",
+                    "id": "margin_bottom",
+                    "label": "Margin bottom",
+                    "default": 0
+                }
+            ]
+        },
+        {
+            "type": "button",
+            "name": "Button",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button Text",
+                    "default": "Button Text"
+                },
+                {
+                    "type": "color",
+                    "id": "button_text_color",
+                    "label": "Button Text Color",
+                    "default": "#FFFFFF"
+                },
+                {
+                    "type": "url",
+                    "id": "button_link",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "color",
+                    "id": "button_bg_color",
+                    "label": "Button Background Color",
+                    "default": "#1e4845"
+                },
+                {
+                    "type": "number",
+                    "id": "margin_top",
+                    "label": "Margin Top",
+                    "default": 0
+                },
+                {
+                    "type": "number",
+                    "id": "margin_bottom",
+                    "label": "Margin bottom",
+                    "default": 0
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "JR Hero"
+        }
+    ]
+}
+{% endschema %}
