@@ -34,6 +34,11 @@
     aria-describedby="{{ localPosition }}Label"
   >
     <span>
+      <img
+        src="https://flagcdn.com/16x12/{{ localization.country.iso_code | downcase }}.png"
+        alt="{{ localization.country.name }} flag"
+        style="margin-right: 8px;    width: 16px;"
+      >
       {{- localization.country.name }} |
       {{ localization.country.currency.iso_code }}
       {{ localization.country.currency.symbol -}}
@@ -140,6 +145,11 @@
               >
                 {{- 'icon-checkmark.svg' | inline_asset_content -}}
               </span>
+              <img
+                src="https://flagcdn.com/16x12/{{ country.iso_code | downcase }}.png"
+                alt="{{ country.name }} flag"
+                style="margin-right: 8px;padding-top: 6px;    width: 16px;"
+              >
               <span class="country">{{- country.name }}</span>
               <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
                 {{ country.currency.iso_code }}

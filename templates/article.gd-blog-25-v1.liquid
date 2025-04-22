@@ -1,0 +1,160 @@
+<article class="blog-page-size">
+  <div class="container">
+    <!-- Header Section -->
+    <div class="row header-section">
+      <div class="box blog-box-radius blog-box-gd-bg" style="    padding: 5vw 2.5vw;   ;">
+        <p>{{ article.published_at | date: '%B %d, %Y' }}</p>
+        <h1 style=" font-weight: 600 !important">{{ article.title }}</h1>
+        <p>By Gdefy</p>
+      </div>
+      <div class="box" style="padding:0px">
+        {% if article.image %}
+          <img
+            src="{{ article.image | img_url: '1200x' }}"
+            alt="{{ article.title }}"
+            class="blog-main-image"
+            style=";"
+          >
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="row middle-section">
+      <div class="left">
+        <div class="box">
+          {{ article.metafields.custom.gd_blog_intro | metafield_tag }}
+        </div>
+        <div class="box  blog-box-gd-bg">
+          <h2 style="margin-top:2px">Summary</h2>
+          {{ article.metafields.custom.blog_summary | metafield_tag }}
+        </div>
+        <div class="box">
+          {{ article.content }}
+        </div>
+      </div>
+      <div class="right"></div>
+    </div>
+
+    <!-- Bottom Section -->
+  </div>
+
+  <style>
+        .row.middle-section img {
+        width: 100%;
+    }
+
+
+        .blog-main-image{
+          width: 100%; border-radius: 8px;    object-fit: cover;
+        max-height: 350px;
+        }
+
+
+                    .blog-box-radius{
+
+                    border-radius: 1em;
+                    }
+                .box h2 {
+                    font-weight: 600;
+                    padding-bottom: 10px;
+                    margin-top: 35px;
+                }
+                    .blog-box-gd-bg{   background: #eff2f5;}
+
+                    .blog-page-size{ margin-top:30px; max-width:1600px; margin:0 auto;color:#000!important;font-size: 18px;}
+
+         .blog-page-size a{ color:#000;
+           text-decoration:underline;
+         }
+                    .container {
+                      margin-top:30px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 30px;
+                    }
+
+                    .row {
+                      display: flex;
+                      flex-wrap: wrap;
+                      gap: 20px;
+                    }
+
+                    .box {
+
+                      padding: 20px;
+
+                    }
+
+                    /* Top Section */
+                    .header-section .box {
+                      flex: 1;
+                      min-width: 250px;
+                    }
+
+                    /* Middle Section */
+                    .middle-section .left,
+                    .middle-section .right {
+                      display: flex;
+                      flex-direction: column;
+                      gap: 20px;
+                    }
+
+                    .middle-section .left {
+                      flex: 3;
+                    }
+
+                .right {
+                text-align: center;
+            }
+
+                    .middle-section .right {
+                      flex: 1;
+                      min-width: 180px;
+                    }
+
+                    /* Bottom Section */
+                    .bottom-section .main-content {
+                      flex: 2;
+                    }
+
+                    .bottom-section .product-sidebar {
+                      flex: 1;
+                      min-width: 180px;
+                    }
+
+                    .shop-products {
+                      display: flex;
+                      flex-direction: column;
+                      gap: 10px;
+                      margin-top: 10px;
+                    }
+
+                    .shop-products .box {
+                      width: 80px;
+                      height: 80px;
+                      margin: 0 auto;
+                    }
+
+                    /* Responsive Design */
+                    @media (max-width: 768px) {
+                      .row {
+                        flex-direction: column;
+                      }
+
+                      .box h2 {
+
+            margin-top: 25px;
+        }
+
+                      .blog-main-image{
+                            max-height: 250px;
+        object-fit: cover;
+                      }
+                      .shop-products .box {
+                        width: 100%;
+                        height: auto;
+                      }
+                    }
+  </style>
+</article>
