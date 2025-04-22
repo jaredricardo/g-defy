@@ -30,10 +30,10 @@
     top: {{ section.settings.top_alignment_d }}%;
 }
 
-[data-section-id="{{ section.id }}" ] .abs-pos-text {
+[data-section-id="{{ section.id }}"] .abs-pos-text {
     position: absolute;
     z-index: 2;
-    color: {{ section.settings.abs_pos_text_color }};
+
 
     {% if section.settings.abs_pos_y_desktop == 'top' %}
         top: 6%;
@@ -48,8 +48,16 @@
         {% else %}
             right: {{ section.settings.abs_pos_x_value }}%;
     {% endif %}
-
 }
+
+{% if section.settings.enable_sticky %}
+    .{{ section.id }}.abs-pos-text {
+        color: {{ section.settings.abs_pos_text_color }};
+    }
+    .{{ section.id }}.abs-pos-text.stickied {
+        background-color: {{ section.settings.sticky_bg_color }};
+    }
+{% endif %}
 
 @media screen and (max-width: 768px) {
     [data-section-id="{{ section.id }}" ] .content-container {
@@ -81,7 +89,7 @@
     <div class="jr-hp-hero jr-section page-width no-padding">
 
         {% if section.settings.abs_pos_text != blank %}
-            <div class="abs-pos-text">{{ section.settings.abs_pos_text }}</div>
+            <div class="abs-pos-text{% if section.settings.enable_sticky %} stickied {% endif %} {{ section.id }}">{{ section.settings.abs_pos_text }}</div>
         {% endif %}
 
         {% unless overlay_string == '0' %}
@@ -143,6 +151,21 @@
         <img src="{{ section.settings.desktop_img |  img_url: 'master' }}" alt="Hero image" class="desktop hero-image">
     </div>
 </div>
+
+{% if section.settings.enable_sticky %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const stickyBar = document.querySelector('[data-section-id="{{ section.id }}"] .abs-pos-text.stickied');
+            const targetSection = document.querySelector('.shopify-section:has(.jr-simple-announcement)');
+
+            if (stickyBar && targetSection) {
+                targetSection.insertAdjacentElement('afterend', stickyBar);
+            }
+    
+        })
+    </script>
+{% endif %}
 
 {% schema %}
 {
@@ -212,14 +235,31 @@
         {
             "type": "richtext",
             "id": "abs_pos_text",
-            "label": "Absolute Position Text",
+            "label": "Absolute / Sticky Text ",
             "default": "<p>CTA text</p>"
         },
         {
             "type": "color",
             "id": "abs_pos_text_color",
-            "label": "Absolute Position Text Color",
+            "label": "Absolute / Sticky Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "sticky_bg_color",
+            "label": "Sticky BG Color (only when sticky enabled)",
             "default": "#FFFFFF"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_sticky",
+            "label": "Enable Top Sticky Positioning",
+            "info": "Enalbing Sticky will overwite the absolute positioning",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "Absolute Positioning Settings"
         },
         {
             "type": "select",

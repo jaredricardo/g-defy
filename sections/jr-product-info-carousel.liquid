@@ -35,11 +35,11 @@
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button {
         color: {{ section.settings.button_text_color }};
         background-color: {{ section.settings.button_bg_color }};
-        border: 1.5px solid {{ section.settings.button_bg_color }};
+        border: 1.5px solid {{ section.settings.text_color }};
     }
 
     [data-section-id="{{ section.id }}"] .carousel-item a.theme-button:hover {
-        background-color: {{ section.settings.button_text_color }} ;
+        background-color: {{ section.settings.button_text_color }};
         color:{{ section.settings.button_bg_color }};
     }
 
@@ -145,7 +145,15 @@
                                         <div class="carousel-item swiper-slide">
                                             <div class="gallery">
                                                 <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
-                                                <div class="thumb-gallery"></div>
+                                                <a class="thumb-gallery" href="{{ product.url }}" target="_blank">
+                                                    {% for image in product.images limit: 6 %}
+                                                        {% if forloop.first %}
+                                                            {% continue %}
+                                                        {% else %}
+                                                            <img src="{{ image | image_url: width: 200  }}" alt="{{ product.title }} thumbnail image">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </a>
                                             </div>
                                             <div class="info-area">
                                                 <h3>{{ product.title }}
@@ -203,7 +211,15 @@
                                         <div class="carousel-item swiper-slide">
                                             <div class="gallery">
                                                 <img src="{{ product.featured_image | image_url: width: 1000  }}" alt="{{ product.title }}">
-                                                <div class="thumb-gallery"></div>
+                                                <a class="thumb-gallery" href="{{ product.url }}" target="_blank">
+                                                    {% for image in product.images limit: 6 %}
+                                                        {% if forloop.first %}
+                                                            {% continue %}
+                                                        {% else %}
+                                                            <img src="{{ image | image_url: width: 200  }}" alt="{{ product.title }} thumbnail image">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </a>
                                             </div>
                                             <div class="info-area">
                                                 <h3>{{ product.title }}
