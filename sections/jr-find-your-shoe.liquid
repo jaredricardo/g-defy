@@ -1,0 +1,143 @@
+{% style %}
+    [data-section-id="{{ section.id }}"] {
+        background-color: {{ section.settings.background_color }};
+        {% if request.page_type == "collection" %}
+            /* display: none !important; */
+        {% endif %}
+    }
+
+{% endstyle %}
+
+<div data-section-id="{{ section.id }}">
+    <div class="jr-section jr-find-your-shoe page-width">
+        {% if section.settings.title %}
+                <div class="text-container">
+                    <h4>{{ section.settings.title }}</h4>
+                    {% if section.settings.subtitle %}
+                        <h5>{{ section.settings.subtitle }}</h5>
+                    {% endif %}
+                </div>
+        {% endif %}
+        <form action="">
+            {% comment %} <select type="select" name="condition" id="condition" placeholder="Select Condition" required>
+                <option value="" disabled selected>Select Condition</option>
+            </select> {% endcomment %}
+            {% for filter in collection.filters %}     
+                {% if filter.label == "Gender" %}
+                    <select name="{{ filter.param_name }}" id="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        {% for value in filter.values %}
+                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+                {% if filter.label == 'Category' %}
+                    <select name="{{ filter.param_name }}" id="style" placeholder="Select Style" required>
+                        <option value="" disabled selected>Select Style</option>
+                        {% for value in filter.values %}
+                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+                {% if filter.label == 'Width' %}
+                    <select name="{{ filter.param_name }}" id="width" placeholder="Select Width">
+                        <option value="" disabled selected>Select Width</option>
+                        {% for value in filter.values %}
+                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+            {% endfor %}
+            <button disabled>Select Your Styles</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+
+        const section = document.querySelector('[data-section-id="{{ section.id }}"]')
+        const button = section.querySelector('button')
+        const allSelects = section.querySelectorAll('select')
+        let isValid = false
+
+        allSelects.forEach((select) => {
+            select.addEventListener('change', (e) => {
+                for(let i = 0; i < allSelects.length; i++) {
+                    if(allSelects[i].value === '' && allSelects[i].required) return
+                }
+                button.removeAttribute('disabled')
+                button.innerText = "{{ section.settings.button_text }}";
+                isValid = true
+            })
+        })
+        
+        button.addEventListener('click', (e) => {
+            e.preventDefault()
+            applyFilters()
+        })
+
+        function applyFilters() {
+            const filterForm = section.querySelector('form')
+            const formData = new FormData(filterForm)
+            const searchParams = new URLSearchParams(formData).toString()
+            window.location.href =  `/collections/all${searchParams && '?'.concat(searchParams)}`
+        }
+
+    })
+</script>
+
+{% schema %}
+    {
+        "name": "JR Find Your Shoe",
+        "presets": [
+            {
+                "name": "JR Find Your Shoe"
+            }
+        ],
+        "settings": [
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background Color",
+                "default": "#ffffff"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text color",
+                "default": "#000000"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title (optional)",
+                "default": "Header Text"
+            },
+            {
+                "type": "text",
+                "id": "subtitle",
+                "label": "Subtitle (optional)"
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button Text",
+                "default": "Get Started"
+            },
+            {
+                "type": "color",
+                "id": "button_bg_color",
+                "label": "Button Background Color",
+                "default": "#FFFFFF"
+            },
+            {
+                "type": "color",
+                "id": "button_text_color",
+                "label": "Button Text Color",
+                "default": "#000000"
+            }
+        ],
+        "blocks": []
+    }
+{% endschema %}
