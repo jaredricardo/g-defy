@@ -165,7 +165,7 @@
                             <div class="collection-carousel swiper {% if first_man_c == true %} active {% endif %}" data-handle="{{ block.settings.collection }}">
                                 <div class="swiper-wrapper">
                                     {% assign available_products = block.settings.collection.products | where: "available" %}
-                                    {% for product in available_products limit: 10 %}
+                                    {% for product in available_products limit: 20 %}
                                         <div class="carousel-item swiper-slide">
                                             <div class="gallery">
                                                 <a href="{{ product.url }}" target="_blank">
@@ -220,7 +220,7 @@
                             <div class="collection-carousel swiper {% if first_woman_c %} active {% endif %}" data-handle="{{ block.settings.collection }}">
                                 <div class="swiper-wrapper">
                                     {% assign available_products = block.settings.collection.products | where: "available" %}
-                                    {% for product in available_products limit: 10 %}
+                                    {% for product in available_products limit: 20 %}
                                         <div class="carousel-item swiper-slide">
                                             <div class="gallery">
                                                 <a href="{{ product.url }}" target="_blank">
