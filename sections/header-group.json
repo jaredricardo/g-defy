@@ -53,26 +53,11 @@
         "enable_country_selector": false,
         "enable_language_selector": false
       }
-    },
-    "jr_find_your_shoe_NcNVCf": {
-      "type": "jr-find-your-shoe",
-      "name": "JR Find Your Shoe",
-      "settings": {
-        "collection": "",
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "title": "Header Text",
-        "subtitle": "",
-        "button_text": "Get Started",
-        "button_bg_color": "#FFFFFF",
-        "button_text_color": "#000000"
-      }
     }
   },
   "order": [
     "custom_liquid_pHQdkk",
     "header",
-    "announcement-bar",
-    "jr_find_your_shoe_NcNVCf"
+    "announcement-bar"
   ]
 }

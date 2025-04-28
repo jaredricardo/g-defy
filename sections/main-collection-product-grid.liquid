@@ -195,6 +195,53 @@
   {% if section.settings.image_shape == 'arch' %}
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
+  {% if collection.handle == "all" %}
+    {% comment %} 
+    
+      This is here because in the actual 'find your shoe' section, we need to make a fetch request
+      to the /collections/all url to grab the correct filters. This is because the filter object
+      does not appear to work on none collection or search urls. 
+      
+    {% endcomment %}
+    <form class="hidden jr-find-your-shoe-target" action="">
+        {% for filter in collection.filters %}     
+            {% if filter.label == "Gender" %}
+              <div class="select-wrapper">
+                <select name="{{ filter.param_name }}" id="gender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  {% for value in filter.values %}
+                      <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endif %}
+            {% if filter.label == 'Category' %}
+              <div class="select-wrapper">
+                <select name="{{ filter.param_name }}" id="style" placeholder="Select Style" required>
+                  <option value="" disabled selected>Select Style</option>
+                  {% for value in filter.values %}
+                      <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endif %}
+            {% if filter.label == 'Width' %}
+              <div class="select-wrapper">
+                <select name="{{ filter.param_name }}" id="width" placeholder="Select Width">
+                  <option value="" disabled selected>Select Width</option>
+                  {% for value in filter.values %}
+                      <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% endif %}
+        {% endfor %}
+        <button disabled>
+          <span class="button-text">Select Your Styles</span>
+          {% render 'icon-caret' %}
+        </button>
+    </form>
+  {% endif %}
 </div>
 
 {% schema %}

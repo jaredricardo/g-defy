@@ -211,6 +211,20 @@
         "align_icons_row": false
       }
     },
+    "jr_find_your_shoe_8wq63E": {
+      "type": "jr-find-your-shoe",
+      "name": "JR Find Your Shoe",
+      "settings": {
+        "ab_test_class": "variant-a",
+        "background_color": "#ffffff",
+        "inner_background_color": "#c2dae1",
+        "text_color": "#003d59",
+        "title": "Find the Shoe",
+        "subtitle": "that meets your needs",
+        "button_text": "Get Started",
+        "image": "shopify:\/\/shop_images\/shoe.svg"
+      }
+    },
     "jr_50_50_c4FAzJ": {
       "type": "jr-50-50",
       "blocks": {
@@ -318,18 +332,18 @@
         "title": "Key Benefits of VersoShock®"
       }
     },
-    "jr_find_your_shoe_8wq63E": {
+    "jr_find_your_shoe_RUxg9M": {
       "type": "jr-find-your-shoe",
       "name": "JR Find Your Shoe",
       "settings": {
-        "collection": "all",
+        "ab_test_class": "variant-b",
         "background_color": "#ffffff",
+        "inner_background_color": "#c2dae1",
         "text_color": "#003d59",
         "title": "Find the Shoe",
         "subtitle": "that meets your needs",
         "button_text": "Get Started",
-        "button_bg_color": "#003d59",
-        "button_text_color": "#ffffff"
+        "image": "shopify:\/\/shop_images\/shoe.svg"
       }
     },
     "jr_customer_reviews_7TfVGh": {
@@ -585,6 +599,149 @@
         "button_bg_color": "#003d59"
       }
     },
+    "jr_simple_product_carousel_NTxDWQ": {
+      "type": "jr-simple-product-carousel",
+      "blocks": {
+        "men_ibj83R": {
+          "type": "men",
+          "settings": {
+            "collection": "best-seller-shoes-for-men",
+            "alt_name": "Best Sellers"
+          }
+        },
+        "men_pLn4bz": {
+          "type": "men",
+          "settings": {
+            "collection": "orthopedic-shoes-for-men",
+            "alt_name": "OrthoPedic"
+          }
+        },
+        "men_R8cfDC": {
+          "type": "men",
+          "settings": {
+            "collection": "slip-on-shoes-for-men",
+            "alt_name": "Slip-on"
+          }
+        },
+        "men_hyUDra": {
+          "type": "men",
+          "settings": {
+            "collection": "medicare-a5500-diabetic-shoes-for-men",
+            "alt_name": "Diabetic"
+          }
+        },
+        "men_UrXXbc": {
+          "type": "men",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-men",
+            "alt_name": "New"
+          }
+        },
+        "men_CLV9pW": {
+          "type": "men",
+          "settings": {
+            "collection": "atheltic-shoes-for-men",
+            "alt_name": "Athletic"
+          }
+        },
+        "men_GP7QLQ": {
+          "type": "men",
+          "settings": {
+            "collection": "casual-shoes-for-men",
+            "alt_name": "Casual"
+          }
+        },
+        "men_6pec8X": {
+          "type": "men",
+          "settings": {
+            "collection": "boots-for-men",
+            "alt_name": "Boots"
+          }
+        },
+        "women_baaWLG": {
+          "type": "women",
+          "settings": {
+            "collection": "best-seller-shoes-for-women",
+            "alt_name": "Best Sellers"
+          }
+        },
+        "women_meAwQP": {
+          "type": "women",
+          "settings": {
+            "collection": "orthopedic-shoes-for-women",
+            "alt_name": "OrthoPedic"
+          }
+        },
+        "women_fPMPkg": {
+          "type": "women",
+          "settings": {
+            "collection": "slip-on-shoes-for-women",
+            "alt_name": "Slip-on"
+          }
+        },
+        "women_UDXdtG": {
+          "type": "women",
+          "settings": {
+            "collection": "medicare-a5500-diabetic-shoes-for-women",
+            "alt_name": "Diabetic"
+          }
+        },
+        "women_TrnkVi": {
+          "type": "women",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-women",
+            "alt_name": "New"
+          }
+        },
+        "women_Bq7fjY": {
+          "type": "women",
+          "settings": {
+            "collection": "atheltic-shoes-for-women",
+            "alt_name": "Athletic"
+          }
+        },
+        "women_8h889U": {
+          "type": "women",
+          "settings": {
+            "collection": "casual-shoes-for-women",
+            "alt_name": "Casual"
+          }
+        },
+        "women_JEYd7z": {
+          "type": "women",
+          "settings": {
+            "collection": "work-boots-for-women",
+            "alt_name": "Boots"
+          }
+        }
+      },
+      "block_order": [
+        "men_ibj83R",
+        "men_pLn4bz",
+        "men_R8cfDC",
+        "men_hyUDra",
+        "men_UrXXbc",
+        "men_CLV9pW",
+        "men_GP7QLQ",
+        "men_6pec8X",
+        "women_baaWLG",
+        "women_meAwQP",
+        "women_fPMPkg",
+        "women_UDXdtG",
+        "women_TrnkVi",
+        "women_Bq7fjY",
+        "women_8h889U",
+        "women_JEYd7z"
+      ],
+      "name": "JR simple Prod Carousel",
+      "settings": {
+        "outer_background_color": "#ffffff",
+        "inner_section_background_color": "#ffffff",
+        "text_color": "#003d59",
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#003d59"
+      }
+    },
     "custom_liquid_93atRB": {
       "type": "custom-liquid",
       "disabled": true,
@@ -760,12 +917,14 @@
     "jr_simple_announcement_QVXaYj",
     "jr_hero_P77K3H",
     "jr_scrolling_announcement_yrpXtW",
+    "jr_find_your_shoe_8wq63E",
     "jr_50_50_c4FAzJ",
     "jr_icon_columns_LFDA9E",
-    "jr_find_your_shoe_8wq63E",
+    "jr_find_your_shoe_RUxg9M",
     "jr_customer_reviews_7TfVGh",
     "jr_simple_columns_QQbXxc",
     "jr_product_info_carousel_NE7pWF",
+    "jr_simple_product_carousel_NTxDWQ",
     "custom_liquid_93atRB",
     "jr_faq_rbEgpC",
     "custom_liquid_cTkapa"

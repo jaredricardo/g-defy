@@ -6,79 +6,89 @@
         {% endif %}
     }
 
+    [data-section-id="{{ section.id }}"] .jr-find-your-shoe {
+        background-color: {{ section.settings.inner_background_color }};
+    }
+
+    [data-section-id="{{ section.id }}"] h4,
+    [data-section-id="{{ section.id }}"] h5 {
+        color: {{ section.settings.text_color }};
+    }
+
 {% endstyle %}
 
-<div data-section-id="{{ section.id }}">
-    <div class="jr-section jr-find-your-shoe page-width">
-        {% if section.settings.title %}
-                <div class="text-container">
-                    <h4>{{ section.settings.title }}</h4>
-                    {% if section.settings.subtitle %}
-                        <h5>{{ section.settings.subtitle }}</h5>
+<div data-section-id="{{ section.id }}" class="{{ section.settings.ab_test_class }}">
+    <div class="page-width jr-section">
+        <div class="jr-find-your-shoe">
+            {% if section.settings.title %}
+                <div class="header-container">
+                    <div class="text-container">
+                        <h4>{{ section.settings.title }}</h4>
+                        {% if section.settings.subtitle %}
+                            <h5>{{ section.settings.subtitle }}</h5>
+                        {% endif %}
+                    </div>
+                    {% if section.settings.image %}
+                        <img class="mobile" src="{{ section.settings.image |  image_url: width: 400 }}" alt="G-Defy Icon">
                     {% endif %}
                 </div>
-        {% endif %}
-        <form action="">
-            {% comment %} <select type="select" name="condition" id="condition" placeholder="Select Condition" required>
-                <option value="" disabled selected>Select Condition</option>
-            </select> {% endcomment %}
-            {% for filter in collection.filters %}     
-                {% if filter.label == "Gender" %}
-                    <select name="{{ filter.param_name }}" id="gender" required>
-                        <option value="" disabled selected>Select Gender</option>
-                        {% for value in filter.values %}
-                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
-                        {% endfor %}
-                    </select>
-                {% endif %}
-                {% if filter.label == 'Category' %}
-                    <select name="{{ filter.param_name }}" id="style" placeholder="Select Style" required>
-                        <option value="" disabled selected>Select Style</option>
-                        {% for value in filter.values %}
-                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
-                        {% endfor %}
-                    </select>
-                {% endif %}
-                {% if filter.label == 'Width' %}
-                    <select name="{{ filter.param_name }}" id="width" placeholder="Select Width">
-                        <option value="" disabled selected>Select Width</option>
-                        {% for value in filter.values %}
-                            <option name="{{ value.param_name }}" value="{{ value.value }}">{{ value.value }}</option>
-                        {% endfor %}
-                    </select>
-                {% endif %}
-            {% endfor %}
-            <button disabled>Select Your Styles</button>
-        </form>
+
+            {% endif %}
+            <div class="form-container"></div>
+            
+            {% if section.settings.image %}
+                <img class="desktop" src="{{ section.settings.image |  image_url: width: 400 }}" alt="G-Defy Icon">
+            {% endif %}
+        </div>
     </div>
 </div>
 
 <script>
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
 
-        const section = document.querySelector('[data-section-id="{{ section.id }}"]')
-        const button = section.querySelector('button')
-        const allSelects = section.querySelectorAll('select')
-        let isValid = false
+        {% if request.page_type == "page" %}
+            try {
+                const response = await fetch('https://www.gravitydefyer.com/collections/all')
+                const html = await response.text()
+                const parser = new DOMParser()
+                const doc = parser.parseFromString(html, 'text/html')
+                const section = doc.querySelector('.jr-find-your-shoe-target.hidden')
 
-        allSelects.forEach((select) => {
-            select.addEventListener('change', (e) => {
-                for(let i = 0; i < allSelects.length; i++) {
-                    if(allSelects[i].value === '' && allSelects[i].required) return
+                if (section) {
+     
+                    document.querySelector('[data-section-id="{{ section.id }}"] .form-container').appendChild(section)
+                    section.classList.remove('hidden');
+
+                    const button = section.querySelector('.form-container button')
+                    const allSelects = section.querySelectorAll('.form-container select')
+                    let isValid = false
+
+                    allSelects.forEach((select) => {
+                        select.addEventListener('change', (e) => {
+                            console.log('Changing select')
+                            for (let i = 0; i < allSelects.length; i++) {
+                                if (allSelects[i].value === '' && allSelects[i].required) return
+                            }
+                            button.removeAttribute('disabled');
+                            button.querySelector('.button-text').innerText = "{{ section.settings.button_text }}"
+                            isValid = true;
+                        });
+                    });
+
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault()
+                        applyFilters()
+                    });
                 }
-                button.removeAttribute('disabled')
-                button.innerText = "{{ section.settings.button_text }}";
-                isValid = true
-            })
-        })
-        
-        button.addEventListener('click', (e) => {
-            e.preventDefault()
-            applyFilters()
-        })
+            } catch (error) {
+                console.error('Error fetching data:', error)
+            }
+        {% endif %}
+
+
 
         function applyFilters() {
-            const filterForm = section.querySelector('form')
+            const filterForm = document.querySelector('[data-section-id="{{ section.id }}"] form')
             const formData = new FormData(filterForm)
             const searchParams = new URLSearchParams(formData).toString()
             window.location.href =  `/collections/all${searchParams && '?'.concat(searchParams)}`
@@ -97,6 +107,11 @@
         ],
         "settings": [
             {
+                "type": "text",
+                "id": "ab_test_class",
+                "label": "AB Test Class"   
+            },
+            {
                 "type": "color",
                 "id": "background_color",
                 "label": "Background Color",
@@ -104,9 +119,15 @@
             },
             {
                 "type": "color",
+                "id": "inner_background_color",
+                "label": "Background Color",
+                "default": "#c2dae1"
+            },
+            {
+                "type": "color",
                 "id": "text_color",
                 "label": "Text color",
-                "default": "#000000"
+                "default": "#003D59"
             },
             {
                 "type": "text",
@@ -126,16 +147,9 @@
                 "default": "Get Started"
             },
             {
-                "type": "color",
-                "id": "button_bg_color",
-                "label": "Button Background Color",
-                "default": "#FFFFFF"
-            },
-            {
-                "type": "color",
-                "id": "button_text_color",
-                "label": "Button Text Color",
-                "default": "#000000"
+                "type": "image_picker",
+                "id": "image",
+                "label": "Optional Icon Image"
             }
         ],
         "blocks": []

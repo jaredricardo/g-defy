@@ -584,6 +584,7 @@
     z-index: 1;
     text-transform: uppercase;
     font-size: 26px;
+    line-height: 1.3;
 }
 
 .jr-product-info-carousel .toggleCheckbox  {
@@ -757,6 +758,7 @@ html:has(.jr-product-info-carousel) {
 }
 .jr-product-info-carousel .carousel-item .info-area {
     flex: 55;
+    width: 100%;
 }
 
 .jr-product-info-carousel .carousel-item .info-area {
@@ -798,6 +800,11 @@ html:has(.jr-product-info-carousel) {
 
 .jr-product-info-carousel .carousel-item img {
     width: 100%;
+    max-width: 100%;
+}
+
+.jr-product-info-carousel.simple .carousel-item img {
+    max-width: 250px
 }
 
 .jr-product-info-carousel .carousel-item .gallery img {
@@ -824,6 +831,7 @@ html:has(.jr-product-info-carousel) {
     font-size: 20px;
     font-weight: bold;
     padding: 7px 35px;
+    line-height: 1.3;
 }
 
 .jr-product-info-carousel .swiper-pagination {
@@ -872,6 +880,255 @@ html:has(.jr-product-info-carousel) {
     justify-content: center;
     align-items: center;
 }
+
+.jr-find-your-shoe {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+    border-radius: 12px;
+    padding: 2rem 4rem;
+}
+
+.jr-find-your-shoe form {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: start;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.jr-find-your-shoe h4 {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.3;
+}
+
+.jr-find-your-shoe h5  {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.jr-find-your-shoe img {
+    max-width: 130px;
+    flex: 2;
+}
+
+.jr-find-your-shoe .header-container {
+    flex: 2;
+}
+
+.jr-find-your-shoe .form-container {
+    flex: 6;
+}
+
+.jr-section:has(.jr-find-your-shoe) {
+    padding: 3rem 5rem;
+}
+
+.jr-find-your-shoe select,
+.jr-find-your-shoe button {
+    border-radius: 12px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 14px;
+    color: #303030;
+    justify-content
+    border: 1px solid #303030 !important;
+}
+
+.jr-find-your-shoe select {
+    padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+}
+
+.jr-find-your-shoe button {
+    padding: 1.5rem;
+    display: flex;
+    gap: 5px;
+    background-color: transparent;
+    color: #303030;
+    transition: 0.2s ease-in-out;
+    min-width: 165px;
+    border: 1px solid #303030 !important;
+}
+
+.jr-find-your-shoe button:hover {
+    background-color: white;
+    color: black;
+}
+
+.jr-find-your-shoe button svg {
+    width: 15px;
+    height: 15px;
+    transform: rotate(-90deg);
+}
+
+.jr-find-your-shoe select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+}
+
+.jr-find-your-shoe .select-wrapper {
+    position: relative;
+}
+
+.jr-find-your-shoe .select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 10px;
+    color: #303030;
+}
+
+.jr-find-your-shoe button:disabled {
+    cursor: not-allowed;
+}
+
+.jr-find-your-shoe .desktop  {
+    display: block;
+}
+.jr-find-your-shoe .mobile {
+    display: none;
+}
+
+.jr-product-info-carousel.simple .carousel-item.swiper-slide {
+    flex-direction: column;
+}
+.jr-product-info-carousel.simple .carousel-item {
+    transform: scale(1);
+}
+
+.jr-product-info-carousel.simple .carousel-item .gallery {
+    max-width: 95%;
+}
+
+.jr-product-info-carousel.simple .carousel-item .gallery .thumb-gallery img {
+    outline: 1px solid lightgray;
+    width: 15%;
+    max-width: 40px;
+}
+
+.jr-product-info-carousel.simple .thumb-gallery {
+    justify-content: start;
+}
+
+.jr-product-info-carousel.simple .carousel-item.swiper-slide {
+    gap: 1.5rem;
+}
+.jr-product-info-carousel.simple .theme-button {
+    min-width: auto;
+}
+
+.jr-product-info-carousel.simple .carousel-item .gallery img {
+    border-radius: 4px;
+}
+
+.jr-product-info-carousel.simple .carousel-item h3 {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.jr-product-info-carousel.simple .carousel-item .price-container .price {
+    font-size: 18px;
+}
+
+.jr-product-info-carousel.simple .carousel-item .compare-price {
+    font-size: 14px;
+}
+
+.jr-product-info-carousel.simple .carousel-item.swiper-slide {
+    transition: none;
+}
+
+.jr-product-info-carousel.simple .toggleContainer {
+    gap: 3rem;
+}
+
+.jr-product-info-carousel.simple .toggleContainer div {
+    text-align: center;
+    z-index: 1;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 1.4;
+    padding: 1rem;
+    border-radius: 25px;
+}
+
+.jr-product-info-carousel.simple .carousel-item a.theme-button {
+    margin-top: 10px;
+}
+
+.jr-product-info-carousel.simple .collection-nav {
+    padding-bottom: 0;
+}
+
+.jr-product-info-carousel.simple .collection-nav li {
+    font-size: 18px;
+}
+
+.jr-product-info-carousel.simple {
+    gap: 1.5rem;
+}
+
+.jr-product-info-carousel.simple .swiper {
+    overflow: hidden !important;
+}
+
+.jr-product-info-carousel.simple .carousel-item a.theme-button {
+    padding: 7px 0px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.jr-product-info-carousel.simple .swiper-wrapper {
+    padding: 1rem 0 6.5rem 0;
+}
+
+.jr-product-info-carousel.simple .swiper-pagination {
+    bottom: 3%;
+    display: none;
+}
+.jr-product-info-carousel.simple .swiper-button-prev,
+.jr-product-info-carousel.simple .swiper-button-next {
+    bottom: 2%;
+    top: auto;
+    background-color: white;
+    border: 1.5px solid #003d59;
+    height: 35px;
+    width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.jr-product-info-carousel.simple .swiper-button-prev {
+    left: 35%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.jr-product-info-carousel.simple .swiper-button-next {
+    right: 35%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.jr-product-info-carousel.simple .swiper-button-next:after, 
+.jr-product-info-carousel.simple .swiper-button-prev:after {
+    font-size: 20px;
+}
+
+.jr-product-info-carousel.simple .carousel-item .star-ratings img {
+    max-width: 60px;
+}
+
 
 @media screen and (max-width: 768px) {
     .jr-section {
@@ -1044,6 +1301,38 @@ html:has(.jr-product-info-carousel) {
         align-items: start;
         gap: 7px;
     }
+    .jr-section:has(.jr-find-your-shoe) {
+        padding: 2rem 1.5rem;
+    }
+    .jr-find-your-shoe {
+        padding: 2rem;
+        align-items: start;
+        flex-direction: column;
+    }
+    .jr-find-your-shoe form {
+        flex-direction: column;
+    }
+    .jr-find-your-shoe .select-wrapper,
+    .jr-find-your-shoe .form-container,
+    .jr-find-your-shoe select, 
+    .jr-find-your-shoe button {
+        width: 100%;
+    }
+    .jr-find-your-shoe .desktop  {
+        display: none;
+    }
+    .jr-find-your-shoe .mobile {
+        display: block;
+    }
+    .jr-find-your-shoe .header-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .jr-find-your-shoe img {
+        max-width: 70px;
+    }
 }
 
 @media screen and (max-width: 841px) {
@@ -1188,5 +1477,53 @@ html:has(.jr-product-info-carousel) {
         font-size: 14px;
         font-weight: 900;
         padding: 1.25rem 0;
+    }
+    .jr-product-info-carousel.simple .toggleContainer {
+        gap: 1rem;
+    }
+    .jr-product-info-carousel.simple .toggleContainer div {
+        font-size: 16px;
+        line-height: 1;
+        padding: 1rem 0.75rem;
+    }
+    .jr-product-info-carousel.simple {
+        gap: 0.5rem;
+    }
+    .jr-product-info-carousel.simple .swiper-button-next {
+        right: 20%;
+    }
+    .jr-product-info-carousel.simple .swiper-button-prev {
+        left: 20%;
+    }
+    .jr-product-info-carousel.simple .collection-carousel {
+        width: 100%;
+    }
+    .jr-product-info-carousel.simple .swiper-wrapper {
+        padding: 1rem 0 5rem 0;
+    }
+    .jr-product-info-carousel.simple .carousel-item h3 {
+        font-size: 14px;
+    }
+    .jr-product-info-carousel.simple .carousel-item a.theme-button {
+        width: 98%;
+        font-size: 14px;
+    }
+    .jr-product-info-carousel.simple .carousel-item .price-container .price {
+        font-size: 14px;
+    }
+    .jr-product-info-carousel.simple .collection-nav li {
+        padding: 0rem 0.5rem 0rem 0.5rem;
+    }
+    .jr-product-info-carousel.simple .master-carousels-container {
+        padding: 0;
+    }
+    .jr-product-info-carousel.simple .carousel-item .gallery {
+        align-items: start;
+    }
+    .jr-product-info-carousel.simple .carousel-item .compare-price {
+        font-size: 12px;
+    }
+    .jr-product-info-carousel.simple .carousel-item .gallery .thumb-gallery img {
+        max-width: 25px;
     }
 }
