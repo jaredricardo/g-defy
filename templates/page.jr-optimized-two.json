@@ -107,10 +107,11 @@
         "@media screen and (max-width: 768px) {.jr-hp-hero {height: 85vh; } .jr-hp-hero .video-container {position: relative !important; } .section-subheader p {font-size: 15px !important; } .image-overlay {background-color: rgba(0, 0, 0, 0.1) !important; }}"
       ],
       "settings": {
+        "ab_class": "",
         "bg_color": "#000000",
         "desktop_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
         "mobile_img": "shopify:\/\/shop_images\/Screenshot_2025-04-08_at_11.35.41_AM.png",
-        "video": "shopify:\/\/files\/videos\/slide-in-compressed.mp4",
+        "video": "shopify:\/\/files\/videos\/1200x1200 (1080p) (1).mp4",
         "mobile_video_no_object_cover": true,
         "image_overlay_opacity": 30,
         "top_alignment_d": 15,
@@ -118,7 +119,7 @@
         "stars_text": "50,000+ reviews",
         "stars_text_color": "#ffffff",
         "stars_img": "shopify:\/\/shop_images\/Stars_2.png",
-        "abs_pos_text": "<p>30% OFF $130+ orders<\/p>",
+        "abs_pos_text": "<p><strong>Up to 35% OFF $130+ orders.<\/strong><\/p>",
         "abs_pos_text_color": "#121212",
         "sticky_bg_color": "#fda83e",
         "enable_sticky": true,
@@ -215,7 +216,7 @@
       "type": "jr-find-your-shoe",
       "name": "JR Find Your Shoe",
       "settings": {
-        "ab_test_class": "variant-a",
+        "ab_test_class": "find-shoes-top hidden",
         "background_color": "#ffffff",
         "inner_background_color": "#c2dae1",
         "text_color": "#003d59",
@@ -336,7 +337,7 @@
       "type": "jr-find-your-shoe",
       "name": "JR Find Your Shoe",
       "settings": {
-        "ab_test_class": "variant-b",
+        "ab_test_class": "find-shoes-bottom hidden",
         "background_color": "#ffffff",
         "inner_background_color": "#c2dae1",
         "text_color": "#003d59",
@@ -592,6 +593,7 @@
         "women_JEYd7z"
       ],
       "settings": {
+        "ab_test_class": "old-product-carousel",
         "outer_background_color": "#003d59",
         "inner_section_background_color": "#003d59",
         "text_color": "#ffffff",
@@ -602,6 +604,13 @@
     "jr_simple_product_carousel_NTxDWQ": {
       "type": "jr-simple-product-carousel",
       "blocks": {
+        "men_TFwAdV": {
+          "type": "men",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-men",
+            "alt_name": "New Arrivals"
+          }
+        },
         "men_ibj83R": {
           "type": "men",
           "settings": {
@@ -656,6 +665,13 @@
           "settings": {
             "collection": "boots-for-men",
             "alt_name": "Boots"
+          }
+        },
+        "women_UWA7A7": {
+          "type": "women",
+          "settings": {
+            "collection": "newest-arrival-shoes-for-women",
+            "alt_name": "New Arrivals"
           }
         },
         "women_baaWLG": {
@@ -716,6 +732,7 @@
         }
       },
       "block_order": [
+        "men_TFwAdV",
         "men_ibj83R",
         "men_pLn4bz",
         "men_R8cfDC",
@@ -724,6 +741,7 @@
         "men_CLV9pW",
         "men_GP7QLQ",
         "men_6pec8X",
+        "women_UWA7A7",
         "women_baaWLG",
         "women_meAwQP",
         "women_fPMPkg",
@@ -735,11 +753,13 @@
       ],
       "name": "JR simple Prod Carousel",
       "settings": {
+        "ab_test_class": "new-product-carousel hidden",
         "outer_background_color": "#ffffff",
         "inner_section_background_color": "#ffffff",
         "text_color": "#003d59",
         "button_text_color": "#ffffff",
-        "button_bg_color": "#003d59"
+        "button_bg_color": "#003d59",
+        "card_text_color": "#003d59"
       }
     },
     "custom_liquid_93atRB": {

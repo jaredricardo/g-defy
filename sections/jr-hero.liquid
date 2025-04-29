@@ -128,7 +128,7 @@
     </script>
 {% endif %}
 
-<div data-section-id="{{ section.id }}">
+<div data-section-id="{{ section.id }}" class="{{ section.settings.ab_class }}">
     <div class="jr-hp-hero jr-section page-width no-padding">
 
         {% if section.settings.abs_pos_text != blank %}
@@ -221,6 +221,11 @@
 {
     "name": "JR LP Hero",
     "settings": [
+        {
+            "type": "text",
+            "id": "ab_class",
+            "label": "AB Class"
+        },
         {
             "type": "color",
             "id": "bg_color",
