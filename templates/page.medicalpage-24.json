@@ -1,1 +1,63 @@
-{"sections":{"main":{"type":"main-page","custom_css":[".section-max-with-fixed {max-width: 1600px; margin: 0 auto;}"],"settings":{"padding_top":28,"padding_bottom":28}},"product_picker_lp_jjM6DF":{"type":"product-picker-lp","settings":{"product_1":"tb9050fug-womens-mehalef-athletic-shoes-gray-mint","product_2":"tb9049fgr-womens-lauff-athletic-shoes-green","product_3":"tb9024fub-womens-mightywalk-athletic-shoes-blue-beige","product_4":"tb9036fsu-womens-mateem-athletic-shoes-silver-blue","product_5":"mens-ion-black-athletic-shoes_4","product_6":"tb9037fbl-womens-energiya-athletic-shoes-black","product_7":"tb9024mgu-mens-mightywalk-athletic-shoes-gray-blue","product_8":"tb9024mgr-mens-mightywalk-athletic-shoes-gray-red","product_9":"tb9028mbl-mens-cloudwalk-casual-athletic-shoes-black","product_10":"tb9036mgl-mens-mateem-athletic-shoes-gray","product_11":"tb9037fwp-womens-energiya-athletic-shoes-white-pink","product_12":"mens-ion-blue-green-athletic-shoes_3","product_13":"tb9024muo-mens-mightywalk-athletic-shoes-blue-orange","product_14":"tb9022mws-mens-ion-athletic-shoes-white-silver","product_15":"tb9024mrw-mens-mightywalk-athletic-shoes-red-white","product_16":"tb9037fma-womens-energiya-athletic-shoes-mauve"}},"customer_testitmonials_qUFYTK":{"type":"customer-testitmonials","settings":{}},"custom_liquid_rNCkfk":{"type":"custom-liquid","settings":{"custom_liquid":"<style>\n               .image-container {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr); \/* Default: 5 images in a row *\/\n    gap: 15px;\n    justify-content: center;\n    max-width: 1600px;\n    margin: 0 auto;\n}\n\n.image-container img {\n    width: 100%;\n    max-width: 100%;\n    border-radius: 15px;\n    object-fit: cover;\n}\n\n\/* Stack on Mobile *\/\n@media (max-width: 768px) {\n    .image-container {\n        grid-template-columns: repeat(2, 1fr); \/* 2 images per row *\/\n    }\n\n    .image-container img {\n        max-width: 100%;\n    }\n}     \n       \n           <\/style>      \n\n  <section class=\"community-section\">\n            <h2 class=\"txt-2 blue-txt txt-center\">Style and Comfort<\/h2>\n            <p class=\"txt-3 blue-txt fw-100 txt-center\">Looks from our community experiencing the miracle<\/p> <br>\n            <div class=\"image-container\">\n                <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0671\/1692\/5096\/files\/01_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0671\/1692\/5096\/files\/04_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0671\/1692\/5096\/files\/03_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0671\/1692\/5096\/files\/03072024_g-defy_influncer4_D.webp?v=1744757974\" alt=\"Person with shoes\">\n              \n            <\/div>\n        <\/section>","color_scheme":"","padding_top":40,"padding_bottom":52}}},"order":["main","product_picker_lp_jjM6DF","customer_testitmonials_qUFYTK","custom_liquid_rNCkfk"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "custom_css": [
+        ".section-max-with-fixed {max-width: 1600px; margin: 0 auto;}"
+      ],
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "product_picker_lp_jjM6DF": {
+      "type": "product-picker-lp",
+      "settings": {
+        "product_1": "tb9050fug-womens-mehalef-athletic-shoes-gray-mint",
+        "product_2": "tb9049fgr-womens-lauff-athletic-shoes-green",
+        "product_3": "tb9024fub-womens-mightywalk-athletic-shoes-blue-beige",
+        "product_4": "tb9036fsu-womens-mateem-athletic-shoes-silver-blue",
+        "product_5": "mens-ion-black-athletic-shoes_4",
+        "product_6": "tb9037fbl-womens-energiya-athletic-shoes-black",
+        "product_7": "tb9024mgu-mens-mightywalk-athletic-shoes-gray-blue",
+        "product_8": "mighty-walk-3",
+        "product_9": "tb9028mbl-mens-cloudwalk-casual-athletic-shoes-black",
+        "product_10": "tb9036mgl-mens-mateem-athletic-shoes-gray",
+        "product_11": "tb9037fwp-womens-energiya-athletic-shoes-white-pink",
+        "product_12": "mens-ion-blue-green-athletic-shoes_3",
+        "product_13": "tb9024muo-mens-mightywalk-athletic-shoes-blue-orange",
+        "product_14": "tb9022mws-mens-ion-athletic-shoes-white-silver",
+        "product_15": "tb9024mrw-mens-mightywalk-athletic-shoes-red-white",
+        "product_16": "tb9037fma-womens-energiya-athletic-shoes-mauve"
+      }
+    },
+    "customer_testitmonials_qUFYTK": {
+      "type": "customer-testitmonials",
+      "settings": {}
+    },
+    "custom_liquid_rNCkfk": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n               .image-container {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr); /* Default: 5 images in a row */\n    gap: 15px;\n    justify-content: center;\n    max-width: 1600px;\n    margin: 0 auto;\n}\n\n.image-container img {\n    width: 100%;\n    max-width: 100%;\n    border-radius: 15px;\n    object-fit: cover;\n}\n\n/* Stack on Mobile */\n@media (max-width: 768px) {\n    .image-container {\n        grid-template-columns: repeat(2, 1fr); /* 2 images per row */\n    }\n\n    .image-container img {\n        max-width: 100%;\n    }\n}     \n       \n           </style>      \n\n  <section class=\"community-section\">\n            <h2 class=\"txt-2 blue-txt txt-center\">Style and Comfort</h2>\n            <p class=\"txt-3 blue-txt fw-100 txt-center\">Looks from our community experiencing the miracle</p> <br>\n            <div class=\"image-container\">\n                <img src=\"https://cdn.shopify.com/s/files/1/0671/1692/5096/files/01_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https://cdn.shopify.com/s/files/1/0671/1692/5096/files/04_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https://cdn.shopify.com/s/files/1/0671/1692/5096/files/03_influencer.png?v=1740774003\" alt=\"Person with shoes\">\n                <img src=\"https://cdn.shopify.com/s/files/1/0671/1692/5096/files/03072024_g-defy_influncer4_D.webp?v=1744757974\" alt=\"Person with shoes\">\n              \n            </div>\n        </section>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_picker_lp_jjM6DF",
+    "customer_testitmonials_qUFYTK",
+    "custom_liquid_rNCkfk"
+  ]
+}
