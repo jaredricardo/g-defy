@@ -1,78 +1,340 @@
-{% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{% comment %}
+Collection Header Section – Fixed Mobile Read More
+{% endcomment %}
 
-{%- style -%}
-  @media screen and (max-width: 749px) {
-    .collection-hero--with-image .collection-hero__inner {
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 2rem);
-    }
-  }
-{%- endstyle -%}
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
-      </h1>
+<style>
+.collection-header-main-container{
+  background:#eef0f3;
+}
 
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
-      {%- endif -%}
-    </div>
+.ai-collection-header-{{ ai_gen_id }}{
+  width:100%;
+  max-width:1500px;
+  padding:10px 18px;
+  margin:0 auto;
+  margin-bottom:{{ section.settings.margin_bottom }}px;
+}
 
-    {%- if section.settings.show_collection_image and collection.image -%}
-      <div class="collection-hero__image-container media gradient">
-        <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
-            {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
-            {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
-            {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
-            {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
-          src="{{ collection.image | image_url: width: 750 }}"
-          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
-          alt="{{ collection.image.alt | escape }}"
-          width="{{ collection.image.width }}"
-          height="{{ collection.image.height }}"
-        >
-      </div>
-    {%- endif -%}
-  </div>
+.ai-collection-two-column-{{ ai_gen_id }}{
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  align-items:{{ section.settings.vertical_alignment }};
+}
+
+.ai-collection-text-{{ ai_gen_id }}{
+  flex:1;
+  min-width:300px;
+}
+
+.ai-collection-image-{{ ai_gen_id }}{
+  flex:1;
+  min-width:300px;
+  max-height:250px;
+  padding:20px;
+}
+
+.ai-collection-title-{{ ai_gen_id }}{
+  font-size:1.8em;
+  margin-bottom:5px;
+  color:{{ section.settings.heading_color }};
+}
+
+.ai-collection-content-{{ ai_gen_id }}{
+  color:{{ section.settings.text_color }};
+  overflow:hidden;
+  transition:max-height .4s ease;
+  max-height:{{ section.settings.truncate_height }}px;
+}
+
+.ai-collection-content-expanded-{{ ai_gen_id }}{
+  max-height:2000px;
+}
+
+.ai-collection-button-{{ ai_gen_id }}{
+  background:none;
+  border:none;
+  cursor:pointer;
+  padding:6px 0;
+  font-size:{{ section.settings.text_size }}px;
+  color:{{ section.settings.button_color }};
+  text-decoration:underline;
+  margin-top:8px;
+}
+
+.ai-collection-image-wrapper-{{ ai_gen_id }}{
+  width:100%;
+  height:0;
+  padding-bottom:{{ section.settings.image_aspect_ratio }}%;
+  position:relative;
+  overflow:hidden;
+  border-radius:{{ section.settings.image_border_radius }}px;
+}
+
+.ai-collection-image-wrapper-{{ ai_gen_id }} img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  top:0;
+  left:0;
+}
+
+.collection-stars{
+  width:18px;
+  height:18px;
+}
+
+@media screen and (max-width:749px){
+
+.collection-stars{
+  width:15px;
+  height:15px;
+}
+
+.ai-collection-two-column-{{ ai_gen_id }}{
+  flex-direction:column;
+}
+
+.ai-collection-image-{{ ai_gen_id }}{
+  display:none;
+}
+
+.ai-collection-title-{{ ai_gen_id }}{
+  font-size:1.5em;
+  margin-bottom:10px;
+}
+
+}
+</style>
+
+<div class="collection-header-main-container">
+<div class="ai-collection-header-{{ ai_gen_id }}">
+<div class="ai-collection-two-column-{{ ai_gen_id }}">
+
+<div class="ai-collection-text-{{ ai_gen_id }}">
+
+<h1 class="ai-collection-title-{{ ai_gen_id }}">
+{{ collection.title }}
+</h1>
+
+{% assign rating = collection.metafields.custom.collection_review_rating.value | times: 10 | round %}
+
+<div style="display:flex;align-items:center;gap:6px;">
+<div style="display:flex;gap:2px;">
+
+{% for i in (1..5) %}
+{% assign threshold = i | times: 10 %}
+{% assign half = threshold | minus: 5 %}
+
+{% if rating >= threshold %}
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="black" class="collection-stars" viewBox="0 0 24 24">
+<path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.62 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"/>
+</svg>
+
+{% elsif rating >= half %}
+
+<svg xmlns="http://www.w3.org/2000/svg" class="collection-stars" viewBox="0 0 24 24">
+<path fill="black" d="M12 17.27L12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"/>
+<path fill="#d1d5db" d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.62 12 2z"/>
+</svg>
+
+{% else %}
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="#d1d5db" class="collection-stars" viewBox="0 0 24 24">
+<path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.62 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"/>
+</svg>
+
+{% endif %}
+{% endfor %}
+
+<span style="font-size:12px;color:#000;margin-left:6px;">
+( {{ collection.metafields.custom.collection_review_count.value }} )
+</span>
+
 </div>
+</div>
+
+<div class="ai-collection-content-{{ ai_gen_id }}">
+{{ collection.description }}
+</div>
+
+<button class="ai-collection-button-{{ ai_gen_id }}" aria-expanded="false">
+Read more
+</button>
+
+</div>
+
+<div class="ai-collection-image-{{ ai_gen_id }}">
+<div class="ai-collection-image-wrapper-{{ ai_gen_id }}">
+
+{% if section.settings.custom_image %}
+
+<img
+src="{{ section.settings.custom_image | image_url: width: 1000 }}"
+alt="{{ section.settings.custom_image.alt | escape }}"
+loading="lazy"
+width="{{ section.settings.custom_image.width }}"
+height="{{ section.settings.custom_image.height }}"
+>
+
+{% elsif collection.image %}
+
+<img
+src="{{ collection.image | image_url: width: 1000 }}"
+alt="{{ collection.title | escape }}"
+loading="lazy"
+width="{{ collection.image.width }}"
+height="{{ collection.image.height }}"
+>
+
+{% endif %}
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+
+  function initReadMore(){
+
+    var content = document.querySelector(".ai-collection-content-{{ ai_gen_id }}");
+    var button = document.querySelector(".ai-collection-button-{{ ai_gen_id }}");
+
+    if(!content || !button) return;
+
+    // Temporarily remove max-height to measure the true full height
+    var originalMaxHeight = content.style.maxHeight;
+    content.style.maxHeight = "none";
+    var fullHeight = content.scrollHeight;
+    content.style.maxHeight = originalMaxHeight;
+
+    // Get the clamped height from CSS
+    var clampedHeight = parseInt("{{ section.settings.truncate_height }}", 10);
+
+    // Only show the button if content is actually taller than the clamp
+    if(fullHeight <= clampedHeight){
+      button.style.display = "none";
+    } else {
+      button.style.display = "inline-block";
+    }
+
+    button.addEventListener("click", function(){
+
+      var expanded = content.classList.toggle("ai-collection-content-expanded-{{ ai_gen_id }}");
+
+      button.textContent = expanded ? "Read less" : "Read more";
+      button.setAttribute("aria-expanded", String(expanded));
+
+    });
+
+  }
+
+  // Run immediately if DOM is ready, otherwise wait for it
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", initReadMore);
+  } else {
+    initReadMore();
+  }
+
+})();
+</script>
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-banner.name",
-  "class": "section",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.main-collection-banner.settings.paragraph.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_description",
-      "default": true,
-      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_collection_image",
-      "default": false,
-      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
-      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    }
-  ]
+"name":"Collection Header Section",
+"settings":[
+{
+"type":"select",
+"id":"vertical_alignment",
+"label":"Vertical alignment",
+"default":"center",
+"options":[
+{"value":"flex-start","label":"Top"},
+{"value":"center","label":"Center"},
+{"value":"flex-end","label":"Bottom"}
+]
+},
+{
+"type":"range",
+"id":"margin_bottom",
+"label":"Bottom margin",
+"min":0,
+"max":100,
+"step":5,
+"default":40
+},
+{
+"type":"range",
+"id":"truncate_height",
+"label":"Truncated content height",
+"min":50,
+"max":300,
+"step":10,
+"default":100
+},
+{
+"type":"image_picker",
+"id":"custom_image",
+"label":"Custom image"
+},
+{
+"type":"range",
+"id":"image_aspect_ratio",
+"label":"Image aspect ratio",
+"min":50,
+"max":150,
+"step":5,
+"default":100
+},
+{
+"type":"range",
+"id":"image_border_radius",
+"label":"Image border radius",
+"min":0,
+"max":40,
+"step":2,
+"default":8
+},
+{
+"type":"color",
+"id":"heading_color",
+"label":"Heading color",
+"default":"#000000"
+},
+{
+"type":"color",
+"id":"text_color",
+"label":"Text color",
+"default":"#333333"
+},
+{
+"type":"color",
+"id":"button_color",
+"label":"Button color",
+"default":"#000f9f"
+},
+{
+"type":"range",
+"id":"text_size",
+"label":"Button text size",
+"min":12,
+"max":24,
+"step":1,
+"default":16
+}
+],
+"presets":[
+{
+"name":"Collection Header Section"
+}
+]
 }
 {% endschema %}
