@@ -22,12 +22,14 @@
         },
         "slide_CncjGR": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "url_link": ""
           }
         },
         "slide_f7RrDe": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "url_link": ""
           }
