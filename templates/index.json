@@ -42,8 +42,8 @@
       ],
       "name": "Image slideshow",
       "settings": {
-        "desktop_height": 500,
-        "mobile_height": 300,
+        "desktop_height": 650,
+        "mobile_height": 600,
         "border_radius": 0,
         "autoplay": true,
         "autoplay_speed": 5,
