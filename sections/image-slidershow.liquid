@@ -1,0 +1,254 @@
+{% comment %}
+  AI Slideshow — Section (blocks + <picture> for mobile/desktop sources)
+{% endcomment %}
+
+{% assign ai_gen_id = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-slideshow-{{ ai_gen_id }} { position: relative; width: 100%; overflow: hidden; border-radius: {{ section.settings.border_radius }}px; }
+  .ai-slideshow-container-{{ ai_gen_id }} { position: relative; width: 100%; 
+    overflow: hidden; /* ensure no horizontal scroll */
+   /* min-height: px; */
+   min-height: {{ section.settings.desktop_height }});
+  }
+  .ai-slideshow-track-{{ ai_gen_id }} { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+  .ai-slideshow-slide-{{ ai_gen_id }} { 
+    /*min-width: 100%;*/
+    flex: 0 0 100%; /* replaces min-width: 100% to avoid flex overflow quirks */
+    position: relative; display: flex; align-items: center; justify-content: center; }
+
+  .ai-slideshow-image-{{ ai_gen_id }} { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .ai-slideshow-placeholder-{{ ai_gen_id }} { width: 100%; height: 100%; background:#f4f4f4; display:flex; align-items:center; justify-content:center; position:relative; }
+  .ai-slideshow-placeholder-{{ ai_gen_id }} svg { width: 100%; height: 100%; max-width: 200px; max-height: 200px; }
+  .ai-slideshow-empty-state-{{ ai_gen_id }} { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); padding:12px 20px; font-size:14px; color:#666; text-align:center; pointer-events:none; }
+
+  .ai-slideshow-nav-{{ ai_gen_id }} { position:absolute; top:50%; transform:translateY(-50%); background: {{ section.settings.nav_background_color }}; color: {{ section.settings.nav_text_color }};
+    border:none; width:50px; height:50px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:2; transition:opacity .3s ease; }
+  .ai-slideshow-nav-{{ ai_gen_id }}:hover { opacity:.85; }
+  .ai-slideshow-nav-prev-{{ ai_gen_id }} { left:20px; }
+  .ai-slideshow-nav-next-{{ ai_gen_id }} { right:20px; }
+
+  .ai-slideshow-dots-{{ ai_gen_id }} { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:2; }
+  .ai-slideshow-dot-{{ ai_gen_id }} { width:12px; height:12px; border-radius:50%; background: {{ section.settings.dot_inactive_color }}; border:none; cursor:pointer; transition:background-color .3s ease; }
+  .ai-slideshow-dot-{{ ai_gen_id }}.active { background: {{ section.settings.dot_active_color }}; }
+
+  @media screen and (max-width: 749px) {
+    .ai-slideshow-container-{{ ai_gen_id }} { height: {{ section.settings.mobile_height }}px; margin-top:30px; } 
+    .ai-slideshow-nav-{{ ai_gen_id }} { width:40px; height:40px; }
+    .ai-slideshow-nav-prev-{{ ai_gen_id }} { left:10px; }
+    .ai-slideshow-nav-next-{{ ai_gen_id }} { right:10px; }
+  }
+{% endstyle %}
+
+<slideshow-{{ ai_gen_id }}
+  class="ai-slideshow-{{ ai_gen_id }}"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-autoplay-speed="{{ section.settings.autoplay_speed }}"
+  aria-live="polite"
+  tabindex="0" style="margin-top: 65px;"
+>
+  <div class="ai-slideshow-container-{{ ai_gen_id }}" style="">
+    <div class="ai-slideshow-track-{{ ai_gen_id }}">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'slide' %}
+            {% assign desktop_image = block.settings.desktop_image %}
+            {% assign mobile_image  = block.settings.mobile_image %}
+ {% assign url_link  = block.settings.url_link %}
+            <div class="ai-slideshow-slide-{{ ai_gen_id }}" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              {% if desktop_image != blank or mobile_image != blank %}
+                <a href="{{ url_link }}">
+                <picture>
+                  {% if mobile_image != blank %}
+                    <source media="(max-width: 749px)" srcset="{{ mobile_image | image_url: width: 1200 }}">
+                  {% endif %}
+                  {% if desktop_image != blank %}
+                    <img
+                      src="{{ desktop_image | image_url: width: 2400 }}"
+                      alt="{{ desktop_image.alt | default: 'Slide image' | escape }}"
+                      class="ai-slideshow-image-{{ ai_gen_id }}"
+                      loading="lazy"
+                      width="{{ desktop_image.width }}"
+                      height="{{ desktop_image.height }}"
+                    >
+                  {% else %}
+                    <img
+                      src="{{ mobile_image | image_url: width: 1200 }}"
+                      alt="{{ mobile_image.alt | default: 'Slide image' | escape }}"
+                      class="ai-slideshow-image-{{ ai_gen_id }}"
+                      loading="lazy"
+                      width="{{ mobile_image.width }}"
+                      height="{{ mobile_image.height }}"
+                    >
+                  {% endif %}
+                </picture> </a>
+              {% else %}
+                <div class="ai-slideshow-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="ai-slideshow-slide-{{ ai_gen_id }}">
+          <div class="ai-slideshow-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+            <div class="ai-slideshow-empty-state-{{ ai_gen_id }}">Add images to create your slideshow</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% assign slide_count = section.blocks.size %}
+    {% if slide_count > 1 %}
+      {% if section.settings.show_navigation %}
+        <button type="button" class="ai-slideshow-nav-{{ ai_gen_id }} ai-slideshow-nav-prev-{{ ai_gen_id }}" aria-label="Previous slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"></polyline></svg>
+        </button>
+        <button type="button" class="ai-slideshow-nav-{{ ai_gen_id }} ai-slideshow-nav-next-{{ ai_gen_id }}" aria-label="Next slide">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"></polyline></svg>
+        </button>
+      {% endif %}
+
+      {% if section.settings.show_dots %}
+        <div class="ai-slideshow-dots-{{ ai_gen_id }}">
+          {% for i in (0..slide_count-1) %}
+            <button type="button" class="ai-slideshow-dot-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}" data-slide="{{ i }}" aria-label="Go to slide {{ i | plus: 1 }}" style="display:none"></button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</slideshow-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    const tagName = 'slideshow-{{ ai_gen_id }}';
+    if (!customElements.get(tagName)) {
+      class SlideshowEl extends HTMLElement {
+        constructor() {
+          super();
+          this.currentSlide = 0;
+          this.autoplayInterval = null;
+        }
+
+        connectedCallback() {
+          this.track  = this.querySelector('.ai-slideshow-track-{{ ai_gen_id }}');
+          this.slides = this.querySelectorAll('.ai-slideshow-slide-{{ ai_gen_id }}');
+          this.prev   = this.querySelector('.ai-slideshow-nav-prev-{{ ai_gen_id }}');
+          this.next   = this.querySelector('.ai-slideshow-nav-next-{{ ai_gen_id }}');
+          this.dotsC  = this.querySelector('.ai-slideshow-dots-{{ ai_gen_id }}');
+
+          this.autoplay = (this.dataset.autoplay === 'true');
+          const speedS  = parseInt(this.dataset.autoplaySpeed);
+          this.autoplaySpeed = (isNaN(speedS) ? 5 : speedS) * 1000;
+
+          this.bind();
+          this.update();
+
+          if (this.autoplay && this.slides.length > 1) this.start();
+        }
+
+        disconnectedCallback() { this.stop(); }
+
+        bind() {
+          if (this.prev) this.prev.addEventListener('click', () => this.prevSlide());
+          if (this.next) this.next.addEventListener('click', () => this.nextSlide());
+
+          if (this.dotsC) {
+            this.dotsC.addEventListener('click', (e) => {
+              const btn = e.target.closest('.ai-slideshow-dot-{{ ai_gen_id }}');
+              if (!btn) return;
+              const idx = parseInt(btn.getAttribute('data-slide'));
+              if (!isNaN(idx)) this.go(idx);
+            });
+          }
+
+          if (this.autoplay) {
+            this.addEventListener('mouseenter', () => this.stop());
+            this.addEventListener('mouseleave', () => this.start());
+          }
+
+          this.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') this.prevSlide();
+            if (e.key === 'ArrowRight') this.nextSlide();
+          });
+        }
+
+        update() {
+          if (!this.track) return;
+          this.track.style.transform = `translateX(${-this.currentSlide * 100}%)`;
+          const dots = this.querySelectorAll('.ai-slideshow-dot-{{ ai_gen_id }}');
+          dots.forEach((d, i) => d.classList.toggle('active', i === this.currentSlide));
+        }
+
+        nextSlide() { this.currentSlide = (this.currentSlide + 1) % this.slides.length; this.update(); }
+        prevSlide()  { this.currentSlide = (this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1); this.update(); }
+        go(i)        { if (i >= 0 && i < this.slides.length) { this.currentSlide = i; this.update(); } }
+
+        start() {
+          if (this.slides.length <= 1) return;
+          this.stop();
+          this.autoplayInterval = setInterval(() => this.nextSlide(), this.autoplaySpeed);
+        }
+
+        stop() {
+          if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+          }
+        }
+      }
+      customElements.define(tagName, SlideshowEl);
+    }
+  })();
+
+  /* Theme editor hooks (kept minimal for safety) */
+  document.addEventListener('shopify:section:load', () => {});
+  document.addEventListener('shopify:section:unload', () => {});
+</script>
+
+{% schema %}
+{
+  "name": "Image slideshow",
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "desktop_height", "min": 200, "max": 800, "step": 50, "unit": "px", "label": "Desktop height", "default": 500 },
+    { "type": "range", "id": "mobile_height",  "min": 150, "max": 600, "step": 25, "unit": "px", "label": "Mobile height", "default": 300 },
+    { "type": "range", "id": "border_radius",  "min": 0, "max": 40, "step": 2,  "unit": "px", "label": "Border radius", "default": 0 },
+
+    { "type": "header", "content": "Autoplay" },
+    { "type": "checkbox", "id": "autoplay", "label": "Enable autoplay", "default": true },
+    { "type": "range", "id": "autoplay_speed", "min": 2, "max": 10, "step": 1, "unit": "s", "label": "Autoplay speed", "default": 5 },
+
+    { "type": "header", "content": "Navigation" },
+    { "type": "checkbox", "id": "show_navigation", "label": "Show navigation arrows", "default": true },
+    { "type": "checkbox", "id": "show_dots",       "label": "Show navigation dots",   "default": true },
+    { "type": "color", "id": "nav_background_color", "label": "Navigation background", "default": "#ffffff" },
+    { "type": "color", "id": "nav_text_color",       "label": "Navigation icon color", "default": "#000000" },
+    { "type": "color", "id": "dot_active_color",     "label": "Active dot color",      "default": "#ffffff" },
+    { "type": "color", "id": "dot_inactive_color",   "label": "Inactive dot color",    "default": "#ffffff80" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "desktop_image", "label": "Desktop image" },
+         { "type": "url", "id": "url_link", "label": "URL Link" },
+        { "type": "image_picker", "id": "mobile_image",  "label": "Mobile image" }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Image slideshow",
+      "category": "Media",
+      "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }]
+    }
+  ]
+}
+{% endschema %}
